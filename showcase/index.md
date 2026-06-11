@@ -61,7 +61,7 @@ tags: [图文, CLI, 某行业]
 
 <!-- 每场活动后邀请参与者提交 PR，案例将按时间倒序显示在这里 -->
 
-*暂无案例，等你来第一个！*
+- [儿童趣味动物视频生成：从一个词到 HappyHorse 样片](/showcase/children-animal-video-workflow/) — boblank · 2026-06-11 · `视频` `CLI` `Skills` `HappyHorse`
 
 [提交你的案例 →](https://github.com/ModelStudioAI/modelstudioai.github.io/new/main/showcase)
 
