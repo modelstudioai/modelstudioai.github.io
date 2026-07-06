@@ -1,6 +1,5 @@
 ---
 layout: doc
-type: post
 title: "一句话出图、手机拍照直接生商品图、AI 写文案一键发公众号——用 Qwen Code 搞定电商营销全流程"
 permalink: /blog/qwencode-bailian-ai-marketing/
 date: "2026-06-11"
