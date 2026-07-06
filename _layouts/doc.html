@@ -94,7 +94,24 @@ body { font-family: var(--font-sans); color: var(--ink); line-height: 1.6; backg
 .doc-content td { padding: 10px 12px; border-bottom: 1px solid var(--hairline); color: var(--body); }
 .doc-content tr:hover td { background: var(--canvas-soft); }
 .doc-content img { max-width: 100%; border-radius: var(--rounded-md); margin: 16px 0; }
+.doc-content video, .doc-content iframe { max-width: 100%; height: auto; border-radius: var(--rounded-md); margin: 16px 0; display: block; }
 .doc-content hr { border: none; border-top: 1px solid var(--hairline); margin: 32px 0; }
+
+/* Blog meta */
+.blog-meta { margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid var(--hairline); }
+.blog-meta-title { font-size: 32px; font-weight: 700; letter-spacing: -1.2px; line-height: 1.2; margin-bottom: 16px; color: var(--ink); }
+.blog-meta-info { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; font-size: 14px; color: var(--mute); margin-bottom: 16px; }
+.blog-meta-info span { display: inline-flex; align-items: center; gap: 6px; }
+.blog-meta-info svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; opacity: 0.7; }
+.blog-meta-desc { background: var(--canvas-soft); border-left: 3px solid var(--link); padding: 14px 18px; border-radius: 0 var(--rounded-sm) var(--rounded-sm) 0; font-size: 15px; color: var(--body); line-height: 1.65; margin-top: 4px; }
+
+/* Code copy button */
+.code-block-wrapper { position: relative; margin-bottom: 20px; }
+.code-block-wrapper pre { margin-bottom: 0; padding-right: 48px; }
+.copy-btn { position: absolute; top: 50%; right: 12px; transform: translateY(-50%); background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); width: 32px; height: 32px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s, color 0.15s; }
+.copy-btn:hover { background: rgba(255,255,255,0.25); color: #fff; }
+.copy-btn.copied { background: rgba(34,197,94,0.3); border-color: rgba(34,197,94,0.4); color: #4ade80; }
+.copy-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 
 /* Page footer */
 .doc-footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--hairline); font-size: 13px; color: var(--mute); }
@@ -160,6 +177,19 @@ body { font-family: var(--font-sans); color: var(--ink); line-height: 1.6; backg
   </aside>
 
   <main class="doc-content">
+    {%- if page.layout == 'doc' and page.date and page.author -%}
+    <div class="blog-meta">
+      <h1 class="blog-meta-title">{{ page.title }}</h1>
+      <div class="blog-meta-info">
+        <span><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>{{ page.date | date: "%Y-%m-%d" }}</span>
+        <span><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>{{ page.author }}</span>
+      </div>
+      {%- if page.description -%}
+      <p class="blog-meta-desc">{{ page.description }}</p>
+      {%- endif -%}
+    </div>
+    {%- endif -%}
+
     {{ content }}
 
     <div class="doc-footer">
@@ -167,6 +197,36 @@ body { font-family: var(--font-sans); color: var(--ink); line-height: 1.6; backg
     </div>
   </main>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var pres = document.querySelectorAll('.doc-content pre');
+  pres.forEach(function(pre) {
+    var wrapper = document.createElement('div');
+    wrapper.className = 'code-block-wrapper';
+    pre.parentNode.insertBefore(wrapper, pre);
+    wrapper.appendChild(pre);
+
+    var btn = document.createElement('button');
+    btn.className = 'copy-btn';
+    btn.innerHTML = '<svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+    var checkSvg = '<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>';
+    btn.addEventListener('click', function() {
+      var code = pre.querySelector('code');
+      var text = code ? code.textContent : pre.textContent;
+      navigator.clipboard.writeText(text).then(function() {
+        btn.innerHTML = checkSvg;
+        btn.classList.add('copied');
+        setTimeout(function() {
+          btn.innerHTML = '<svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    });
+    wrapper.appendChild(btn);
+  });
+});
+</script>
 
 </body>
 </html>
