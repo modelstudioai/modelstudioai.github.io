@@ -1,5 +1,6 @@
 ---
 layout: doc
+type: post
 title: "一句话出图、手机拍照直接生商品图、AI 写文案一键发公众号——用 Qwen Code 搞定电商营销全流程"
 permalink: /blog/qwencode-bailian-ai-marketing/
 date: "2026-06-11"
@@ -191,7 +192,7 @@ AI 会分别输出三个版本，可直接参考演示视频：
 
 直接告诉 Qwen Code 你的公众号：AppID 和 AppSecret，在微信开发者平台把你的 ip 加入白名单，一次设置后，就能直接发布到草稿箱，完全免除排版困扰：
 
-<video class="mt-5" poster="https://gw.alicdn.com/imgextra/i2/O1CN01m97GNY1VfUbVcMvst_!!6000000002680-2-tps-1582-882.png"src="https://cloud.video.taobao.com/vod/FMxYmHLotZoojvNZNojwpMFPg6vJgg7bWpJw09w1MvY.mp4" controls></video>
+<video class="mt-5" poster="https://gw.alicdn.com/imgextra/i2/O1CN01m97GNY1VfUbVcMvst_!!6000000002680-2-tps-1582-882.png"  src="https://cloud.video.taobao.com/vod/FMxYmHLotZoojvNZNojwpMFPg6vJgg7bWpJw09w1MvY.mp4" controls></video>
 
 > ps：你还可以结合我之前做的封面技能，直接解决公众号封面的问题。
 
