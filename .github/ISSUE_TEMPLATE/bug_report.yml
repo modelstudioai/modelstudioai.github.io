@@ -1,0 +1,28 @@
+name: 报告错误
+description: 报告网站内容或代码的问题
+labels: ["bug"]
+body:
+  - type: textarea
+    id: location
+    attributes:
+      label: 错误位置
+      description: 哪个页面、哪段文字、哪个链接有问题？贴上 URL 或截图。
+      placeholder: "例如：https://modelstudioai.github.io/blog/ 页面第 X 行"
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: 问题描述
+      description: 错误是什么？期望的正确内容是什么？
+      placeholder: "实际显示的是……，应该是……"
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: 补充信息
+      description: 浏览器、设备、复现步骤等（可选）。
+      placeholder: "Chrome 128 / macOS / ……"
+    validations:
+      required: false

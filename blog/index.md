@@ -32,7 +32,7 @@ keywords: "Model Studio AI Blog,百炼 CLI 教程,AI 营销,公众号封面,Qwen
 
 欢迎社区贡献。修错字、翻译、或者写一篇全新教程都可以。
 
-- **发现错误？** 直接提 Issue 或 PR
-- **想写新文章？** 用 `article-proposal` 标签开一个 Issue，我们一起讨论角度
+- **发现错误？** [提一个 Issue](https://github.com/modelstudioai/modelstudioai.github.io/issues/new?template=bug_report.yml&labels=bug) 或直接发 PR
+- **想写新文章？** [开一个文章提案](https://github.com/modelstudioai/blog/issues/new?template=article-proposal.yml&labels=article-proposal)，我们一起讨论角度
 
-源码仓库：[modelstudioai/blog](https://github.com/modelstudioai/blog)
+网站源码：[modelstudioai/modelstudioai.github.io](https://github.com/modelstudioai/modelstudioai.github.io)　博客内容：[modelstudioai/blog](https://github.com/modelstudioai/blog)
