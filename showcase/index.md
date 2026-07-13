@@ -14,6 +14,82 @@ keywords: "阿里云百炼案例,AI Agent 案例,百炼CLI,OpenWork,Showcase,社
 
 ---
 
+## Anker 录音豆 + YoooClaw：口述一句，Workshop 变成 aistudy.xin 学习页
+
+**作者**：[@UFOyyds](https://github.com/UFOyyds) · 2026-07-12
+
+现场用 Anker 录音豆开录 → 结束后对 YoooClaw 说一句「把本场录音做成学习页并部署进主站」——Agent 自动跑通完整流水线：飞书 CLI 取纪要 → 百炼 CLI 把智能章节改写成 title/blurb/expand/takeaways → Hermes Skill 生成交互式学习页 → Vercel 一键发布。「一个 Skill 顶半个管理后台」，把 Workshop 现场录音变成可检索、可展开、可挂进活动矩阵的学习内容。
+
+**产出**：aistudy.xin 主站 · 本场页面 [2026-07-10-bailian-watcha](https://aistudy.xin/events/2026-07-10-bailian-watcha/)
+
+**工具**：Anker 录音豆 + 飞书 CLI（`lark-cli docs +fetch`）+ 百炼 CLI（`bl text chat` qwen3.7-max）+ Hermes Skill + Vercel CLI + YoooClaw 编排
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/37)
+
+---
+
+## organize-files：本地文件夹安全整理（预览→确认→可恢复）
+
+**作者**：[@xiahaishan](https://github.com/xiahaishan) · 2026-07-10
+
+用 `organize-files` Skill 完成本地电脑文件夹的安全整理：先分析预览，再确认移动，并支持根据清单恢复原位置。重点优化了根目录文件夹保护逻辑——通过 `--protect-root-folder` 指定不希望拆解的项目文件夹名，避免误把 GitHub 项目、软件包、会议资料等完整目录按后缀拆散。
+
+**产出**：整理报告 `report.md` + 移动计划 `plan.json`/`plan.csv` + 可恢复清单 `manifest.jsonl` + 两层分类目录（例：`06_压缩包/文件.zip`）
+
+**工具**：OpenWork / 百炼 CLI + Skill `organize-files` + Python 脚本
+
+![organize-files 效果](https://github.com/user-attachments/assets/742b57d4-9f56-44f3-9002-10bc9af12f6d)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/35)
+
+---
+
+## bl-resume-pro：应届毕业生简历优化 Skill
+
+**作者**：[@summer202607](https://github.com/summer202607) · 2026-07-10
+
+自建 `bl-resume-pro` Skill，帮助应届毕业生输出一份有竞争力的求职简历。两步产出：第一步生成简历诊断报告（个人标识 / 教育背景 / 实习 / 项目 / 技能证书 / 自我评价 / DDI 对齐 / AI 时代规则 八大模块打分 + 缺失项 + 补充建议），第二步基于诊断给出优化后简历（保留 985+海外硕士+政务实践 的胜任力总结，用 STAR 结构重构实习段落，剔除"精通 Office"这类致命虚高描述）。
+
+**工具**：百炼 CLI + 自建 Skill `bl-resume-pro`
+
+![简历优化效果](https://github.com/user-attachments/assets/d66c91b0-f082-4c03-997d-ff7b3ef00c8c)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/34)
+
+---
+
+## chuhai-pricing：跨境电商单品前置财报决算官（9 道财务巡检硬拦截）
+
+**作者**：[@xiaofenggan01](https://github.com/xiaofenggan01) · 2026-07-10
+
+跨境电商财务场景的百炼 Skill，把「单品利润测算」固化成确定性流水线：找价 → 过滤 → 决算 → 财务巡检 / 反推。同一输入永远同一结果、可审计、可批量。核心亮点：① 竞品价取价偏置到 Amazon/eBay/AliExpress/Temu 白名单，按 URL 过滤 + 套装÷件数归一；② `--reverse` 反推模式已知零售价 → 反推各档净利率下最高可接受进价（绿线≥20% / 红线≥10% / 盈亏平衡）；③ 9 道财务巡检硬拦（价格 5 重可信度、同款确认、区间合理、公式自洽）；④ 表格批量核价时任一行缺必填就 `exit 3` 报错，绝不臆造。
+
+**实测**：Sony WH-1000XM5 $348 超 3C 合理区间被 D1 硬拦、异款「silicone phone case」被 C4 同款确认硬拦——真实抓到"搜 A 给 B"。
+
+**工具**：百炼 CLI（`bl vision describe` / `bl text chat` / `bl search web` MCP）+ 自建 Skill `chuhai-pricing`（符合 Anthropic Agent Skill 规范）+ Node.js 零依赖 CSV + HTML/CSS Bento Box 海报
+
+**仓库**：[github.com/xiaofenggan01/chuhai-pricing](https://github.com/xiaofenggan01/chuhai-pricing)
+
+![chuhai-pricing 汇总页](https://github.com/user-attachments/assets/a1293ec9-a768-41d8-9239-48db8ec04f30)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/33)
+
+---
+
+## AI 数字人口播视频工作流：路演展示页
+
+**作者**：[@wanghaoyu070](https://github.com/wanghaoyu070) · 2026-07-03
+
+用百炼 CLI 相关 Skill 搭建一条 AI 数字人口播视频完整工作流：脚本生成 → 数字人口播 → 字幕对齐 → 信息卡片 → 视频包装 → 微信视频号发布适配。产出一个本地 HTML 路演展示页，含项目简介、百炼 CLI 在流程中的位置、能力地图、完整实现链路、数字人形象前后对比，以及可播放的数字人口播成片（H.264 / 约 31 秒），可直接用于演讲或路演。
+
+**工具**：OpenWork / 百炼 CLI + Skill `bailian-cli` + HeyGen 数字人 + MCP 工作流编排
+
+![数字人口播路演页](https://github.com/user-attachments/assets/6c23ef05-63a8-4fb0-b9aa-d89b322d6983)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/28)
+
+---
+
 ## 一言成铺（OneWord Store）：一句话跑通电商内容全链路
 
 **作者**：[@solareclipse0130](https://github.com/solareclipse0130) · 2026-06-28
