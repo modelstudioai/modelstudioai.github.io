@@ -14,6 +14,20 @@ keywords: "阿里云百炼案例,AI Agent 案例,百炼CLI,OpenWork,Showcase,社
 
 ---
 
+## 电子衣橱 Digital Cabinet：百炼 Qwen 驱动的 AI 穿搭推荐
+
+**作者**：[@captainold](https://github.com/captainold) · 2026-07-15
+
+给一个纯前端衣橱管理工具（Next.js + IndexedDB）补上了原本"即将推出"的「今日推荐」功能。用户选择场合 + 天气 + 偏好后，AI 分析衣橱里所有衣物的颜色/风格/角色/场合适配度，生成 2-3 套完整搭配方案（含选择理由和穿搭小贴士），并优先推荐穿着次数低的冷门单品来提升衣橱利用率。工程上用 Next.js API Route 做服务端代理保护 API Key，prompt 里只传关键属性不传图片 blob 控制数据量，后端清洗模型偶发的 markdown 包装 JSON 保证输出稳定。
+
+**工具**：百炼 API（OpenAI 兼容接口）+ Qwen-Plus + Next.js 16 API Route
+
+**仓库**：[github.com/captainold/digital_cabinet](https://github.com/captainold/digital_cabinet)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/39)
+
+---
+
 ## Anker 录音豆 + YoooClaw：口述一句，Workshop 变成 aistudy.xin 学习页
 
 **作者**：[@UFOyyds](https://github.com/UFOyyds) · 2026-07-12
