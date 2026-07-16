@@ -14,6 +14,22 @@ keywords: "阿里云百炼案例,AI Agent 案例,百炼CLI,OpenWork,Showcase,社
 
 ---
 
+## 高校论文首轮评审 Copilot：DocMind + 百炼生成定位式 Word 批注
+
+**作者**：[@littlebordercollie](https://github.com/littlebordercollie) · 2026-07-16
+
+面向高校老师的论文首轮评审助手。老师上传论文后，先用阿里云 DocMind 解析 `.doc`/`.docx`/`.pdf` 抽取结构化内容，再通过百炼完成格式规则核查 + 专业内容审读，最后产出两份 Word：① 结构化评审报告（分项评分 + 重点问题 + 证据 + 修改建议）；② 原文定位式批注（在可命中的原文附近高亮并插入批注式建议，省去老师反复搜索原文）。系统记录阶段、候选模型、耗时和失败类型，帮老师区分"内容问题"与"服务问题"，辅助首轮评审但不替代最终学术判断。
+
+**工具**：阿里云 DocMind + 百炼 DashScope API（OpenAI 兼容，实测 `kimi-k2.7-code`，候选含 `qwen-plus`）+ Python / FastAPI / python-docx + OSS / SQLite
+
+**仓库**：[github.com/littlebordercollie/bailian-thesis-review-copilot-showcase](https://github.com/littlebordercollie/bailian-thesis-review-copilot-showcase)
+
+![结构化评审结果](https://raw.githubusercontent.com/littlebordercollie/bailian-thesis-review-copilot-showcase/main/assets/02-structured-review.png)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/43)
+
+---
+
 ## 电子衣橱 Digital Cabinet：百炼 Qwen 驱动的 AI 穿搭推荐
 
 **作者**：[@captainold](https://github.com/captainold) · 2026-07-15
