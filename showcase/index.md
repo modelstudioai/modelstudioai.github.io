@@ -14,6 +14,20 @@ keywords: "阿里云百炼案例,AI Agent 案例,百炼CLI,OpenWork,Showcase,社
 
 ---
 
+## Product Promo Video Skill：百炼生成 + Remotion 代码化合成产品宣传片
+
+**作者**：[@chenlikun2010](https://github.com/chenlikun2010) · 2026-07-18
+
+面向企业创作者的产品宣传视频生成 Skill，走"百炼生成能力 + Remotion 代码化合成"路线。输入产品素材目录（产品图 / App 截图 / 实物视频 / Logo / 卖点文案），自动扫描素材 → `bl text chat` 生成分镜和旁白草稿 → 素材整理进 Remotion 工程（必要时 ffmpeg 转 H.264）→ 缺镜头时用快乐马 `happyhorse-1.1-t2v/i2v` 文生/图生视频补镜 → `bl speech synthesize` 生成旁白并测真实时长校准帧数 → 选 warm/guochao/tech 三套风格生成 React/Remotion 组件 → `npx remotion render` 出成片 → `verify.sh` 校验规格。品牌名/字幕统一在 Remotion 叠加（避免 AI 生成文字变形），成片支持结尾循环回片头，适合展厅屏幕播放。
+
+**工具**：百炼 CLI（`bl text chat` / `bl speech synthesize` longanwen_v3 音色 / `bl video generate` happyhorse-1.1-t2v·i2v）+ Remotion + ffmpeg + Node.js
+
+**仓库**：[github.com/chenlikun2010/product-promo-video-skill](https://github.com/chenlikun2010/product-promo-video-skill)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/42)
+
+---
+
 ## 高校论文首轮评审 Copilot：DocMind + 百炼生成定位式 Word 批注
 
 **作者**：[@littlebordercollie](https://github.com/littlebordercollie) · 2026-07-16
