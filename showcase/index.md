@@ -14,6 +14,20 @@ keywords: "阿里云百炼案例,AI Agent 案例,百炼CLI,OpenWork,Showcase,社
 
 ---
 
+## digital-human-short-video：CosyVoice 字级时间戳驱动数字人口播短视频
+
+**作者**：[@pzb5471](https://github.com/pzb5471) · 2026-07-22
+
+面向"授权人像 + 结构化口播脚本 → 9:16 无平台水印数字人口播短视频"的完整管线。走"云端接口做配音和数字人生成，本地 Remotion 合成"路线：用阿里云百炼 CosyVoice v3（`cosyvoice-v3-flash`）开启 `word_timestamp_enabled` 生成配音，并从 SSE 返回的 `output.sentence.words` 拿到字级时间戳 → 阿里云 Marketing Engine `CreateAnchor + SubmitProjectTask` 用 AUDIO 驱动数字人口型 → Remotion 按字级时间戳合成字幕并输出 1080×1920 / 30fps 成片 → 本地 verify 校验规格。关键踩坑：TTS 首尾静音直接拼接会造成一秒以上停顿和字幕错位，改为分段裁切 + 明确停顿；字幕严格按真实 WAV duration 对齐而非按文本长度估算。
+
+**工具**：百炼 CosyVoice v3（`cosyvoice-v3-flash`，SSE + word_timestamp）+ 阿里云 Marketing Engine（数字人 CreateAnchor / SubmitProjectTask）+ Remotion（1080×1920/30fps 合成）+ FFmpeg
+
+**仓库**：[github.com/pzb5471/digital-human-short-video](https://github.com/pzb5471/digital-human-short-video)（MIT）
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/44)
+
+---
+
 ## Product Promo Video Skill：百炼生成 + Remotion 代码化合成产品宣传片
 
 **作者**：[@chenlikun2010](https://github.com/chenlikun2010) · 2026-07-18
