@@ -14,6 +14,22 @@ keywords: "阿里云百炼案例,AI Agent 案例,百炼CLI,OpenWork,Showcase,社
 
 ---
 
+## OpenAI 风格封面生成 Skill：一键生成 GPT 风格文章封面
+
+**作者**：[@joeytoday](https://github.com/joeytoday) · 2026-07-22
+
+参考 OpenAI Customer Stories 封面设计，用 Qwen Code Skill + 百炼 CLI 一键生成高质量文章封面，全程 AI 生图 → HTML 叠字 → 浏览器导出，都在 Qwen Code 里完成。根据文章内容自动推荐风格和色系、一句话出图：内置 4 种风格（实物微距 / 晕染渐变 / 光束弧影 / 波形水彩）、7 种色系，以及公众号首图 2.35:1 / 正方形 1:1 / 横版 16:9 / 竖版 3:4 等多平台画布预设，生图尺寸自动匹配画布比例。生成的底图自动组装成 HTML 编辑页，标题、字体、遮罩、字号所见即所得实时调整，支持 1x / @2x / @3x Canvas 渲染导出 PNG。
+
+**工具**：百炼 CLI（`bl`，qwen-image-2.0 生图 + Qwen 3.8-max 内容理解 / 风格推荐 / 提示词与 HTML 模板组装）+ Qwen Code + HTML / Canvas
+
+**仓库**：[github.com/joeytoday/open1v-skills](https://github.com/joeytoday/open1v-skills/tree/main/open1v-openai-cover) · [图文教程](https://qwenlm.github.io/qwen-code-docs/zh/blog/cases/qwencode-bailian-skill-openai-cover-gen/)
+
+![效果预览](https://github.com/user-attachments/assets/ec535521-df67-4291-af3f-b8257cd007cd)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/47)
+
+---
+
 ## digital-human-short-video：CosyVoice 字级时间戳驱动数字人口播短视频
 
 **作者**：[@pzb5471](https://github.com/pzb5471) · 2026-07-22
