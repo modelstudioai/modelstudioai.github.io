@@ -14,6 +14,22 @@ keywords: "阿里云百炼案例,AI Agent 案例,百炼CLI,OpenWork,Showcase,社
 
 ---
 
+## WeChat Formatter：Word/PDF 稿件 → 公众号内联 HTML 一键排版工作台
+
+**作者**：[@Roloyty](https://github.com/Roloyty) · 2026-07-23
+
+从 .doc/.docx/.pdf 原稿到微信公众号草稿与正式发布的一体化工作台：DocMind / docling 双引擎解析文档结构，模板系统渲染出微信兼容的纯内联 HTML，图床（PicGo / imgbb）自动把本地图换成公网 URL，草稿 / 永久素材 / 正式发布统一管理。想模仿别家公众号排版？粘贴文章 URL 一键提取样式为可复用模板；想要 AI 帮忙写编者按？直接调百炼 CLI Qwen 分析原文生成。作者提供了完整的前后对比截图：原始 Word 稿 → 排版后公众号预览 → 后台自动推送到草稿箱 → 百炼生成编者按 → DocMind 把 docx 解析成结构化 Markdown / JSON。
+
+**工具**：百炼 CLI（`bl`，Qwen 3.7-max 公众号仿写 / 编者按生成）+ 阿里云 DocMind（docx / pdf 结构化抽取与 OCR，可选云端引擎，默认走免费离线的 IBM docling）+ PicGo / imgbb 图床 + 微信公众平台 API
+
+**仓库**：[github.com/Roloyty/wechatformatter](https://github.com/Roloyty/wechatformatter)
+
+![排版效果](https://github.com/user-attachments/assets/ea7e5f4a-031d-40a2-b467-b33c37c885a0)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/46)
+
+---
+
 ## OpenAI 风格封面生成 Skill：一键生成 GPT 风格文章封面
 
 **作者**：[@joeytoday](https://github.com/joeytoday) · 2026-07-22
