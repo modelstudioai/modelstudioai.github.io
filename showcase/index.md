@@ -14,6 +14,22 @@ keywords: "阿里云百炼案例,AI Agent 案例,百炼CLI,OpenWork,Showcase,社
 
 ---
 
+## invoice-pipeline：百炼 VL 做发票 OCR + CDP 自动化归档上传
+
+**作者**：[@sl820](https://github.com/sl820) · 2026-07-23
+
+面向"一批电子发票 PDF → 按公司抬头改名 → 自动上传到阿里公益票据平台"的重复劳动，做成一条可跑批的端到端管线：PDF 用 `pdftoppm` 转 PNG → 百炼 CLI `bl vision describe`（`qwen3-vl-plus`）做多模态 OCR 并按 JSON schema 输出票号 / 金额 / 交款人 / 开票日期 → 正则后处理抽字段并做括号归一化、公司后缀校验 → Playwright + CDP 复用已登录的 Chrome，按抬头检索"待开具"记录、用金额消歧后自动上传。作者附了脱敏后的 OCR 识别结果截图，并沉淀了几条实战踩坑：一次性 prompt 抽多字段会互相干扰（强制 JSON schema 输出把每个字段短约束、schema 当"提示词骨架"用）；CDP 复用登录态必须用独立 profile + 持久 user-data-dir；`page` 引用易失效，封装 idempotent 的 `freshPage()`；平台按附件名检索，本地 `xxx(2).pdf` 后缀会匹配不到，上传前复制成 `{payer}_{applicationId}.pdf`。
+
+**工具**：百炼 CLI（`bl vision describe` + `qwen3-vl-plus` 做发票 OCR，单 AI 步；字段抽取 / 平台匹配 / 上传均为确定性脚本）+ Playwright + Chrome CDP + pdftoppm + Node.js
+
+**仓库**：[github.com/sl820/invoice-pipeline](https://github.com/sl820/invoice-pipeline)（Apache-2.0；核心脚本 `upload/scripts/Ocr-All.js` 调百炼、`Ocr-Parse.js` 抽字段、`Upload-Gongyi.js` CDP 上传）
+
+![OCR 识别结果（脱敏）](https://github.com/user-attachments/assets/bae192d4-137a-422b-b4e3-d949d30deefc)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/48)
+
+---
+
 ## WeChat Formatter：Word/PDF 稿件 → 公众号内联 HTML 一键排版工作台
 
 **作者**：[@Roloyty](https://github.com/Roloyty) · 2026-07-23
