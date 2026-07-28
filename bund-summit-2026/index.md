@@ -15,6 +15,28 @@ keywords: "外滩大会2026,Inclusion外滩大会,阿里云百炼,AI 比赛,参�
   <a href="https://github.com/modelstudioai/modelstudioai.github.io/issues?q=is%3Aissue+label%3A%E5%A4%96%E6%BB%A9%E5%A4%A7%E4%BC%9A2026" target="_blank" style="display:inline-block;padding:11px 22px;border-radius:100px;background:#fff;color:#171717;border:1px solid #eaeaea;text-decoration:none;font-weight:600;font-size:14px;">查看已提交作品 →</a>
 </div>
 
+<div style="position:relative;border-radius:16px;padding:28px 30px;margin:28px 0 12px;background:linear-gradient(135deg,#faf7ff 0%,#f2f6ff 100%);border:1px solid #e6ddff;">
+  <span style="display:inline-block;font-size:12px;font-weight:600;letter-spacing:.4px;color:#5319E7;background:#eee6ff;padding:4px 12px;border-radius:100px;margin-bottom:14px;">阿里云百炼 · 选手专属福利</span>
+  <h3 style="font-size:19px;font-weight:600;letter-spacing:-.3px;margin:0 0 6px;">参赛就能领的 AI 算力福利</h3>
+  <p style="font-size:13.5px;color:#4d4d4d;margin:0 0 18px;line-height:1.7;">阿里云百炼为外滩大会选手准备了 Token 补贴与专属资源，边做作品边领，随时生效、无需手动激活。</p>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;">
+    <div style="background:#fff;border:1px solid #ece6ff;border-radius:10px;padding:14px 15px;">
+      <div style="font-size:17px;font-weight:700;color:#5319E7;margin-bottom:3px;letter-spacing:-.3px;">1 亿 Token</div>
+      <div style="font-size:12.5px;color:#4d4d4d;line-height:1.5;">新客免费额度，直接开跑</div>
+    </div>
+    <div style="background:#fff;border:1px solid #ece6ff;border-radius:10px;padding:14px 15px;">
+      <div style="font-size:17px;font-weight:700;color:#5319E7;margin-bottom:3px;letter-spacing:-.3px;">最高 100 万</div>
+      <div style="font-size:12.5px;color:#4d4d4d;line-height:1.5;">等额 Token 满返补贴，先用后返、个企同享</div>
+    </div>
+    <div style="background:#fff;border:1px solid #ece6ff;border-radius:10px;padding:14px 15px;">
+      <div style="font-size:17px;font-weight:700;color:#5319E7;margin-bottom:3px;letter-spacing:-.3px;">50 元通兑</div>
+      <div style="font-size:12.5px;color:#4d4d4d;line-height:1.5;">高校学生创新补贴，覆盖竞赛 / 科研 / 毕设</div>
+    </div>
+  </div>
+  <a href="https://opc.aliyun.com/waitan" target="_blank" style="display:inline-block;padding:11px 24px;border-radius:100px;background:linear-gradient(120deg,#5319E7,#7928ca);color:#fff;text-decoration:none;font-weight:600;font-size:14px;">领取选手福利 →</a>
+  <p style="font-size:12px;color:#888;margin:12px 0 0;">福利以阿里云百炼官方页面说明为准，名额与规则可能调整。</p>
+</div>
+
 ## 怎么参赛
 
 1. **动手做作品**：用阿里云百炼 CLI、OpenWork 或 Agent Skills，围绕真实场景做出一个能跑起来的 AI 作品——工具、Agent、工作流、Demo 都可以。
