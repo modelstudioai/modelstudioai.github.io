@@ -738,6 +738,9 @@ bl advisor recommend "审 SaaS 合同 SLA 章节，qwen3.7-max 和 qwen-plus 哪
   gap: 16px;
   margin: 24px 0;
 }
+@media (max-width: 1024px) {
+  .role-grid { grid-template-columns: repeat(3, 1fr); }
+}
 @media (max-width: 768px) {
   .role-grid { grid-template-columns: repeat(2, 1fr); }
 }

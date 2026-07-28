@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 {%- assign page_title = page.title | default: site.title -%}
 {%- assign page_desc  = page.description | default: site.description -%}
 {%- assign page_kw    = page.keywords | default: site.keywords -%}
@@ -55,17 +55,26 @@
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: var(--font-sans); color: var(--ink); line-height: 1.5; background: var(--canvas); -webkit-font-smoothing: antialiased; }
+body { font-family: var(--font-sans); color: var(--ink); line-height: 1.5; background: var(--canvas); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+h1, h2, h3 { text-wrap: balance; }
 
 /* Nav */
-.nav { height: 64px; display: flex; align-items: center; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(8px); background: rgba(255,255,255,0.8); border-bottom: 1px solid var(--hairline); }
+.nav { height: calc(64px + env(safe-area-inset-top, 0px)); padding-top: env(safe-area-inset-top, 0px); display: flex; align-items: center; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); background: rgba(255,255,255,0.8); border-bottom: 1px solid var(--hairline); }
 .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; width: 100%; display: flex; align-items: center; justify-content: space-between; }
 .nav-logo { font-size: 16px; font-weight: 700; color: var(--ink); text-decoration: none; letter-spacing: -0.5px; }
+.logo-short { display: none; }
 .nav-links { display: flex; gap: 8px; align-items: center; }
 .nav-links a { color: var(--body); text-decoration: none; font-size: 14px; font-weight: 500; padding: 6px 12px; border-radius: var(--rounded-pill); transition: background 0.15s, color 0.15s; }
 .nav-links a:hover { background: var(--canvas-soft-2); color: var(--ink); }
 .nav-cta { background: var(--primary) !important; color: var(--on-primary) !important; font-size: 14px !important; font-weight: 500; padding: 6px 16px !important; border-radius: var(--rounded-sm); }
 .nav-cta:hover { opacity: 0.9; }
+.nav-toggle { display: none; align-items: center; justify-content: center; width: 44px; height: 44px; border: none; background: none; cursor: pointer; border-radius: var(--rounded-md); color: var(--ink); }
+.nav-toggle:hover { background: var(--canvas-soft-2); }
+.nav-toggle svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.nav-toggle .icon-close { display: none; }
+.nav-toggle[aria-expanded="true"] .icon-menu { display: none; }
+.nav-toggle[aria-expanded="true"] .icon-close { display: block; }
+.mobile-menu, .menu-backdrop { display: none; }
 
 /* Hero with background image */
 .hero {
@@ -86,6 +95,7 @@ body { font-family: var(--font-sans); color: var(--ink); line-height: 1.5; backg
   position: relative;
   z-index: 2;
   max-width: 680px;
+  width: 100%;
 }
 .hero h1 {
   font-size: 40px;
@@ -100,7 +110,6 @@ body { font-family: var(--font-sans); color: var(--ink); line-height: 1.5; backg
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  display: inline-block;
   padding-right: 0.08em;
   margin-right: -0.08em;
 }
@@ -127,7 +136,7 @@ body { font-family: var(--font-sans); color: var(--ink); line-height: 1.5; backg
 .bund-banner-text h2 { font-size: 22px; font-weight: 600; letter-spacing: -0.5px; margin-bottom: 8px; color: #fff; }
 .bund-banner-text p { font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.9); max-width: 640px; }
 .bund-banner-cta { flex-shrink: 0; font-size: 14px; font-weight: 600; padding: 12px 22px; border-radius: 100px; background: #fff; color: #5319E7; white-space: nowrap; }
-@media (max-width: 768px) { .bund-banner-inner { flex-direction: column; align-items: flex-start; } .bund-banner-text h2 { font-size: 19px; } }
+@media (max-width: 768px) { .bund-banner-inner { flex-direction: column; align-items: flex-start; } .bund-banner-text h2 { font-size: 19px; } .bund-banner-cta { align-self: stretch; text-align: center; } }
 
 /* Steps */
 .steps { padding: 48px 24px 64px; max-width: 1100px; margin: 0 auto; }
@@ -185,18 +194,40 @@ body { font-family: var(--font-sans); color: var(--ink); line-height: 1.5; backg
 .doc-link p { font-size: 12px; color: var(--body); }
 
 /* Footer */
-.footer { padding: 48px 24px; border-top: 1px solid var(--hairline); text-align: center; }
+.footer { padding: 48px 24px max(48px, env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--hairline); text-align: center; }
 .footer p { font-size: 12px; color: var(--mute); }
 .footer a { color: var(--body); text-decoration: none; }
 .footer a:hover { color: var(--ink); }
 
+/* Tablet */
+@media (max-width: 1024px) {
+  .playbook-grid { grid-template-columns: repeat(3, 1fr); }
+  .steps h2, .playbook-entry h2, .ecosystem h2, .docs-section h2 { font-size: 24px; }
+}
+
 /* Mobile */
 @media (max-width: 768px) {
-  .hero h1 { font-size: 28px; font-weight: 600; letter-spacing: -1px; }
+  .nav-links a { display: none; }
+  .nav-toggle { display: flex; }
+  .logo-full { display: none; }
+  .logo-short { display: inline; }
+  .mobile-menu { position: fixed; top: calc(64px + env(safe-area-inset-top, 0px)); left: 0; right: 0; z-index: 99; display: none; flex-direction: column; padding: 8px 16px calc(12px + env(safe-area-inset-bottom, 0px)); background: var(--canvas); border-bottom: 1px solid var(--hairline); box-shadow: 0 16px 40px rgba(23,23,23,0.10); }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { display: flex; align-items: center; min-height: 46px; padding: 10px 14px; font-size: 15px; font-weight: 500; color: var(--body); text-decoration: none; border-radius: var(--rounded-md); }
+  .mobile-menu a:hover, .mobile-menu a:active { background: var(--canvas-soft-2); color: var(--ink); }
+  .mobile-menu .mobile-cta { margin-top: 8px; justify-content: center; background: var(--primary); color: var(--on-primary); border-radius: var(--rounded-sm); }
+  .mobile-menu .mobile-cta:hover, .mobile-menu .mobile-cta:active { background: var(--primary); color: var(--on-primary); opacity: 0.9; }
+  .menu-backdrop.open { display: block; position: fixed; inset: 0; z-index: 98; background: rgba(23,23,23,0.24); }
   .hero { padding: 32px 24px 24px; min-height: 220px; }
+  .hero h1 { font-size: 28px; font-weight: 600; letter-spacing: -1px; }
+  .btn { height: 44px; padding: 0 24px; }
   .steps-grid, .eco-grid { grid-template-columns: 1fr; }
   .docs-grid { grid-template-columns: 1fr; }
-  .nav-links a:not(.nav-cta) { display: none; }
+  .playbook-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }
 </style>
 </head>
@@ -204,16 +235,28 @@ body { font-family: var(--font-sans); color: var(--ink); line-height: 1.5; backg
 
 <nav class="nav">
   <div class="nav-inner">
-    <a href="/" class="nav-logo">ModelStudio for Developers</a>
+    <a href="/" class="nav-logo"><span class="logo-full">ModelStudio for Developers</span><span class="logo-short">ModelStudio</span></a>
     <div class="nav-links">
       <a href="/playbook/">岗位能力样板</a>
       <a href="/blog/">Blog</a>
       <a href="/showcase/">案例</a>
       <a href="https://github.com/modelstudioai" target="_blank">GitHub</a>
       <a href="{{ site.bailian_apikey_url }}" class="nav-cta" target="_blank">获取 API Key</a>
+      <button class="nav-toggle" aria-label="菜单" aria-expanded="false" aria-controls="mobile-menu">
+        <svg class="icon-menu" viewBox="0 0 24 24"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        <svg class="icon-close" viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+      </button>
     </div>
   </div>
 </nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="/playbook/">岗位能力样板</a>
+  <a href="/blog/">Blog</a>
+  <a href="/showcase/">案例</a>
+  <a href="https://github.com/modelstudioai" target="_blank" rel="noopener">GitHub</a>
+  <a href="{{ site.bailian_apikey_url }}" class="mobile-cta" target="_blank" rel="noopener">获取 API Key</a>
+</div>
+<div class="menu-backdrop"></div>
 
 <section class="hero">
   <div class="hero-content">
@@ -350,6 +393,27 @@ body { font-family: var(--font-sans); color: var(--ink); line-height: 1.5; backg
     <a href="{{ site.bailian_cli_url }}" target="_blank">阿里云百炼</a>
   </p>
 </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var toggle = document.querySelector('.nav-toggle');
+  var menu = document.getElementById('mobile-menu');
+  var backdrop = document.querySelector('.menu-backdrop');
+  if (!toggle || !menu || !backdrop) return;
+  function setMenu(open) {
+    menu.classList.toggle('open', open);
+    backdrop.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? '关闭菜单' : '菜单');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  toggle.addEventListener('click', function() { setMenu(!menu.classList.contains('open')); });
+  backdrop.addEventListener('click', function() { setMenu(false); });
+  menu.addEventListener('click', function(e) { if (e.target.closest('a')) setMenu(false); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') setMenu(false); });
+  window.addEventListener('resize', function() { if (window.innerWidth > 768) setMenu(false); });
+});
+</script>
 
 </body>
 </html>
