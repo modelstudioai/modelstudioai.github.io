@@ -14,6 +14,36 @@ keywords: "阿里云百炼案例,AI Agent 案例,百炼CLI,OpenWork,Showcase,社
 
 ---
 
+## 证据钉：把售后材料整理成「主张-证据-承诺-矛盾-未知」可追溯证据图
+
+**作者**：[@MaxxxDong](https://github.com/MaxxxDong) · 2026-07-30
+
+把售后截图、票据、聊天记录和承诺，整理成「主张—证据—承诺—矛盾—未知」五类节点的可追溯关系图。每条结论都能回到原始图片或页码；冲突不会被模型擅自抹平，无法确认的内容明确保留为「未知」，避免把不完整材料补成看似完整的故事。用百炼 CLI 调通义千问视觉模型完成真实 PNG 材料理解，再由本地确定性规则完成结构校验、证据锚点和安全输出——模型负责理解，代码负责守边界。工程侧跑通 24/24 本地测试、14 项安全语料、37/37 发布验收。作者也把「真实模型探针」与「合成回归测试」分开记录，坦诚区分工程链路通过与真实识别准确率。
+
+**工具**：百炼 CLI 1.12.0（`bl` 调 `qwen3.7-plus` 视觉模型做 PNG 材料理解）+ 本地确定性证据图与安全校验 + Python + 静态 Web 演示
+
+**在线 Demo**：[证据钉演示（合成材料）](http://211.159.225.175/bl/)
+
+![证据钉五类节点可审计输出](https://github.com/user-attachments/assets/80146eeb-91cc-4fb2-9b73-df2e68a66a21)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/55)
+
+---
+
+## EvidenceGate OCR：给百炼文档 AI 输出加一道「可复核门禁」
+
+**作者**：[@2487238628](https://github.com/2487238628) · 2026-07-30
+
+不是再造一个 OCR 模型，而是站在百炼模型与业务动作之间，把模型输出当成「不可信候选」，先经过结构契约、字段证据、确定性业务规则和人工路由检查，再稳定返回 `ACCEPT_CANDIDATE` / `HUMAN_REVIEW` / `MODEL_OUTPUT_INVALID` 三种状态，任何状态都不代表审批、付款或发布权限。作者在 5 张合成采购图片上对 `qwen3-vl-plus` 做了三轮共 15 次真实调用，第三轮路由 5/5 符合预期、危险误接收 0、字段精确一致 41/45；并坦诚披露当前公开缺口——模型不返回页码/坐标，证据定位覆盖 0/45，v0.3.1 因此加了「缺少定位即转人工」的关键字段门禁。踩坑记录很有参考价值：模型读对字段不等于满足业务契约（数值字符串化、Markdown 包裹、缺安全标签仍需阻断），裁切图片会让残缺文本被当成完整值。
+
+**工具**：百炼 CLI（真实调用 `qwen3-vl-plus`，另有 `qwen3.5-ocr` / `qwen3.6-flash` 同图对照记录）+ 可安装 Skill `evidencegate-ocr` + Node.js + SHA-256
+
+**仓库**：[github.com/2487238628/evidencegate-ocr](https://github.com/2487238628/evidencegate-ocr)（含 14 条契约回归、30 条确定性对抗路由、5 张合成图片与 15 次百炼调用证据）
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/54)
+
+---
+
 ## invoice-pipeline：百炼 VL 做发票 OCR + CDP 自动化归档上传
 
 **作者**：[@sl820](https://github.com/sl820) · 2026-07-23
