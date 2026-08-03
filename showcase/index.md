@@ -14,6 +14,100 @@ keywords: "阿里云百炼案例,AI Agent 案例,百炼CLI,OpenWork,Showcase,社
 
 ---
 
+## 宠念：让离世宠物 AI 陪聊、让流浪动物被看见、让毛孩子找到玩伴
+
+**作者**：[@Bowen-Tian-0305](https://github.com/Bowen-Tian-0305) · 2026-08-02
+
+一个覆盖「宠物离世后」情感陪伴场景的 H5 应用，同时打通流浪救助与宠物交友三条主线。彩虹桥 AI 数字分身把建档时选的 14 种性格标签直接注入角色 Prompt，配合情感感知 / 场景匹配 / 性格筛选 / 万能兜底四层对话路由，让「傲娇+贪吃」的猫和「温柔+粘人」的狗对话风格截然不同；再用纯 CSS/DOM 手绘像素上海地图承载「宠物层 / 流浪层 / 天堂层」三图层切换与拍照上传领养闭环。全程用百炼 CLI 接入 `qwen-max` 完成产品定位 brainstorming、四层对话引擎与像素设计系统等全部代码生成，`qwen-image-2.0` 生成 8 张卡通宠物头像，`cosyvoice-v3-flash` 生成宠物语音 demo。
+
+**工具**：百炼 CLI（`bl` 调 `qwen-max` 做代码生成 + 方案设计）+ `qwen-image-2.0` 头像生成 + `cosyvoice-v3-flash` 语音合成 + 纯静态 H5
+
+![宠念首页](https://github.com/user-attachments/assets/10b66c9b-6cfa-439d-83f4-85b4048c4fae)
+
+**在线 Demo**：[chong-nian](https://bowen-tian-0305.github.io/chong-nian/) · **仓库**：[github.com/Bowen-Tian-0305/chong-nian](https://github.com/Bowen-Tian-0305/chong-nian)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/68)
+
+---
+
+## Storydex：长文剧情一致性创作工作台
+
+**作者**：[@Septemc](https://github.com/Septemc)（TensorHub 组织，与 [@Natra1n](https://github.com/Natra1n)）· 2026-08-02
+
+面向长篇小说创作者的本地优先（Local-First）写作工作台。章节正文、世界观、角色资料、WIKI 与创作历史围绕同一项目组织，自研 Rust Agent 基座 `storydex-coomi-bridge` 在理解本轮创作意图后读取项目上下文，执行续写、整理、审阅与剧情冲突检查，支持 128K/256K/512K 上下文窗口；配合面向中文优化的全文检索 + 滚动摘要 + 旧文召回 + WIKI 注入，让 Agent「先查证再落笔」，并用内置 MinGit 做每轮 Diff 审阅与历史回滚。作者用五个月打磨，全程通过 OpenWork / 百炼 CLI 接入通义千问作为主力 AI 编程搭档，协助编写并重构 `coomi_agent_service` 等 60+ 后端核心服务、SSE 流式协议、覆盖率 ratchet 门禁，以及从 Python 到 Rust 运行时的跨语言大重构。
+
+**工具**：OpenWork / 百炼 CLI（接入通义千问做后端 / 前端 / Rust Agent 桥接层开发）+ FastAPI + Vue 3 + Rust + Electron
+
+**开源仓库**：[github.com/TensorHub-ORG/Storydex](https://github.com/TensorHub-ORG/Storydex) · [介绍视频](https://www.bilibili.com/video/BV1WmNy62EeB/) · [项目官网](https://storydex.septemc.com/)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/67)
+
+---
+
+## AI觅：用阿里云百炼重构「先表达需求，再由 AI 匹配」的社交流程
+
+**作者**：[@wzczv](https://github.com/wzczv) · 2026-08-01
+
+一款已在中国区 App Store 上架的 AI 深度需求匹配社交 App。传统社交要求用户反复左滑右滑，AI觅把流程改为「用一句自然语言或语音说明想找什么样的人，再由 AI 在后台双向匹配」。百炼能力贯穿核心链路：通义千问负责需求理解、核心诉求提炼、用户画像结构化与双向匹配判断；`text-embedding-v3` 把需求与画像转成 1024 维向量交给 pgvector 做候选召回；`qwen-max` 在通过双向评分门槛后生成共同点、匹配解读与建议开场白（失败降级为规则模板，不阻塞结果）；`qwen3-asr-flash` 完成语音输入转写。全部通过 DashScope HTTP API 接入产品代码链路，支持找对象 / 找搭子 / 找合伙人 / 语伴 / 球友等真实连接场景。
+
+**工具**：阿里云百炼（DashScope HTTP API）— 通义千问 + `text-embedding-v3` + `qwen-max` + `qwen3-asr-flash` + pgvector
+
+![AI觅演示视频封面](https://github.com/user-attachments/assets/cfdf4693-a1ad-4434-bfdc-4e46b3b03d0e)
+
+**官网**：[meetaimi.com](https://meetaimi.com/) · [中国区 App Store](https://apps.apple.com/cn/app/ai%E8%A7%85/id6775722328)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/64)
+
+---
+
+## 叙镜 StoryLens：小说结构与读者旅程可视化分析
+
+**作者**：[@fanjack510-ctrl](https://github.com/fanjack510-ctrl) · 2026-08-01
+
+面向小说作者与写作学习者的本地优先 AI 拆书工具。把「凭感觉判断一章写得好不好」变成可检查、可追溯的分析流程：导入章节 → 自动识别场景边界并允许人工审阅修正 → 用阿里云百炼通义千问分析场景作用 / 剧情推进 / 读者体验 → 把阅读张力、情绪变化、节奏速度转成可视化读者旅程曲线 → 每个判断都能回到对应原文证据，而非只给笼统结论 → 支持 PNG/JSON/Markdown 导出。采用本地优先架构，用户用自己的百炼 API Key，私人稿件不上传自建服务器。作者特别强调：模型输出不天然稳定，因此没有直接展示模型回答，而是加了结构校验、阶段化分析、错误反馈与任务恢复机制。
+
+**工具**：阿里云百炼 API（Provider `aliyun_qwen_plus`，默认 `qwen3.7-plus` 做长文本理解与结构化抽取）+ React/Vite/Tauri + FastAPI + SQLite
+
+![StoryLens 分析界面](https://github.com/user-attachments/assets/ef896ad3-4653-4d44-a674-8d2626427837)
+
+**仓库**：[github.com/fanjack510-ctrl/StoryLens](https://github.com/fanjack510-ctrl/StoryLens) · [Windows 安装包 v1.1.2](https://github.com/fanjack510-ctrl/StoryLens/releases/tag/v1.1.2)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/63)
+
+---
+
+## 贝克街档案馆 · The Baker Street Files：多页面沉浸式侦探体验站
+
+**作者**：[@SherlockHolmes006](https://github.com/SherlockHolmes006) · 2026-07-31
+
+以福尔摩斯与古典推理为主题，用 AI Agent 做出一座纯静态 HTML/CSS/JS 的多页面沉浸式侦探体验站，而非单页展示页。核心体验包括维多利亚雾都氛围首页、悬案卷宗（现场勘察 / 物证 / 审讯 / 指认真凶）、可拖拽卡片 + 红绳连线验证因果链的证据板、三关测验与等级评定的演绎训练室，以及跨页进度收藏。视觉参考 bund-summit-2026 的版式语言，用雾都卷宗风格重新讲故事，已部署到自有域名并通过 GitHub Actions 自动发布。全程用百炼 CLI（`bl`）调用通义系列模型完成内容理解与生成。
+
+**工具**：阿里云百炼 CLI（`bailian-cli` / `bl`，Agent Skills）+ 通义系列模型 + Cursor（Agent 载体）+ GitHub Actions + 宝塔静态托管
+
+![贝克街档案馆首页](https://github.com/user-attachments/assets/1d6121e5-d37d-4ab3-930a-b80bb6294f27)
+
+**在线体验**：[detective.secondtonone.top](https://detective.secondtonone.top/) · **仓库**：[github.com/SherlockHolmes006/detective](https://github.com/SherlockHolmes006/detective)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/60)
+
+---
+
+## 知价簿：接入百炼 Qwen3.6-Flash 的 AI 个人价格本
+
+**作者**：[@wholubo](https://github.com/wholubo) · 2026-07-31
+
+一个解决「记录价格太麻烦、面对不同规格报价不知道哪个更划算」的微信小程序。AI 拍照记价：拍价签 / 包装 / 小票后调用 `Qwen3.6-Flash` 多模态识别，自动提取商品名称、品牌、规格、数量、价格、门店与日期并填入表单；报价比一比：一次输入多组报价（如「140g 9.9 元，160g 12.9 元，500g 29.9 元」），由 `Qwen3.6-Flash` 做文本分析识别价格与规格，再由后端单位换算统一成单位价格排序并给出购买建议。整体流程为「拍照或输入报价 → AI 识别分析 → 自动填写或生成对比 → 保存为个人价格记录」，另有历史价格、价格趋势与消费洞察。
+
+**工具**：百炼 CLI（项目分析 / 前后端开发 / 问题排查）+ 阿里云百炼 `Qwen3.6-Flash`（多模态图片识别 + 文本分析）+ 微信小程序
+
+![知价簿首页](https://github.com/user-attachments/assets/20f6c4d2-9bf6-42b5-bfe1-8d21ac370655)
+
+**体验**：微信搜索小程序「知价簿」
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/57)
+
+---
+
 ## 证据钉：把售后材料整理成「主张-证据-承诺-矛盾-未知」可追溯证据图
 
 **作者**：[@MaxxxDong](https://github.com/MaxxxDong) · 2026-07-30
@@ -40,7 +134,25 @@ keywords: "阿里云百炼案例,AI Agent 案例,百炼CLI,OpenWork,Showcase,社
 
 **仓库**：[github.com/2487238628/evidencegate-ocr](https://github.com/2487238628/evidencegate-ocr)（含 14 条契约回归、30 条确定性对抗路由、5 张合成图片与 15 次百炼调用证据）
 
+**外滩大会 2026 官方参赛版本**：[#65](https://github.com/modelstudioai/modelstudioai.github.io/issues/65)（v0.4.1 把 5 张合成票据扩展为原图 / 下采样 / 旋转 / 裁切 / 遮挡 / JPEG 往返共 30 个受损输入，完成 30 次真实 `qwen3.5-ocr` 调用，路由 30/30、危险误接收 0）
+
 > [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/54)
+
+---
+
+## 单词萌兽 VOCAB-MONSTER：游戏化单词听写与情景默写
+
+**作者**：[@freemank1224](https://github.com/freemank1224)（戴森方程式）· 2026-07-28
+
+一个完全由 AI Coding 构建的游戏化背单词 Web 应用（作者自述不懂前端与数据库，全靠 AI 补齐）。基于 Supabase 搭建后端与注册登录，实现成就积分与排行系统、符合遗忘规律的选词策略、用键盘输入代替书写的自助添加与听写、九宫格限时看图听写，以及 AI 驱动的即兴场景设计与图像生成，提供新鲜的看图写词体验。单词释义生成等环节选用百炼 `Qwen3-max`，通过 Supabase Edge Function 完成 API 调用。
+
+**工具**：百炼 `Qwen3-max`（经 Edge Function API 调用做单词释义等）+ OpenWork / Claude Code / OpenCode（前端设计美化、UI/UX Skill）+ Supabase + GPT-image-2（配图）+ MiniMax（TTS）
+
+![单词萌兽基本界面](https://github.com/user-attachments/assets/c2b5d2da-c268-4583-bd0c-781dc7eee71f)
+
+**在线体验**：[vocab-monster.xyz](https://vocab-monster.xyz)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/49)
 
 ---
 
