@@ -14,6 +14,52 @@ keywords: "阿里云百炼案例,AI Agent 案例,百炼CLI,OpenWork,Showcase,社
 
 ---
 
+## 千川素材结构拆解 Skill：把一条短视频沉淀成结构化的素材复盘报告
+
+**作者**：[@bianzigege](https://github.com/bianzigege)（辫子哥哥）· 2026-08-04
+
+面向电商商家、千川投手和素材团队的本地视频拆解 Skill。用户只需提供一条短视频，Skill 先在本地完成预处理，再调用阿里云百炼多模态模型理解视频关键帧，最终输出一份完整的素材结构拆解报告：素材概览（时长 / 尺寸 / 音频 / 真人出镜 / 商品展示）、前 3 秒开场画面与钩子类型、逐镜头时间轴、关键画面 / 字幕 / 口播分离、商品卖点 / 用户痛点 / 使用场景 / 目标人群 / CTA、脚本结构与可复用素材模板，并按「品类-品牌-商品-核心卖点」归档，一条视频对应一份报告，可选同步飞书。作者刻意划清边界：只分析内容结构，不判断真实消耗 / ROI / 成交；模型只依据关键帧、字幕和口播判断，无法确认的字段留空、不把推测写成事实。
+
+**工具**：百炼 CLI + 阿里云百炼 `qwen3.7-plus`（多模态视频理解）+ Skill `qianchuan-material-breakdown-bailian` + Python / FFmpeg / FFprobe / Whisper / JSON Schema / 飞书文档与云盘
+
+**仓库**：[github.com/bianzigege/qianchuan-material-breakdown-skill-bailian](https://github.com/bianzigege/qianchuan-material-breakdown-skill-bailian)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/73)
+
+---
+
+## 一针见血？Needle Roulette：手机浏览器里的 3D 互动扎针小游戏
+
+**作者**：[@ly-tt](https://github.com/ly-tt) · 2026-08-03
+
+一款可直接在手机浏览器运行的 3D 互动小游戏。玩家旋转、缩放并观察 3D 手部模型，根据穴位提示完成五次「扎针」，系统结合落点距离、手心 / 手背方向和触发区域，产生正常刺激、出血、神经刺激、青紫、碰到硬组织等不同结果，并用粒子、闪光、手部抖动、颜色变化、音效与剧情对白反馈。游戏接入阿里云百炼 Workflow 完成三件事：生成虚拟患者（姓名 / 年龄 / 性格 / 怕疼程度 / 血管难度 / 开场对白）、生成五针疗程总结、维护连续疗程状态（疼痛、出血、青紫、麻木、信任值持续累积并影响最终报告）。为保护 API Key，作者用阿里云 Function Compute 搭建服务端代理，加入 CORS、输入校验、限流、超时控制、JSON Schema 校验、结构化日志与本地 fallback，前端不直接接触百炼 API Key。
+
+**工具**：阿里云百炼（大模型节点 + 应用 Workflow：`needle-generate-patient` / `needle-generate-report`）+ React / TypeScript / Vite / React Three Fiber / Three.js + 阿里云 Function Compute + 阿里云 OSS 静态托管
+
+![一针见血 游戏界面](https://github.com/user-attachments/assets/ea3d4b9c-6035-4ee9-bcce-7efa03995d17)
+
+**在线 Demo**：[rongmomo.lyshowcase.com](https://rongmomo.lyshowcase.com/) · **仓库**：[github.com/ly-tt/RongMoMo](https://github.com/ly-tt/RongMoMo)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/71)
+
+---
+
+## OneTrail 一径：把一次徒步做成「先懂人、再懂路」的完整决策助手
+
+**作者**：[@eurekaneon](https://github.com/eurekaneon)（与 [@RealTapeL](https://github.com/RealTapeL)）· 2026-08-03
+
+一款徒步路线规划助手，把「周末想去徒步却因信息散乱而放弃」的真实场景，重构成一个完整决策过程：用户填写日期、目的地、人数、预算、体能、兴趣和已有装备后，得到的不是一堆搜索结果，而是「为什么推荐这条路、有什么风险、怎么到、要带什么」的可执行答案，并从推荐串联到路线详情、加入计划、执行助手，形成从「想去」到「出发」的闭环。技术上用阿里云百炼 Agent 承载自主路线规划：Agent 把自然语言需求整理成结构化约束，按需调用高德 Amap Maps MCP 查天气 / 位置 / 交通，用自定义 MCP 接入路线库、偏好、历史、补给点与装备目录；百炼知识库承载路线说明并用 `text-embedding-v4` 做语义召回、`qwen3-rerank` 二次排序；主模型 `qwen3.7-plus` 负责需求理解、工具选择、候选分析、风险摘要与推荐理由生成。后端距离 / 爬升 / 耗时 / 难度 / 天气等硬约束做安全兜底，外部数据缺失时明确提示依赖不可用、不虚构。产品用暗黑像素风把徒步做成一次可玩的探索。
+
+**工具**：阿里云百炼 Agent（主模型 `qwen3.7-plus`）+ 百炼知识库（`text-embedding-v4` 向量召回 + `qwen3-rerank` 重排）+ 自定义 Skill / MCP + 高德 Amap Maps MCP 与 Web Service API + Vue 3 / Capacitor + FastAPI / PostgreSQL
+
+![OneTrail 一径界面](https://github.com/user-attachments/assets/6e8c1e43-40f3-45d4-82af-02e5d116bc96)
+
+**在线 Demo**：[150.158.126.172:8082](http://150.158.126.172:8082)（演示账号 admin@onetrail.dev / admin123456）· **安卓 APK**：[v0.3.0](https://github.com/RealTapeL/Onetrail/releases/tag/v0.3.0) · **仓库**：[github.com/RealTapeL/Onetrail](https://github.com/RealTapeL/Onetrail)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/69)
+
+---
+
 ## 宠念：让离世宠物 AI 陪聊、让流浪动物被看见、让毛孩子找到玩伴
 
 **作者**：[@Bowen-Tian-0305](https://github.com/Bowen-Tian-0305) · 2026-08-02
