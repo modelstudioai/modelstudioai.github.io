@@ -14,6 +14,68 @@ keywords: "阿里云百炼案例,AI Agent 案例,百炼CLI,OpenWork,Showcase,社
 
 ---
 
+## CLIMATERIA · 气候万象志：AI 驱动的气候叙事与地理科普交互网站
+
+**作者**：[@SunnyLiyuxin](https://github.com/SunnyLiyuxin) · 2026-08-05
+
+以全球真实气候分布图为底图，为 27 种气候类型建立「双血脉」谱系（父系按气候形态、母系按温度带），点击地图圆点即可展开四折经折装详情卡（灵性 / 灵力 / 血脉 / 图鉴，含「敲黑板」地理考点）。接入阿里云百炼通义千问，让每个「气候之灵」成为可自由对话、可实时出题考校、带上下文记忆的智能体；并用通义万相文生图生成角色专属卡牌、CosyVoice 语音合成让角色「开口说话」。前端纯原生 HTML/CSS/JS（零框架），后端 Node.js 零依赖代理统一托管百炼 API Key、避免凭证暴露，AI 不可用时自动降级为预设对话。
+
+**工具**：阿里云百炼（DashScope，Provider `aliyun`）— 通义千问 `qwen-plus`（对话 / 出题 / 记忆，SSE 流式）+ 通义万相 `wanx2.1-t2i-turbo`（文生图）+ CosyVoice（语音合成）+ 原生 HTML/CSS/JS + Node.js 代理
+
+![CLIMATERIA 气候万象志](https://github.com/user-attachments/assets/20e5e166-ae94-4018-aa14-16a165994cb2)
+
+**在线体验**：[116.62.139.39:3000](http://116.62.139.39:3000/) · **仓库**：[github.com/SunnyLiyuxin/CLIMATERIA-](https://github.com/SunnyLiyuxin/CLIMATERIA-)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/81)
+
+---
+
+## 一起馋修：把「忍住嘴馋」变成打卡陪伴的戒馋小工具
+
+**作者**：[@dengdengli92](https://github.com/dengdengli92) · 2026-08-05
+
+通过与通义千问自然语言沟通形成 demo 与初步 PRD，结合「打禅七」理念（谐音「馋修」）把自律做成轻量社交玩法——好友间相互分享、调侃监督，围绕「馋友 / 馋历 / 馋帐 / 馋期 / 打馋」等梗构建戒馋打卡体验，让忍住嘴馋这件事轻松玩起来。
+
+**工具**：OpenWork / 百炼 CLI（阿里云百炼）+ 百炼 `Qwen3.7-max` + `minitool-zip-builder` Skill + deepseekV4-flash / 灵光全模态 AI 助手 / codex / PS
+
+![一起馋修](https://github.com/user-attachments/assets/6746324f-25ac-45e9-b133-947ca59888a5)
+
+**在线 Demo（小红书小工具）**：[xhslink.cn/o/A4VxB3XoT7A](http://xhslink.cn/o/A4VxB3XoT7A)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/80)
+
+---
+
+## 电商线框策略工作台 Ecommerce Wireframe Strategist
+
+**作者**：[@ChecheChat](https://github.com/ChecheChat) · 2026-08-04
+
+面向电商运营与设计师的纯文本分析 Skill，把主图 / 详情页 / 活动页设计前的隐性判断整理成五个连续阶段：资料台 → 调研台 → 策略台 → 线框台 → 复盘台。Skill 不生成最终图片、也不连接电商 / 投放平台 API，专注设计前后的决策质量——所有结论区分「事实 / 共识 / 推断 / 机会 / 待验证」，核心策略必须可追溯到用户提供的材料；并设「资料台」阶段门禁，资料不完整时先输出已知 / 缺失 / 冲突 / 待验证假设，避免凭常识硬出线框。线框策略落到每个模块的目的、主信息、支撑证据与验收标准，上线后可继续录入数据做复盘，为下一版建议 1-2 个最小测试变量。
+
+**工具**：OpenWork / 百炼 CLI + 阿里云百炼 `qwen3.7-plus` 多模态模型 + Skill `ecommerce-wireframe-strategist` + Markdown / YAML / Mermaid 结构化工作流
+
+**仓库**：[github.com/ChecheChat/ecommerce-wireframe-strategist](https://github.com/ChecheChat/ecommerce-wireframe-strategist)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/76)
+
+---
+
+## Until · 将至：以「准备优先」为核心的 iOS 事件倒数 App（已上架）
+
+**作者**：[@gavinz0228](https://github.com/gavinz0228) · 2026-08-04
+
+一款「准备优先」的事件倒数 iOS App：不仅显示距旅行 / 考试 / 婚礼 / 生日还有多少天，还为每个事件挂独立的任务、里程碑与准备计划，持续追踪完成进度并清楚提示下一步该做什么。支持从 Apple Calendar 导入、Widget 展示近期事件与进度、App Intents、Deep Link、中英双语切换，已完成 App Store 归档上传与上架。开发中通过 Codex CLI 自定义 `model_providers` 接入阿里云百炼的 Qwen coder 系列模型完成编码与迭代。
+
+**工具**：阿里云百炼 Qwen coder 模型（`qwen3-coder-480b-a35b-instruct` / `qwen3-coder-plus` / `qwen3-coder-flash`，经 Codex CLI 自定义 provider 调用）+ SwiftUI / SwiftData / WidgetKit / App Intents / EventKit + computer-use / xcodebuild / simctl
+
+![Until 将至](https://github.com/user-attachments/assets/29c7c86c-d6df-443d-8c8c-6190f20fe5c0)
+
+**仓库**：[github.com/gavinz0228/until](https://github.com/gavinz0228/until)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/74)
+
+---
+
 ## 千川素材结构拆解 Skill：把一条短视频沉淀成结构化的素材复盘报告
 
 **作者**：[@bianzigege](https://github.com/bianzigege)（辫子哥哥）· 2026-08-04
