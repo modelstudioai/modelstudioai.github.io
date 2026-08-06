@@ -14,6 +14,50 @@ keywords: "阿里云百炼案例,AI Agent 案例,百炼CLI,OpenWork,Showcase,社
 
 ---
 
+## 护院鹅 Guard Goose · 独居老人无感居家安全守护系统
+
+**作者**：[@firecangshu](https://github.com/firecangshu) · 2026-08-05
+
+面向独居老人的「不装摄像头、不戴手环」跌倒与呼吸监护系统。通过 CSI（信道状态信息）无感感知老人的活动、呼吸与跌倒，边缘服务完成信号判定，异常约 90 秒内推送到子女手机端。百炼承担两个核心环节：事件触发后把「事件上下文 + 老人病史档案」交给通义千问 `qwen-plus`，给出告警级别、疑似病因与处理建议（API 异常时自动降级规则引擎，保证不漏报）；以及 AI 医学词条查询——子女输入疾病名由 `qwen-plus` 返回跌倒风险 / 呼吸影响 / 照护建议并入档，让告警「因人而异」。
+
+**工具**：百炼通义千问 `qwen-plus`（DashScope）+ `human-writing` Skill + Python FastAPI/SQLite 边缘服务 + Vue3/Vant 子女端 H5 + ESP32/CSI 采集
+
+![护院鹅 Guard Goose](https://github.com/user-attachments/assets/13aed416-074a-4f73-8a2b-c2d80e6150f2)
+
+**仓库**：https://github.com/firecangshu/waveguard
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/83)
+
+---
+
+## Hunea · 给人用的简洁 TUI Agent
+
+**作者**：[@yunxinx](https://github.com/yunxinx) · 2026-08-04
+
+一个透明、简洁、跨平台的 TUI Agent 工具，主打「给人用」而非「给 AI 用」：提示词与响应完全透明、低心智负担的交互、快速小巧，并打磨了舒适的中文输入 / 换行体验、思维链展示、可视化对话树与轻松的对话分支管理。开发全程直接调用阿里云百炼模型（自购按量付费额度，经 Claude Code 等工具调用编码）；Hunea 本身也可接入百炼 `qwen` 等模型作为对话内核。
+
+**工具**：阿里云百炼模型（`qwen` 系列，直接 API 调用）+ Claude Code / qodercli
+
+![Hunea TUI Agent](https://github.com/user-attachments/assets/7ed4121d-9801-4d00-954b-df157343433b)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/77)
+
+---
+
+## Workbench · 面向本地开发与 AI 工作流的桌面工作台
+
+**作者**：[@yyc-labs](https://github.com/yyc-labs) · 2026-08-03
+
+一款本地优先（Local First）的 AI 开发工作台，基于 Electron / React / TypeScript，把本地项目管理、代码浏览与编辑（Monaco）、Git 工作流、Markdown、AI CLI Runtime、AI Gateway、会话记录与终端整合进统一桌面应用，围绕「项目 + 开发上下文」减少工具切换与上下文丢失。开发过程使用百炼 CLI（`bl`）及百炼模型完成代码分析、功能开发与文档生成；其开放式 AI Runtime 与兼容 OpenAI 的 AI Gateway 可将百炼 CLI 及 `Qwen3-Coder` / `Qwen3.6-Plus` 等百炼模型作为 Provider 统一接入工作流。
+
+**工具**：百炼 CLI（`bl`）+ 百炼模型 `Qwen3-Coder` / `Qwen3.6-Plus` + Electron / React / TypeScript
+
+![Workbench 工作台](https://github.com/user-attachments/assets/674d6b60-99a6-4d84-b474-2b66c7bca35b)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/70)
+
+---
+
 ## CLIMATERIA · 气候万象志：AI 驱动的气候叙事与地理科普交互网站
 
 **作者**：[@SunnyLiyuxin](https://github.com/SunnyLiyuxin) · 2026-08-05
