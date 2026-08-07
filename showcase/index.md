@@ -14,6 +14,68 @@ keywords: "阿里云百炼案例,AI Agent 案例,百炼CLI,OpenWork,Showcase,社
 
 ---
 
+## MetaLog（念头日志）· 冲突后的元认知复盘
+
+**作者**：[@23333ironnnnn](https://github.com/23333ironnnnn) · 2026-08-06
+
+情绪冲突后不教你怎么赢下这场争吵，而是帮你看见自己正在怎么想。手机上三分钟走完一条完整叙事：冷静倒计时 → 三道题对齐现场（跟谁有关 / 发生了什么 / 当时的情绪与念头）→ 像朋友坐在对面的疏导对话（先被接住，再被轻轻点破）→ 生成复盘卡 → 在「我的模式」里回看自己反复出现的思维纹路。复盘卡含共情开场、事实摘要、可能的认知模式标签（读心 / 灾难化 / 应该化，标注为假设而非诊断）与三句「下次可以怎么说」的可复制话术。用百炼做有温度的疏导与出卡，数据坚持本地隐私优先。
+
+**工具**：百炼 DashScope —— 疏导对话 `qwen3.7-flash`、复盘卡 `qwen3.7-plus` + Vite + React + TypeScript + Hono + 阿里云函数计算
+
+![MetaLog 念头日志](https://github.com/user-attachments/assets/c273f4b5-aea3-4e22-98c9-3c7bd5dc2c6e)
+
+**在线体验**：https://ironnn314159-d9g3mjnpe99f88a82-1464523475.tcloudbaseapp.com ｜ **仓库**：https://github.com/23333ironnnnn/metalog
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/88)
+
+---
+
+## 对齐（duiqi）· 不用每次重新解释一遍你和他的关系
+
+**作者**：[@Stellaw23](https://github.com/Stellaw23) · 2026-08-06
+
+大多数工具帮你把话改得更得体，这个项目认为**你写的那句话本身可能就是问题所在**。它不整理你已经知道的事，而是通过提问暴露「你不知道自己不知道」的那部分——初稿与话术并排放，差的那部分就是你没想到的。更硬的一条分界线在下一轮：对方真回复后，系统拿真实回复比对自己上一轮的预测，被打脸的档案条目自动降级（已确认 → 待确认 → 已否认进「不许再提」），且**系统自己不能往档案里加东西，只能让已有条目降级**。全部 LLM 调用走百炼 DashScope OpenAI 兼容端点，档案存在用户自己浏览器的 localStorage、用自己的 API Key，`docker compose up` 一条命令自托管。实测 60 次真实百炼调用 JSON 解析成功率 100%、调用失败 0 次；另实测同一 flash 模型开关思考链耗时差约 20 倍（29.1s → 1.5s），据此把「推断类 → plus、枚举类 → flash」写成一张模型分流表。
+
+**工具**：百炼 CLI（`bl model list` 实拉模型规格）+ 百炼 `qwen3.7-plus-2026-05-26`（话术 / 结构化分析 / 预测比对）+ `qwen3.7-flash-2026-07-15`（追问 / 枚举 / 修复）+ `response_format=json_object` + FastAPI + React + TypeScript + Docker
+
+![对齐 duiqi：初稿与话术并排](https://raw.githubusercontent.com/Stellaw23/duiqi/main/docs/assets/screenshots/03-draft-vs-message.png)
+
+**仓库**：https://github.com/Stellaw23/duiqi ｜ **可复现证据与边界声明**：https://github.com/Stellaw23/duiqi/blob/main/docs/evidence.md
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/87)
+
+---
+
+## 美食管家 MCP · 米其林餐厅智能预约助手
+
+**作者**：[@GaoLerong](https://github.com/GaoLerong)（飞猪-晋梁）· 2026-08-06
+
+基于 OpenWork、百炼通义千问与 MCP 协议做的米其林餐厅预约助手。用户只需说出餐厅名称、城市、日期、人数与时间偏好，系统自动识别目标餐厅及其米其林信息、查找官网与真实预约入口、判断官网 / 第三方平台 / 电话 / 邮件等渠道、查询可约日期与时段并发起多轮预约流程；提交订单、支付与外呼前均要求用户确认，遇到登录、短信验证码、信用卡、CAPTCHA 等敏感步骤安全交还用户本人处理，官网无法直接预约时可通过电话机器人外呼。同时支持本地 Stdio 与线上 Streamable HTTP 接入，并针对远程 MCP 调用超时、沙箱进程被回收等问题补上了任务状态管理（`operation_id`）、异步轮询、SQLite 持久化与长期运行的 HTTP 部署方案。
+
+**工具**：OpenWork / 百炼 CLI + 百炼通义千问（自然语言理解 / 预约意图识别 / 任务拆解 / 工具编排）+ Model Context Protocol + Python + Playwright/Chromium + SQLite + Streamable HTTP
+
+![美食管家 MCP 米其林美食预约](https://github.com/user-attachments/assets/074308c5-c6ac-43f7-9fd7-cf3bd94bb775)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/86)
+
+---
+
+## ScholarForge OS｜研语工坊 · 科研事实安全审校工作台
+
+**作者**：[@liqinglq666](https://github.com/liqinglq666) · 2026-08-06
+
+普通 AI 帮你改论文，ScholarForge 负责**阻止 AI 改错论文**。针对「大模型在翻译、润色、重写时可能悄悄改变数值、单位、引用、实验声明、因果关系、结论强度或研究范围」这一常被忽略的问题，它没有把模型输出直接覆盖到论文，而是在 AI 候选稿与作者工作稿之间加入独立的 Safety Gate：模型只提出候选（附问题位置、证据与理由，无权覆盖作者文本）→ 代码独立核验数值 / 单位 / 引用 / 术语 / 实验声明 / 因果 / 确定性与研究范围 → 作者逐条接受、拒绝或暂缓，只有满足唯一文本锚点、不跨段落、无重叠且不改变科研事实时才允许安全应用；硬规则失败自动进入 `quarantined` 隔离并保留原文。支持科研中译英、英文保守润色、投稿前检查三类任务，全流程可撤销 / 重做 / 版本比较，并导出 TXT、Markdown 与清洁 DOCX（原始 DOCX 不被原地覆盖）。
+
+**工具**：百炼 DashScope OpenAI 兼容接口，默认模型 `qwen-plus` + 自研 ScholarForge Safety Gate 确定性规则引擎 + Next.js 16 + React 19 + TypeScript strict + Mammoth/docx + Vitest/Playwright + Vercel
+
+![ScholarForge OS 任务配置工作台全览](https://raw.githubusercontent.com/liqinglq666/scholarforge-os/main/docs/assets/submission/01-workspace-overview.png)
+
+**在线 Demo**：https://scholarforge-os.vercel.app ｜ **仓库**：https://github.com/liqinglq666/scholarforge-os
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/52)
+
+---
+
 ## 护院鹅 Guard Goose · 独居老人无感居家安全守护系统
 
 **作者**：[@firecangshu](https://github.com/firecangshu) · 2026-08-05
