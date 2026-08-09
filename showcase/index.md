@@ -14,6 +14,194 @@ keywords: "阿里云百炼案例,AI Agent 案例,百炼CLI,OpenWork,Showcase,社
 
 ---
 
+## 知山（TrekSense）· 行前把「这条路能不能走」说清楚
+
+**作者**：[@fq-small](https://github.com/fq-small)（风晴-Small）· 2026-08-08
+
+面向户外徒步爱好者的行前风险评估工具，走的是「AI 评估 + 社区验证」双引擎：AI 结合路线地形、实时天气、季节系数、事故历史与社区经验帖，输出结构化风险评分与五大决策模块的行前建议；用户实际出行后回填体验反馈，反哺下一次评估。为压住语义幻觉，AI 评估被要求显式引用社区数据做 ground truth 对冲。作者还把两条关键链路沉淀成可复用 Skill：`img-to-text` 给无视觉能力的模型「装眼睛」，把 UI 截图 / 报错截图转成结构化文本用于界面走查和故障定位；`deeptravel-ops` 把演示 demo 打包成 Docker 空间部署到魔搭创空间。交付物是 v1.4.0 的 Flutter App（96 个 Dart 文件、约 49,400 行、24 个页面、37 个服务，1098 项测试全通过），模型历经 glm-5.1 → kimi-k2.6 → qwen3.6-flash 三次演进后落在百炼。
+
+**工具**：百炼 DashScope `qwen3.6-flash`（`enable_thinking: false` 保证结构化 JSON 输出）+ Skill `img-to-text` / `deeptravel-ops` + Flutter / Dart 3.3+ + flutter_map（高德卫星 + 天地图等高线）+ 和风天气 API + GPX 解析 + Hive + 魔搭创空间
+
+**在线体验**：https://smaller30-treksense-demo.ms.show ｜ **功能全景长图**：https://github.com/user-attachments/assets/79c368bc-a918-43f9-9890-090216fc3325
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/112)
+
+---
+
+## Lyra · 放首日语歌，听着听着就看懂了
+
+**作者**：[@xiaofenggan01](https://github.com/xiaofenggan01)（晓风乾）· 2026-08-08
+
+其他语言学习应用都在让你「学」，Lyra 反过来：你本来就在听的那首歌，就是课本。网页播放器里歌词随音乐逐字高亮，点一下不懂的词，给出读音、词性、词典义，以及最关键的一层——它在这一句歌词里到底什么意思；没听清就点「循环这句」反复磨耳朵。听过的歌会变成夜空里的一个星座，学过的词是星座上的星点。百炼负责三件事：逐字注音与切分（结合上下文判断同一汉字的不同读法，如「行く」iku 与「行う」okonau）、语境释义（同样是「沈む」，在「沈むように溶けてゆくように」里给的是「如沉入水中般缓慢、不可逆地消失」，而非词典搬运）、用你听过的词生成新例句。工程上刻意守住几条纪律并用测试守门：模型只负责解释、不负责判分，掌握度与复习安排全部由确定性代码和数据库约束决定；每个用户学习数据物理分库隔离；不做连胜、红叉和排行榜。站上已有 70 多首歌、6700 多条词与语法结果，7 月上线持续在线，200+ 位用户参与盲测。
+
+**工具**：百炼 DashScope OpenAI 兼容接口 `qwen-plus` / `qwen-max` + Web 播放器 + 逐句时间轴对齐 + 一人一库的数据隔离
+
+**在线体验**：https://lyra.niuniu869.com
+
+![Lyra 逐字歌词与语境释义](https://github.com/user-attachments/assets/5154d3a2-dbb5-4ee4-a4f3-7ee04a7680e2)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/111)
+
+---
+
+## 拉香了 · 把最不好意思记录的健康观察，做成愿意分享的 DBTI
+
+**作者**：[@TabbyYu](https://github.com/TabbyYu)· 2026-08-08
+
+一个多模态生活观察 + 社交化表达的微信小程序。用户拍一张照片，百炼 Qwen-VL 识别其中可观察到的形态、颜色、表面状态与图像质量，Bristol 分型留在科学底层做参考，展示层则换成一张「DBTI 人格卡」（如「黄金守序者 SRBG · 稳定 / 规律 / 平衡」），附观察摘要、状态分析和当日建议。生成的卡通形象还能「隔空扔给朋友」——好友在微信里打开会看到它从屏幕外飞进来、旋转、撞击、爆开粒子再揭晓人格卡；每次分析自动沉淀进记录日历形成长期观察。作者的产品判断是：人们愿意记录睡眠、步数和心率，却很少记录这一项，原因是「不好意思」和「不好玩」，所以没有再做一个更严肃的工具，而是把它变成愿意主动打开的体验。视觉调用采用 temperature 0 + `response_format: json_object` 保证结构稳定。DBTI 属娱乐化表达，不构成医学分类或诊断建议。
+
+**工具**：百炼 `qwen-vl-plus`（temperature 0、`response_format: json_object`）+ 微信小程序 + 自建 AI Pipeline / Prompt Engineering
+
+**视频演示**：https://www.bilibili.com/video/BV1zeuV6fExr/
+
+![拉香了 DBTI 人格卡](https://github.com/user-attachments/assets/20a7ffea-27b7-4b8d-8fc8-80f96191c98e)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/109)
+
+---
+
+## 攀升之路 · 让「大数」变成看得见的量级跨越
+
+**作者**：[@CPCer](https://github.com/CPCer)（柏恋小缸子）· 2026-08-08
+
+把抽象的超大数字做成可交互的认知可视化 Demo。作者先用百炼 CLI 咨询整体架构与呈现方式，把一堆天马行空的想法收敛成「大数可视化」这一个方向，再逐个把交互难题交给百炼托管的应用（`bl app`）出方案后自己实现：数阶瀑布动画用 2D PixiJS 走「粒子喷发 → 沿曲线攀升 → 凝聚着陆」三阶段，数字越大瀑布越高、粒子越密，直观传递量级跨越；表达式锻造炉是芯片式构建器，输入 `2↑↑↑↑3` 这类表达式后由五层分类引擎（exact / log / tower / arrow / named）实时解析量级并在海岸线上定位，把体验从「观看」升级为「探索」；另有分级认知可见性（点击小数时遮蔽远超其上的大数）与指示线。踩坑也很实：`bl app` 默认超时不够长，改成 300 秒 + `--stream` 边收边处理才稳；最初用单一标量 rankValue 给所有表示法统一排序，导致 `2↑↑↑↑3` 被错放到古戈尔普勒克斯附近而不是葛立恒数附近。
+
+**工具**：百炼 CLI `bl app`（`--stream`，超时 300s）+ Skill `bailian-cli` / `bailian-protocol` + PixiJS 2D
+
+**仓库**：https://github.com/CPCer/Giant-Number-Visualization ｜ **在线体验**：https://cpcer.github.io/Giant-Number-Visualization/
+
+![攀升之路 大数认知可视化](https://github.com/user-attachments/assets/591051e1-4e5d-405a-bb58-7c416a5b3fe8)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/108)
+
+---
+
+## Body-OS（Health Link）· 把身体当成一个需要维护的系统
+
+**作者**：[@chenchunyun1995-art](https://github.com/chenchunyun1995-art)· 2026-08-08
+
+以「操作系统」概念设计的个人健康信息管理应用，解决的是健康数据碎片化、缺乏整合视图的问题。四块能力：Health Link 健康档案集中管理身体指标与历史数据；基于百炼 `qwen-plus` 的健康问答，支持多轮对话；健康数据可视化呈现趋势与分析报告；以及一个内置的部署配置向导页，把 Render 环境变量该怎么填讲清楚，方便别人自行部署复现。前端 React 18 + Tailwind CSS，Hash 路由，部署在 Render Web Service。AI 输出为一般性健康信息参考，不替代医疗诊断与专业意见。
+
+**工具**：百炼 DashScope SDK + `qwen-plus`（多轮对话与文本生成）+ React 18 + Tailwind CSS + Wouter + Render
+
+**仓库**：https://github.com/chenchunyun1995-art/Body-OS
+
+![Body-OS 个人健康仪表盘](https://github.com/user-attachments/assets/da02281d-bcbd-4c61-b616-cd792edffcb9)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/103)
+
+---
+
+## 录阶 LuJie CareerKit · 从简历到 Offer 的完整求职工作台
+
+**作者**：[@Chozzc](https://github.com/Chozzc)· 2026-08-08
+
+大多数 AI 求职产品只解决一个局部问题：生成一份简历、匹配一个岗位，或临时出几道面试题。但求职不是一次对话，而是一条持续数周甚至数月的流程。录阶把这条线真正串起来：简历 → JD 匹配 → 定向优化 → 投递跟进 → 面试准备 → 模拟面试 → 面试复盘 → Offer。用户可以为不同岗位维护不同简历版本，把完整 JD 与真实简历交给 AI 分析证据缺口、表达问题与匹配重点；关键约束是「不虚构经历、技能、指标和结果」，且由用户挑选真正想改的问题，而不是让 AI 直接重写整份简历。后续还能生成求职信、招呼语、岗位专属面试准备方案，进入模拟面试由 AI 追问并出复盘报告，最后在投递看板里记录公司、岗位、阶段、截止日期与跟进时间。
+
+**工具**：百炼 DashScope OpenAI 兼容接口 `qwen3.6-flash` + `qwen-doc-turbo`（简历文档解析）+ Web 工作台
+
+**仓库**：https://github.com/Chozzc/Lujie-Careerkit ｜ **在线体验**：https://lujie.chozzc.dev
+
+![录阶 LuJie CareerKit 求职工作台](https://github.com/user-attachments/assets/64b69d27-ce8e-43d8-a8be-1d0848d1ecc5)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/100)
+
+---
+
+## 几何实验室 · 9 岁小学生做的第一个 AI 小程序
+
+**作者**：[@gejiong-bot](https://github.com/gejiong-bot)（作品由 ruihang 完成，监护人协助提交）· 2026-08-07
+
+创作起点是一次真实的数学课经历：课堂上直接套「蝴蝶定理」公式做题，却没弄懂两个三角形的面积为什么相等。于是这位 9 岁的作者想把抽象公式变成可以拖动、观察和验证的几何实验，做出了一款面向 6—12 岁儿童的微信小程序。学习路径是「先看动画 → 动手验证 → 论证解锁」：孩子拖动图形顶点，实时观察面积、周长和角度变化，先提出猜想，再通过选择题和开放论证把理由说清楚。目前包含面积变形工坊、图形拼拼造、角度魔法师、图形变形魔法镜、图形量一量、面积切割工厂六个实验模块，以及 20 个公式动画、闯关与几何藏品收集。AI 的职责被明确切开：百炼 `qwen-plus` 负责开放式几何问答、学习陪伴和论证反馈，面积 / 周长 / 角度计算与闯关判定全部交给本地几何程序，动画语音是提前录好的配音。
+
+**工具**：百炼 DashScope `qwen-plus`（开放式问答与论证反馈）+ Qoder（首版代码生成与多轮修改）+ 微信小程序 + Canvas 2D + 本地几何规则引擎 + 预生成音频
+
+![几何实验室 面积变形工坊](https://github.com/user-attachments/assets/56008fc0-d120-4288-a5f5-c2320b4a49e3)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/98)
+
+---
+
+## FirstDay AI · 先工作，再判断是否胜任
+
+**作者**：[@Chengyuann](https://github.com/Chengyuann)· 2026-08-07
+
+一套「数字试岗」式的岗位能力评估产品：把候选人放进有业务目标、数据异常、跨团队协作和 AI 辅助的真实工作场景，把实际工作过程转化为可观察、可回放、可复核的能力证据。首发场景是一场 AI 客服摘要灰度上线事故——候选人要判断是否从 10% 扩到 30%，同时处理语义反转投诉、促销压力、ASR 更新和跨团队冲突，可以下钻数据、询问角色、使用并核验 Copilot、采取风控动作、提交决策并完成经理复盘。系统输出问题定义、数据判断、风险决策、跨团队协作、AI 协作、复盘学习六维报告，每一项结论都能回放到对应的数据查询、角色沟通、候选动作和决策上。架构上刻意分层：百炼模型负责语言与语音能力，确定性评估引擎负责场景事实、事件推进和行为锚点。完成度自测包括 103 项自动化测试通过、60 套冻结行为脚本完成率 100%、证据引用完整率 100%。
+
+**工具**：百炼 DashScope OpenAI 兼容接口 `Qwen3.7-Flash`（Copilot 表达增强与结构化证据抽取）+ Qwen3 ASR（晨会 / 紧急来电 / 复盘语音输入）+ React + TypeScript + FastAPI + Cloudflare Pages Functions / KV
+
+**在线体验**：https://firstday-ai-demo.pages.dev/ ｜ **评委 90 秒速览**：https://firstday-ai-demo.pages.dev/?judge=1 ｜ **仓库**：https://github.com/Chengyuann/firstday-ai
+
+![FirstDay AI 首页](https://firstday-ai-demo.pages.dev/submission/competition-home.png)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/97)
+
+---
+
+## 仙门诡事 · 终端风格的玄幻文字解谜
+
+**作者**：[@AQI-sunny](https://github.com/AQI-sunny)· 2026-08-07
+
+一款文字解谜推理游戏的 HTML 多页应用。玩家扮演「天道档案馆」的查询者，通过输入 `查询 [时间]-[地点]-[人物代号]` 格式的指令，逐步解锁散落在不同时空的剧情碎片，最终拼出「七子轮回案」的完整真相。作者用 opencode 接入百炼 CLI 完成整个前端应用的开发与调试，用通义千问辅助创作了约 15,000 字原创仙侠悬疑剧情文本，并用百炼的图片生成能力做了封面图与场景氛围素材。多轮对话式迭代主要解决了三件事：查询解析容错、地点解锁逻辑、移动端适配，最终是一个即点即玩的沉浸式终端风格推理游戏。
+
+**工具**：opencode 接入百炼 CLI + 百炼 `Qwen3.8-Max`（代码生成、剧情文本创作与优化）+ 百炼图片生成（封面与氛围素材）+ HTML / CSS / JavaScript
+
+**在线体验**：https://sylvie-seven-cq.top/%E4%BB%99%E8%AF%A1demo/dm4
+
+![仙门诡事 封面](https://github.com/user-attachments/assets/7bda6fa0-c03e-434f-aa94-d7f0c2f7234d)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/95)
+
+---
+
+## 银龄智护 · 语音优先的居家照护助手
+
+**作者**：[@Karl-XZ](https://github.com/Karl-XZ)（银龄智护项目组：周昊洋、杨一、柴和九）· 2026-08-07
+
+一款跑在普通 Android 手机上的语音优先多模态照护助手，帮低视力老人和独居老人靠「听」和「说」完成居家巡路、找物、跌倒确认、用药记录与家属复核。手机端把摄像头画面、语音输入、传感器变化、视觉检测结果和文本模型判断组合起来，输出老人可以直接照做的短句提示——比如识别走廊、门口、卫生间、行李堆、电线、地垫等通行风险后，说「停下、向右绕开、扶住门框」。架构上走「云端增强 + 端侧保底」：网络可用时用百炼 DashScope 做文本与多模态理解、ASR 转写、`qwen3-tts-flash` 合成语音播报；网络不佳时切到端侧 MNN Runtime 上的 DAMO-YOLO + Qwen3 + Vosk，保证核心提示不断线。
+
+**工具**：百炼 DashScope 通义千问（文本 + 多模态判断）+ DashScope ASR + `qwen3-tts-flash`（语音播报）+ 端侧 MNN Runtime / DAMO-YOLO / Qwen3 / Vosk + Android
+
+**仓库**：https://github.com/Karl-XZ/silvercare-ai-assistant ｜ **视频演示**：https://www.bilibili.com/video/BV1y6j26JEYE/
+
+![银龄智护 居家巡路提示](https://github.com/user-attachments/assets/d19c82ae-bf76-40a6-9189-7956980b0ac7)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/93)
+
+---
+
+## Idea Pet · 会发现问题的 AI 网页灵感桌宠
+
+**作者**：[@xxxye661](https://github.com/xxxye661)· 2026-08-07
+
+一个开源 Chrome 扩展，把桌宠放在主流 AI 网页上，从当前对话里找出你正在忽略的痛点、盲区和新角度。灵感弹幕实时生成反问、关键词和新视角，多个 AI 标签页可同时运行；点击有价值的弹幕可以继续追问，再一键整理成提示词带回当前 AI，但刻意不自动发送，决定权留给用户。用户主动授权后，还能结合当前可见页面与任务做可打断的实时语音对话。桌宠本身支持拖动、惯性反弹、边缘吸附和投喂，并且能从一张图生成 6 套、26 帧动作。最值得一提的是它的 BYOK 开源姿态：没有作者后端、没有会员、没有遥测，请求由扩展直接发往用户自己的百炼账号。
+
+**工具**：百炼 `qwen3.5-flash` + `qwen3.5-omni-flash-realtime`（实时语音）+ `wan2.7-image`（桌宠形象生成）+ Skill `build-deskpet-pack`（单图生成可导入的 26 帧动作包）+ Chrome Extension Manifest V3 + Canvas / Worker + AudioWorklet
+
+**仓库**：https://github.com/xxxye661/idea-pet
+
+![Idea Pet 灵感弹幕](https://github.com/user-attachments/assets/fb325a66-886e-4b91-840a-104bd5712e08)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/91)
+
+---
+
+## yujee 遇己 · AI 杂志设计助手
+
+**作者**：[@yvaineyu9](https://github.com/yvaineyu9)（虫小宇）· 2026-07-31
+
+丢进照片和一段文字，它自动完成选图、写文案、匹配版式，产出一本可直接印刷的杂志 / 纪念册，而不是一堆还要人工拼装的素材。核心是多 agent 分工：识图 agent 读照片内容和情绪，文案 agent 写正文，design agent 负责版式模板匹配和排版落地，中间用 workflow 编排，避免每次都把全量 agent 跑一遍烧穿 token。作者的踩坑记录很实在：无架构 vibecoding 连续失败 3 次，最后靠规范项目约定、用 GitHub 做版本管理、分 PR 小步迭代才稳下来；agent 硬搓不稳，改用成熟 agent 框架；全量 agent token 消耗过大，最后混合 workflow 把成本压下来。
+
+**工具**：百炼 CLI + 百炼 `qwen3.6-plus` + Skill `e2e-testing`（覆盖上传到出片的全链路测试）+ 多 agent + workflow 编排
+
+**在线体验**：https://yujeeai.com ｜ **教学演示视频**：https://xhslink.cn/o/AAk3PYPgADf
+
+![yujee 遇己 AI 杂志设计](https://github.com/user-attachments/assets/8abd82bd-f169-4337-ae48-e2b7ce3614ca)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/61)
+
+---
+
 ## MetaLog（念头日志）· 冲突后的元认知复盘
 
 **作者**：[@23333ironnnnn](https://github.com/23333ironnnnn) · 2026-08-06
