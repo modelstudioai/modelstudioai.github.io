@@ -14,6 +14,104 @@ keywords: "阿里云百炼案例,AI Agent 案例,百炼CLI,OpenWork,Showcase,社
 
 ---
 
+## Luanti Builder · 一句话在沙盒里盖出建筑
+
+**作者**：[@cpufreestyle](https://github.com/cpufreestyle)（MichaelQiu）· 2026-08-09
+
+从零搭了一条「自然语言 → 3D 沙盒建筑」的完整生产链路：先把开源沙盒游戏 Luanti（Minetest）部署到本机，再写一个纯 Python 标准库、零依赖的跨平台 GUI 工具，输入中文或英文描述后自动解析、生成 Lua 建筑代码、一键装进游戏，并配了 WebGPU Canvas 的 3D 等距实时预览，可拖拽旋转缩放，先看效果再进游戏。生成走双模式：19 种模板建筑离线秒出，复杂建筑交给百炼大模型——输入「埃菲尔铁塔」「比萨斜塔」「宫殿」能生成 1400+ 方块的结构，支持 box / cyl / cone / sphere / dome / ring / arch / taper 等 20 种形状命令。此外还做了完整游戏 Mod（饥饿系统、自定义生物、乐高方块）、173 张贴图的乐高纹理包，以及 `/shanghai` 一键生成东方明珠 / 金茂 / 外滩的乐高上海城市。
+
+**工具**：百炼 CLI + 百炼 DashScope 通义千问（自然语言 → Lua 建筑代码）+ Python + Lua + WebGPU Canvas
+
+**仓库**：https://github.com/cpufreestyle/luanti-builder ｜ **视频演示**：https://www.bilibili.com/video/BV1SXum6yEyL/
+
+![Luanti Builder 生成器界面](https://raw.githubusercontent.com/cpufreestyle/luanti-builder/main/demo_1_builder.png)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/130)
+
+---
+
+## 第二时钟 · 你的药，开封后还能用多久
+
+**作者**：[@inoichi1009207](https://github.com/inoichi1009207)（inoichi）· 2026-08-09
+
+一瓶印着「2027 年到期」的多剂量滴眼液，今天开封之后，按说明书或药典对眼用制剂的通则，可用期限可能只剩 4 周。药盒上的日期是第一个时钟，开封后的期限是第二个，却常常没有地方替你倒计时。这个项目记录两个日期，提醒更早到来的那个停用日。真正难的不是倒计时，而是不让视觉模型把猜错的药名和日期悄悄写成事实——作者没有把提示词或模型自报的置信度当成安全边界，而是把自动化限制在三层检查里：同一张照片交给百炼 Qwen-VL 与另一家视觉模型各看一遍、互不知道对方答案，只比对药名且必须完全一致（差一个剂型或「复方」二字都判分歧），分歧时不预填任何天数；模型识别出的包装印刷有效期一律只作「待确认」候选，用户点确认才落账；模型还必须交出逐字证据与包装语种，由代码核对——包装语种不是中文却在证据里出现汉字，或声称的年份根本不在证据原文里，这个日期就丢弃。功能侧内置 1832 条家庭药箱条目 + 23 条剂型参考规则，手动录入、药库匹配、计时提醒可离线使用。踩坑记录里最有意思的一条：搜索前做的归一化把 `(I/II)` 正好归一成了 `III`，两条药撞成同一个键，只能全库跑一遍才比对出来——归一化是为了容错，但它同时也在制造碰撞。
+
+**工具**：百炼 Qwen-VL（药盒识别，最多 4 张 / 次，输出通用名 / 商品名 / 规格 / 剂型 / 印刷有效期）+ 第二家视觉模型做互不知情的交叉核对 + 内置 1832 条药库 / 23 条剂型规则 + 离线可用的本地计时提醒
+
+**在线体验**：https://2c.klinik.ren ｜ **使用说明**：https://2c.klinik.ren/manual.html
+
+![第二时钟 药品列表总览](https://2c.klinik.ren/shots/01-list-overview.png)
+
+> 作者声明的使用边界：只根据用户录入的日期与参考规则做时间提醒，不判断药品质量、疗效或是否变质，也不构成用药建议。
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/129)
+
+---
+
+## 声声故事 · 用爸爸妈妈的声音，讲孩子的专属故事
+
+**作者**：[@xiaomowow](https://github.com/xiaomowow)（声声故事项目组：萧墨、mew、大盛）· 2026-08-09
+
+家长录一段 15~40 秒的声音，填上孩子的姓名、年龄和兴趣偏好，就能得到一个以孩子为主角、由家长声音讲述的完整故事。它同时解决两件事：家长没时间每天为孩子创作和讲述专属故事，以及通用 AI 生成的故事缺少家庭情感、形不成亲子记忆。链路是「填写孩子信息 → 录制家长声音 → 生成专属故事」，工程上做了音频质量检测（检查录音时长、音量和有效性，把低质量声音挡在合成流程之外）和逐句合成 + 帧级拼接，用来提升长故事生成的稳定性与可编辑性。
+
+**工具**：百炼 CLI + 百炼 `qwen-plus`（按孩子信息与兴趣生成个性化故事文本）+ `Qwen-Audio-3.0-TTS-Flash`（家长录音声音克隆与故事语音合成）+ React + FastAPI + HTTPS 公网部署
+
+**在线体验**：https://story.spalax.ai/
+
+![声声故事 完整体验链路](https://github.com/user-attachments/assets/b499b9eb-c224-4f32-8a4c-9dca8988ad9f)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/126)
+
+---
+
+## 职途实验室 · 测出了 MBTI，那么之后呢？
+
+**作者**：[@fanbinkong2001](https://github.com/fanbinkong2001)· 2026-08-09
+
+MBTI 告诉你「适合」什么职业，然后就断了。这个项目接着往下走：用户确认 MBTI 类型、选定目标职业，然后沉浸式回答该职业从初级员工到高层管理者的 10 个关键决策场景，最后由大模型基于真实作答生成人岗匹配深度报告，含 0-100 匹配评分、评分理由、核心优势、潜在风险和短中长期发展建议。Prompt 里内置了评分校准原则——禁止逢迎打高分、诚实低分更有价值、评分必须与作答质量挂钩——实测报告有区分度、不套模板。产品链路完整：MBTI 双入口（16 型直选 / 10 题速测）→ 58 个职业两级分类 + 搜索 → 职业情境模拟（4 个职业阶段 × 10 题，13 套精细题库 + 分类兜底）→ 报告渲染（评分环 + 情绪分层花环 + Markdown 导出）。服务端是一个 16KB、零第三方依赖的 Node.js HTTP 服务，含静态托管、防目录穿越、`config.json` 403 防泄露、1MB 请求上限与超时控制。
+
+**工具**：百炼 OpenAI 兼容接口（compatible-mode）`qwen-plus` + 零依赖 Node.js 服务端 + 腾讯云 COS / SCF / CDN 部署
+
+**仓库**：https://github.com/fanbinkong2001/mbti-career-simulator ｜ **在线体验**：https://zhitulab.site
+
+![职途实验室 人岗匹配报告](https://github.com/user-attachments/assets/5a555077-c46d-49da-a3be-2924852b6599)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/122)
+
+---
+
+## 此城可期 · 择一城，安一业
+
+**作者**：[@fanbinkong2001](https://github.com/fanbinkong2001)（歪部叩定队：fanbinkong2001、chuhongliang2001）· 2026-08-09
+
+综合评估 offer 性价比、城市适配度与生活幸福感的 AI Web 应用。用户填完个人画像（学历 / 年龄 / 职业）和工作信息（城市 / 岗位 / 薪资）后，AI 生成含综合评分、关键优势、风险隐患与具体建议的结构化报告，SSE 流式输出。最关键的一条 Prompt 约束是强制「用数据算账」——必须算出时薪和房价收入比，结合城市产业与职业匹配度做分析，杜绝空话套话。数据侧有两层支撑：输入城市后 AI 联网搜索人均收入 / 房价 / 租金 / 通勤 / 气候等口径数据并带来源标注，24 小时缓存秒回避免重复计费；同时内置 675 条覆盖全国主要城市的人才政策，评估时按城市自动注入，并在「关键优势」里按用户学历和年龄列出适用政策与实际补贴金额——这是它区别于通用 AI 测评的地方。比如评估「应届硕士去深圳做产品经理」，报告会同时给出深圳房价收入比压力、该学历可申请的补贴金额、职业匹配度和 3 年成长路径。
+
+**工具**：百炼 DashScope OpenAI 兼容模式 `qwen-max` / `qwen-plus`（SSE 流式）+ 联网搜索取城市数据 + 675 条人才政策知识库 + FastAPI BFF + 原生 HTML/CSS/JS + KaTeX
+
+**仓库**：https://github.com/fanbinkong2001/city-worth-it ｜ **在线体验**：https://cichengkeqi.asia
+
+![此城可期 城市评估报告](https://github.com/user-attachments/assets/75bbd572-9b96-43ea-829e-afbbf4094268)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/117)
+
+---
+
+## 智绘界面 · 基于 A2UI 协议的多轮 UI 生成 Playground
+
+**作者**：[@CH2655](https://github.com/CH2655)（陈鹤）· 2026-08-09
+
+一个可视化的 UI 生成 Playground：用自然语言描述界面需求，即可实时渲染出表单、仪表盘等网页原型。它把百炼大模型和 A2UI 协议接在一起，模型负责把需求翻成符合协议的 UI 描述，前端负责实时渲染，因此既能用来快速做前端原型，也能当作 A2UI / AG-UI 协议本身的学习和调试工具——协议长什么样、改一处会渲染成什么，都能在同一个界面里看到。
+
+**工具**：百炼 `qwen3.7-plus` + A2UI 协议 + AG-UI
+
+**仓库**：https://github.com/CH2655/a2ui-agent-playground
+
+![智绘界面 多轮 UI 生成](https://github.com/user-attachments/assets/29337bcf-6126-42e3-973a-d7a2104ad37c)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/115)
+
+---
+
 ## 知山（TrekSense）· 行前把「这条路能不能走」说清楚
 
 **作者**：[@fq-small](https://github.com/fq-small)（风晴-Small）· 2026-08-08
