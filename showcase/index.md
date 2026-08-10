@@ -14,6 +14,168 @@ keywords: "阿里云百炼案例,AI Agent 案例,百炼CLI,OpenWork,Showcase,社
 
 ---
 
+## 食材，也有乡音 · 从大连到广州，虾爬子该怎么开口
+
+**作者**：[@CNWU16](https://github.com/CNWU16) + [@myfx1199](https://github.com/myfx1199) · 2026-08-09
+
+同一种水产，换一座城市可能就换了名字；反过来，相同的词在不同地区又可能指向完全不同的东西。这个 Demo 把「地域食材叫法互查」做成真实买菜场景下的工具：正向查询、反向辨认、同名歧义确认、相近商品推荐、单品资料，以及本机的叫法贡献草稿。值得留意的是百炼被放在链路的哪一层——不是又加一个聊天框，而是接在查询入口上：用户直接说「我从大连去广州，想买我们叫虾爬子的东西」，模型只负责把这句话解析成 `{mode, query, source_region_text, target_region_text}` 的结构化意图并展示给用户确认，真正的身份消歧和叫法转换交给确定性的地区与食材数据库。作者把这条分工总结为「AI 解析入口、数据库回答事实」：解析失败或信息不全时用户仍可退回下拉表单，模型不会把猜测升级成地方事实。能力边界也写得很老实——只承诺已收录的试点地区与水产数据，不宣称覆盖全国，未收录内容进贡献与待核验流程。凭据侧同样克制，百炼 Key 由 CLI 在本机管理、只在后端进程中使用，不写入浏览器代码或仓库。
+
+**工具**：百炼 CLI（`bl auth` / `bl model list` / `bl text chat`）+ 百炼 `qwen3.5-flash`（自然语言 → 结构化查询 JSON）+ Agent Skills `bailian-cli` / `bailian-protocol` + 确定性地区食材数据库 + Python 后端安全代理
+
+**仓库**：https://github.com/CNWU16/food-local-names-demo ｜ **评委体验包**：https://github.com/CNWU16/food-local-names-demo/releases/tag/v0.1.0
+
+![食材乡音 地域叫法互查](https://github.com/user-attachments/assets/3073cb59-f585-4861-8ba6-aed4e924c4b6)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/151)
+
+---
+
+## 霓码重构 Neon Recode · 重构成蓝白霓虹，但主体还认得出来
+
+**作者**：[@bianzigege](https://github.com/bianzigege)（辫子哥哥）· 2026-08-09
+
+一个面向图片重构的 Skill：先做图片状态预处理，再按固定流程选择视觉语言和风格强度，把真实影像重构为以电光蓝、青蓝、冷白、银蓝为主的霓虹视觉，用点阵、网格、像素方块和抽象符号铺陈画面，同时保持原始主体、构图、空间关系和细节层次。Skill 内置点阵脉冲、霓虹矩阵、幻码成像、霓码融合四种视觉语言，配轻度 / 中度 / 重度三档强度，最后跑一遍明度、色彩、主体、构图与风格一致性检查。作者的踩坑记录很有代表性：早期靠整体压暗、拉高饱和度、压扁层次来「制造科技感」，牺牲的恰恰是主体可读性；后来把预处理、视觉语言、风格强度、生成和质量检查固化成一条流程，并明确禁止新增文字、Logo、建筑、随机字符、重复物体和主体畸变，效果才稳定、可读、可复现。
+
+**工具**：百炼 CLI + 百炼图像生成与多模态图像处理能力 + Skill `neon-recode`（四种视觉语言 × 三档强度 + 结果质量检查）
+
+**仓库**：https://github.com/bianzigege/neon-recode
+
+![霓码重构 Neon Fusion 效果](https://raw.githubusercontent.com/bianzigege/neon-recode/main/examples/neon-fusion-balanced.png)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/150)
+
+---
+
+## 气旋三阶 Cyclone Morph · 30% / 60% / 100%，把一张图一路卷成台风
+
+**作者**：[@bianzigege](https://github.com/bianzigege)（辫子哥哥）· 2026-08-09
+
+一个通用的三阶段图片气旋化 Skill：同一张图按 30% → 60% → 100% 连续推进，30% 保留原图并开始出现旋涡，60% 让主体结构进入云系，100% 完全转化为卫星台风影像，同时继承原图的中心、流向和明暗关系。支持人物、动物、建筑、房间、产品、车辆、Logo、插画、植物、风景和抽象纹理，并提供冷峻卫星与迷幻嬉皮两种视觉方向。作者一开始把它做成了单次台风滤镜，主体结构和原图的关系会丢失；改成连续三阶段继承、并把气旋眼、眼墙、旋臂和明暗关系写进提示词规范之后，变化才变得可解释、可复现。仓库里放了原图与三个阶段的完整对照，以及两种风格的示例素材。
+
+**工具**：百炼 CLI + 百炼图像生成与多模态图像处理能力 + Skill `cyclone-morph-skill`（阶段化提示词规范 + 示例素材对照）
+
+**仓库**：https://github.com/bianzigege/cyclone-morph-skill
+
+![气旋三阶 100% 阶段效果](https://raw.githubusercontent.com/bianzigege/cyclone-morph-skill/main/examples/stage-100.png)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/149)
+
+---
+
+## 求职风向 Agent · 在投进去几个月之前，先问市场还要不要这条路
+
+**作者**：[@youngys012345-ai](https://github.com/youngys012345-ai)（能工智人队）· 2026-08-09
+
+现在的校招工具大多集中在链路后端：方向已定、材料也差不多了，工具再来帮忙推荐岗位、改简历、批量投递。但校招真正难的是前端——方向还没定，不知道市场还要不要这条路，也不清楚现在该补什么；方向一旦选偏，前面几个月的技能学习、实习和项目准备都可能白费。这个 Agent 只做这一件事：学生说出想去的方向，系统对岗位库做技能词频、专业词频、分城岗位供给、应届薪资分位、企业规模结构等统计，再抽取在线岗位做增量分析感知最新动向，最后由百炼 `qwen-plus` 把统计结果转写成职责说明、准备计划和带依据的结论。产品守了三条纪律：判断一律来自岗位数据的统计结果，不让模型凭空下结论；报告里所有数字由统计代码算出，模型只负责读数和解释，从机制上堵住编造行情；不做海投、不做简历工具，只解决「方向决策」这一环。对报告不满意可以点「这份报告哪里不对」提交反馈，系统按反馈调整约束后重新生成修订版本——而且人在回路被收成固定动作（驳回结论、排除岗位、加对比城市、追问重算），版式不变只更新内容，避免编排和排版一起乱掉。
+
+**工具**：百炼 CLI / DashScope OpenAI 兼容接口 + 百炼 `qwen-plus`（职责概括、能力准备计划、核心结论、在线风向分析）+ 自研编排 Skill `wind_agent.orchestrator.run_pipeline` + FastAPI / Jinja2
+
+**仓库**：https://github.com/youngys012345-ai/Career-planning-agent ｜ **样例报告长图**：https://github.com/user-attachments/assets/ee37f025-104e-4133-b844-480a7f790ec9
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/145)
+
+---
+
+## 枕边雾 · 只在夜里亮起的那盏低灯
+
+**作者**：[@Pinkie-Pie-Lucky](https://github.com/Pinkie-Pie-Lucky) · 2026-08-09
+
+夜里写下的念头往往强烈、零碎，也更私密，不一定适合白天被反复翻看。枕边雾用昼夜做边界：白天雾被封存，让人回到正常生活；夜晚雾慢慢弥漫，允许写下、回望和安放那些还没安放好的话。产品刻意反效率——首页不直接铺陈文字，每条记录变成一个按时间自然分布的雾团，由一条轻微的雾线串联；点开雾团后要靠点击或擦拭才逐渐看见内容，读一会儿雾又重新聚拢，让阅读保持克制。真的想认真翻旧记录，才从「拨雾入口」进「雾的归处」，那里按月份编排、完整展示文字、支持搜索和筛选。还有一个「雾灵」可以低语，给的是偏陪伴与反射式的回应，而不是标准答案或说教。作者自己的定位写得很清楚：它想成为的不是一个高效的情绪管理工具，而是一盏在深夜亮得很低的灯。整套方案设计、UI 优化和 Prompt 优化都在 OpenWork 里用百炼模型完成。
+
+**工具**：OpenWork + 百炼 CLI + 百炼 `qwen3.6-plus` / `qwen3.7-plus` / `qwen3.7-max` / `deepseek-v4-flash`（方案设计、UI 优化、Prompt 优化）
+
+**在线体验**：https://pillowmist.pixiepoppy.com/
+
+![枕边雾 时间雾团首页](https://github.com/user-attachments/assets/18bb9db8-f462-4831-9636-6cd79d690e35)
+
+![枕边雾 雾的归处](https://github.com/user-attachments/assets/93f3124a-2713-4337-b559-d1d4f2752f2a)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/144)
+
+---
+
+## 变大泡泡 · 让考核表量不到的价值，被吹大、被看见
+
+**作者**：[@coocoo-pineapple](https://github.com/coocoo-pineapple) · 2026-08-09
+
+一个跨公司匿名职场社区，外壳做成一整套桌面系统的样子，按下快捷键才切到真正的产品——一片水面。水面上飘的是泡泡：一句吐槽、一条情报、一个技能、一个点子，每条内容都是一颗泡泡。别人觉得有价值就朝它吹一口气，泡泡变大、浮得更久；没人理会就慢慢沉底，而沉底不是删除，有人想捞随时捞回来。热度是浮力，认可是氧气，一颗泡泡的大小就是一次微型的集体投票。内容沿四层水路越沉越值钱：趣味层把人引进来，「梦蝶局」把职场困境做成 AI 身份推理局，玩家还能上传自制小游戏，游戏创意本身也能在点子集市标价成交；资讯层让人留下来；干货层靠签名担保让话可信——情报分「真 / 存疑 / 假」三级，发言签名担保、说错掉信誉，匿名让人敢说、签名让话立得住；最后到价值层的技能集市、悬赏与付费咨询。AI 在这里不是辅助工具而是社区居民：梦蝶局里对局的 AI 玩家、机器人工坊里替用户接单的 AI 分身，都由服务端调用百炼 `qwen3-max` 供血，分身用「人格 DNA + 框架库 + 禁区」三件套定义。工程取舍同样为演示负责：API Key 只存在服务端，设每小时 / 每日调用限额，模型超时、额度不足或接口不可用时明确降级到脚本模式并在界面如实标注，现场演示不会中断。
+
+**工具**：百炼 CLI（模型连通性验证、内容测试与赛前自检）+ 百炼 `qwen3-max`（梦蝶局 AI 玩家、机器人工坊 AI 分身）+ 服务端 API Key 保护与调用限额 + Node.js / Express / WebSocket
+
+**仓库**：https://github.com/coocoo-pineapple/bianda-paopao-bund-2026
+
+![变大泡泡 泡泡水面](https://github.com/user-attachments/assets/292f9664-9b11-4e43-920e-21297c5e72d3)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/142)
+
+---
+
+## 化雨阁 · 让「膻中穴」不再被听成「山中穴」
+
+**作者**：[@Zijia369](https://github.com/Zijia369)（王子嘉 / 上海洞见星空数字科技）· 2026-08-09
+
+通用语音转写工具在传统文化内容上很容易翻车：「黄帝内经」转成「皇帝内径」，「山海经」转成「三害星」，「膻中穴」转成「山中穴」——这些词不在通用模型词表里，一段转录直接废掉。化雨阁把这件事拆成四步闭环，而且越用越准。第一步双引擎转录，本地 FunASR 在 CPU 上零成本跑，云端用百炼 Paraformer-v2 做异步转录并带时间戳，批量模式可以扫目录逐个转录、自动纠错一条龙，处理过的自动跳过。第二步语义纠错，把全文连同纠错映射表和领域核心术语一起交给模型，温度压到 0.1，只改有把握的、不确定的保留原文，靠上下文判断而不是关键词替换。第三步人工审校，这也是它和「调个 API 就完事」区别最大的地方：红色删除线是被改掉的原文，黄色是待确认的 AI 建议，绿色是人工已确认；左边播视频右边文字跟随高亮，播到哪句滚到哪句，点文字也能跳回视频，每条修改可单独确认或撤销。第四步热词积累，122 条加权领域热词覆盖穴位、典籍、哲学术语和神话人物名，审校时确认过的修正词自动进入热词候选，下次转录直接生效，还能一键同步到百炼云端热词表。成稿支持 txt / md / srt / docx 四种格式导出与打包下载。踩坑记录也很实用：macOS 系统代理会拦截阿里云 SDK 请求导致 BrokenPipe，启动前 `unset http_proxy https_proxy` 即可，不影响浏览器。
+
+**工具**：百炼 Paraformer-v2（异步语音识别 + 时间戳提取）+ 百炼 Phrase Manager（热词云端同步管理）+ 阿里云 OSS 文件中转 + FunASR 本地引擎 + Python / Streamlit
+
+![化雨阁 转录页](https://github.com/user-attachments/assets/0c4badd2-f6d2-4d87-979c-b8f1217a26ce)
+
+![化雨阁 质检审校页](https://github.com/user-attachments/assets/6c644853-490b-4651-b91a-d2430122592f)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/141)
+
+---
+
+## 百炼公众号百宝箱 · 从选题到复盘的一条内容流水线
+
+**作者**：[@emajjsky](https://github.com/emajjsky)（二师兄）· 2026-08-09
+
+公众号创作者的日常，是在热点工具、搜索引擎、文档、AI 对话、生图工具、公众号后台和数据表格之间反复横跳：题材、研究资料、写作经验、图片素材、排版模板和发布数据彼此割裂，每写一篇都要重新组织一遍上下文。这个项目把它们串成一条连续链路——从 RSS、网络搜索、文章链接和个人创意里发现题材，建立创作项目并整理事实、观点、结构与账号声音，完成来源研究和交叉核对后生成正文（修改动作被定义成语义明确的四种：重构、润色、扩写、压缩），再按正文段落策划封面和插图（网络搜图、AI 生图、本地上传、素材库四选一，插图绑定到具体段落之后插入），套公众号模板做智能精排并生成真实 HTML 预览，导入草稿箱后由用户在公众号后台正式发布，发布后登记公开链接形成台账，配 D1 / D3 / D7 检查点做复盘。几处克制的设计值得记：模型按任务分别配置，用户可以按质量和成本给每个环节挑模型；正文候选、配图和排版都要用户确认才进下一步；账号声音保存的是写作规则而不是参考文章的内容；复盘只读公开可获取的数据，拿不到就显示为空，不要求用户手工伪造一个数字。作者对这个产品的定位是——核心不是单次生成一篇文案，而是让题材、账号声音、图片素材、排版模板和复盘记录沉淀成可持续复用的工作资产。
+
+**工具**：百炼 CLI + 阿里云百炼 API（资讯分析 / 来源核验 / 选题推荐 / 账号声音 / 正文生成 / 配图策划 / 智能排版 / AI 生图 按任务分别配置模型）+ Skill 化的创作规则 + Tavily / RSS / RSSHub + React / TypeScript / Fastify / PostgreSQL / Redis / BullMQ
+
+**仓库**：https://github.com/emajjsky/zimeiti
+
+![百宝箱 题材发现](https://github.com/user-attachments/assets/fb60165d-f427-4fb2-aecc-89630bf252f3)
+
+![百宝箱 正文生成](https://github.com/user-attachments/assets/0b4c31c3-4a9b-4382-920d-9e5cbfe0c406)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/139)
+
+---
+
+## 心屿 · 说不出口的时候，可以只写一个字
+
+**作者**：[@2892480843](https://github.com/2892480843)（云上码术）· 2026-08-09
+
+一个以叙事为壳的陪伴向小游戏：用户可以用文字、语音、快捷短句，或者只写一个字，甚至什么都不做、静默坐在岛上，来表达此刻的状态。系统围绕八类情绪完成理解、安全检查、记忆检索、叙事与「心灵印记」生成，并驱动音乐、天气和 2D / 3D 心象岛屿一起变化。百炼在这里解决的是两个很具体的工程问题：浏览器原生语音识别失效时，由 Paraformer Realtime v2 接管中文语音转写，保证「说出来」这条路不会断；浏览器朗读缺少情绪起伏时，改调 CosyVoice v2，并按当前情绪设置音色、语速和音高，让回应听起来不像念稿。
+
+**工具**：百炼 DashScope Paraformer Realtime v2（实时语音识别）+ 百炼 CosyVoice v2（按情绪设定音色 / 语速 / 音高的语音合成）+ FastAPI / React / TypeScript / Three.js / PostgreSQL + pgvector
+
+**仓库**：https://github.com/2892480843/xinyu ｜ **在线体验**：http://txygame.qicaiy.cn/
+
+![心屿 心象岛屿](https://github.com/user-attachments/assets/acf3b2ab-6924-40d1-80e8-218332cccf20)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/137)
+
+---
+
+## TopoPage · 扫描件进去，版面还在的译文 PDF 出来
+
+**作者**：[@Tech-ArthurX](https://github.com/Tech-ArthurX)（Glim 团队）· 2026-08-09
+
+面向扫描 PDF、论文和复杂排版文档的翻译 Web 应用，把 OCR 识别、版面分析、术语约束、AI 翻译、任务管理和 PDF 重建整合成一条完整流程：邮箱注册、图片验证码登录之后上传文档，系统按页识别文字与版面结构，调用百炼兼容接口完成翻译，再生成尽可能保留原始布局的译文 PDF。它不是提取文字后输出纯文本，而是记录原文文本区域的位置和尺寸，把译文重新写回对应页面——为此专门处理了 OCR 与 PDF 坐标系不一致、译文长度变化、字体兼容和文字越界，减少错位、上下镜像、内容溢出和最终生成失败。内置术语表用来固定专业名词、产品名和缩写的译法，让长文档前后一致；处理过程给逐页进度，任务中断后可以恢复，任务列表里能看历史记录、失败信息和最终文件。工程上分成浏览器界面、Go 任务服务和原生文档处理模块三层，把耗时翻译拆成可追踪、可恢复的页级任务。还做了一个「黑客松模式」：服务端锁定模型、接口和内置术语表，并限制单任务与账户页数，用户不需要填 API Key，也改不动关键配置，既控住调用成本，也让公开演示不容易被现场误操作弄崩。
+
+**工具**：百炼 CLI + 百炼兼容 Chat Completions 模型服务（演示环境锁定 `deepseek-v4-flash`）+ PDFium / RapidOCR / ONNX Runtime + Vue 3 / TypeScript / Fluent UI / Golang / Docker
+
+**在线体验**：https://topopage.1145141919810.xyz/
+
+![TopoPage 扫描 PDF 翻译](https://github.com/user-attachments/assets/4b233a88-9b9a-4a79-90ec-c5f9f982e137)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/136)
+
+---
+
 ## Luanti Builder · 一句话在沙盒里盖出建筑
 
 **作者**：[@cpufreestyle](https://github.com/cpufreestyle)（MichaelQiu）· 2026-08-09
