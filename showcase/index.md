@@ -14,6 +14,203 @@ keywords: "阿里云百炼案例,AI Agent 案例,百炼CLI,OpenWork,Showcase,社
 
 ---
 
+## 数学公式无障碍学习助手 · 让视障学生把公式读得出来、学得明白
+
+**作者**：[@MrsFlower](https://github.com/MrsFlower) · 2026-08-13
+
+一套面向视障学生的浏览器插件 + 百炼高代码后端：把网页里的数学公式（KaTeX / MathJax / LaTeX / 视觉符号串 / 化学式）转译成读屏友好的结构化中文读法。分工很清醒——确定性规则引擎负责逐字可复现的读法转换，保证同一个公式每次读法一致；大模型只在其上提供五段式讲解与追问，Qwen-TTS 负责语音输出。全程键盘可达、NVDA 读屏闭环，每个体验细节都来自真实视障用户的反馈迭代。模型侧用 Qwen 系列做了三级备用链，避免单点失败让读屏中断。
+
+**工具**：百炼 Qwen 系列（三级备用链，讲解与追问）+ Qwen-TTS（语音播报）+ 确定性公式读法规则引擎 + 浏览器插件 + NVDA 读屏适配
+
+**仓库**：https://github.com/MrsFlower/math-a11y-demo ｜ **在线体验**：https://mrsflower.github.io/math-a11y-demo/
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/160)
+
+---
+
+## 动物行为翻译官 · 拍段视频，AI 判断动物是放松还是在受苦
+
+**作者**：[@msensi](https://github.com/msensi) · 2026-08-12
+
+面向普通游客的一款多模态公益应用：拍一段景区、马戏团、海洋馆里的动物视频，约 30 秒后 AI 给出「红 / 橙 / 黄 / 绿 / 灰」五级风险判定，附带时间戳的画面证据、结构化观察总结，以及世界动物保护协会（WSPA）知识库的科学解释与行动建议。链路把媒体标准化（ffmpeg 压缩截断转码）、智能抽帧（画面差异最大的 4 帧）、qwen3-vl-flash 视频与图片理解、知识库检索、qwen3.6-plus 综合判定串成一条工作流。设计上刻意「不指责游客」，而是给出「离开、不参与、支持友好场馆」的正向行动。凭据侧浏览器不接触任何云密钥，媒体在服务端统一标准化。
+
+**工具**：百炼（DashScope）qwen3-vl-flash（视频/图片理解）+ qwen3.6-plus（风险判定）+ 百炼工作流（知识库检索）+ FastAPI + ffmpeg + 魔搭创空间
+
+**在线体验**：https://msensi-animal-translator-v2.ms.show
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/157)
+
+---
+
+## 猫可梦 CatMon · 类 Pokémon Go 的拍猫收养小程序
+
+**作者**：[@hotcoffeeshake](https://github.com/hotcoffeeshake) · 2026-08-09
+
+把偶遇的现实猫咪「拍照收养」成虚拟宠物的微信小程序。相机取景后投出精灵球命中猫，先用通义千问视觉 qwen3-vl-plus 做「是不是猫」的识图门禁与品种识别（不是猫直接拒绝重拍），再用通义万相 wanx2.1-imageedit 的 stylization_all 从 22 种风格里随机赋一种特效，配合随机稀有度 N/R/SR/SSR/UR + 八大元素 + 收养编号，生成一只可入图鉴的虚拟猫。两个百炼能力都用在了刀刃上。拍照收养、识图门禁+品种识别、随机特效、云养猫日常四项玩法已真机跑通（含真实云函数调用），社交裂变与升级玩法待小程序认证后开放。
+
+**工具**：百炼 CLI + 通义千问视觉 qwen3-vl-plus（识图门禁/品种识别）+ 通义万相 wanx2.1-imageedit `stylization_all`（风格化）+ 微信小程序原生 + 微信云开发
+
+**在线体验**：微信小程序·体验版（扫码进入，单机可跑通拍猫 → 收养 → 喂养闭环）
+
+![猫可梦 CatMon · 类 Pokémon Go 的拍猫收养小程序](https://raw.githubusercontent.com/hotcoffeeshake/cat-collect-screenshots/main/issue-153/01-camera-catch.jpg)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/153)
+
+---
+
+## 题迹 QuestionTrace · 基于实时面经证据的个性化面试押题 Skill
+
+**作者**：[@Thea729-fable](https://github.com/Thea729-fable) · 2026-08-09
+
+把「押题」从模型凭空生成改造成一条可追溯流水线：百炼 qwen3.5-omni-plus 解析上传的 JD 与简历、动态生成检索词，Museon 实时检索并深读小红书 / 牛客真实面经，再由百炼逐张解析每份面经的题图、提取可见问题与面试轮次，最后做来源核验、去重、聚类、时效加权，把「真实面经证据 × JD 要求 × 简历触发点」映射成个性化题库。每道高优先级题必须同时具备三方依据并保留来源与读取状态；`scripts/audit_evidence.py` 自动审计百炼运行记录、正文完整性、题图处理与三方证据，只有结论为 `PASS` 才生成最终证据型题库。作者按评审意见把百炼从「可选增强」改为默认必经运行时并重新跑通验证，也在 README 里补齐了对第三方平台内容的抓取边界说明。
+
+**工具**：百炼 CLI v1.14.2 + qwen3.5-omni-plus（JD/简历解析 + 逐张题图视觉提取，默认必经运行时）+ Museon CLI（实时检索深读）+ Agent Skill `question-trace` + 证据审计脚本
+
+**仓库**：https://github.com/Thea729-fable/QuestionTrace
+
+![题迹 QuestionTrace · 基于实时面经证据的个性化面试押题 Skill](https://github.com/user-attachments/assets/799a9061-4cb2-4c79-95e2-7af4d3cd346a)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/152)
+
+---
+
+## 闻香识菌子 · 云南野生菌识别与安全科普
+
+**作者**：[@kkz-admin](https://github.com/kkz-admin) · 2026-08-09
+
+面向云南野生菌的识别与风险科普应用：用户上传菌子照片，系统用百炼视觉理解分析菌体外观给出候选菌种，结合野生菌专业知识库 RAG 检索特征、风险等级、相似菌与分布区域，再通过 Function Calling 查询平台数据库的菌种与菜品数据，最终生成结构化科普结果，并配菌种图鉴、云南菌地图与「夜话菌子」社区。作者按建议在应用首页 / 结果页顶部与仓库 README 均加了醒目安全声明——识别结果仅供科普参考、不能作为可食用依据、误食请立即就医并携带样本，结果页措辞也收敛为描述特征与风险等级，不给「能不能吃」的结论。
+
+**工具**：百炼 qwen3.7-plus（视觉理解）+ 知识库 RAG + Function Calling + 自定义「野生菌识别与科普 Skill」
+
+**在线体验**：https://kkz4022-mushroom.ms.show/ ｜ **创空间**：https://www.modelscope.cn/studios/kkz4022/mushroom
+
+![闻香识菌子 · 云南野生菌识别与安全科普](https://github.com/user-attachments/assets/460fbb85-2adb-413a-bd49-851332fa47a6)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/147)
+
+---
+
+## 慧考 AI · 证券从业资格考试智能题库
+
+**作者**：[@wanhe-hash](https://github.com/wanhe-hash) · 2026-08-09
+
+解决传统证券题库题量固定、刷完无新题、薄弱章节无法针对补强的痛点：PDF 解析 336 道真题建库，few-shot 抽同章节真题做示例、动态扩题，配自动错题本、章节进度可视化与多模型切换。全栈架构扎实——C++ 核心生成 + FastAPI 后端 + Vue3 前端，断点续跑、JSON 自愈解析、重试机制都做了。作者按收录口径把运行链路整体切到百炼通义千问：统一走 DashScope compatible-mode 端点、Bearer 鉴权，当前模型 qwen-plus（UI 可切 qwen-max / qwen-turbo / qwen-vl-plus），全文、架构图与设置面板的 DeepSeek 残留已清除，并给出带行号的调用代码证据；对外入口也从裸 IP 换成了 HTTPS 域名。
+
+**工具**：百炼 CLI + DashScope compatible-mode + qwen-plus（可切 qwen-max / qwen-turbo / qwen-vl-plus）+ C++ 生成核心 + FastAPI + Vue3
+
+**仓库**：https://github.com/wanhe-hash/card-batch-demo ｜ **在线体验**：https://finseed.art
+
+![慧考 AI · 证券从业资格考试智能题库](https://github.com/user-attachments/assets/36b3c4ee-e4c1-4f05-b4b7-5129cca57f28)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/134)
+
+---
+
+## Creator City 创作者之城 · AI 创作者的像素城市与交流社区
+
+**作者**：[@farlyfeifei](https://github.com/farlyfeifei) · 2026-08-09
+
+一座给 AI 创作者的像素城市：个人故事引擎 + Remotion 出片、Phaser 像素城市、Agent 群聊辩论、黑客松会场、模型竞技场与 Skill 花园，已上线 crecity.farly.me 可直接体验。作者按收录口径把辩论核心环节的模型 Provider 切换到阿里云百炼通义千问 qwen-plus（DashScope OpenAI 兼容模式）——辩题生成、Agent 发言、讨论裁判统一经由此 Provider 调用，代码位置在 `apps/chat-debate/server/roundtable_core/` 的 config.py / ai_provider.py（commit 2b701ea），线上发起一场辩论即由 qwen-plus 驱动。
+
+**工具**：百炼通义千问 qwen-plus（DashScope OpenAI 兼容模式，辩论核心）+ Remotion + Phaser + 多 Agent 群聊编排
+
+**仓库**：https://github.com/farlyfeifei/CREATOR-CITY ｜ **在线体验**：https://crecity.farly.me
+
+![Creator City 创作者之城 · AI 创作者的像素城市与交流社区](https://github.com/user-attachments/assets/52b7786a-a002-4024-9a86-49f4087fb2ef)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/124)
+
+---
+
+## PalmSpeech 掌语 · Apple Silicon 完全离线实时手语识别与语音播报
+
+**作者**：[@tbszz](https://github.com/tbszz) · 2026-08-09
+
+一套面向 Apple Silicon Mac 的完全离线实时手语识别系统，借助百炼 CLI + Qwen3-Coder-Plus 与自定义 Skill `hand-sign-offline-deployer` 完成开发与打包。识别流程是「MediaPipe 手部关键点提取 + 16 帧双向 GRU 时序建模 + 注意力分类」，可识别 100 个孤立手语词，实时转中文语义并显示置信度、历史记录、调用 macOS 本地语音播报；验证集 Top-1 77.2% / Top-5 91.5%，模型仅约 2.3MB。支持内置摄像头与 ESP32 网络摄像头两种输入，对网络延迟做了仅保留最新帧、JPEG 完整性检查与断线重连；最终把模型、Python 运行时与依赖打包成双击即运行的离线程序，画面不上云。
+
+**工具**：百炼 CLI + Qwen3-Coder-Plus + Skill `hand-sign-offline-deployer` + PyTorch / MediaPipe / BiGRU / ESP32-CAM / PyInstaller
+
+**在线体验**：https://sign.orionsheep.com/
+
+![PalmSpeech 掌语 · Apple Silicon 完全离线实时手语识别与语音播报](https://github.com/user-attachments/assets/83d99e23-b985-41d1-8d25-fd764a469bfc)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/113)
+
+---
+
+## 妙笔 · 人人可用的 AI 写作工作台
+
+**作者**：[@hotcoffeeshake](https://github.com/hotcoffeeshake) · 2026-08-08
+
+一个把「资料 → 选题 → 大纲 → 初稿 → 配图 → 排版 → 导出」七阶段串起来的云端写作 SaaS。文本能力走百炼 DashScope 兼容接口，封面用通义万相 wanx2.1-t2i-turbo 生成，并落位了百炼 Skill 市场的 doc-coauthoring、illustration-generator、alibabacloud-ecs-code-deploy 三个 Skill。作者按收录要求把代码仓库设为公开、把在线体验迁到可访问的部署，并清理了裸 IP 暴露面。
+
+**工具**：百炼 DashScope 兼容接口（文本）+ 通义万相 wanx2.1-t2i-turbo（封面）+ 百炼 Skill `doc-coauthoring` / `illustration-generator` / `alibabacloud-ecs-code-deploy`
+
+**仓库**：https://github.com/hotcoffeeshake/writer-assistant-saas
+
+![妙笔 · 人人可用的 AI 写作工作台](https://raw.githubusercontent.com/hotcoffeeshake/writer-saas-showcase/main/01-material.png)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/107)
+
+---
+
+## 飞猪 RedTrip Pro · 红色研学助手
+
+**作者**：[@gengcheng](https://github.com/gengcheng) · 2026-08-07
+
+面向红色旅游的研学助手，从亲子到团队场景把「红色旅游」做活：AI 生成研学路线、亲子研学任务与企业团建方案。文本理解与生成由百炼通义千问承担，语音播报换用了千问的语音合成大模型。作者补齐了公网可访问的界面截图（路线生成、研学任务、团建方案等完整链路），Showcase 卡片按公开截图收录、不放内网入口。
+
+**工具**：百炼通义千问（路线/任务/方案生成）+ 千问语音合成大模型（讲解播报）
+
+![飞猪 RedTrip Pro · 红色研学助手](https://github.com/user-attachments/assets/16adfda2-d798-40e9-bd1b-94b618f207eb)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/92)
+
+---
+
+## 飞猪 Travel-Itinerary · 把出行安排妥当的 AI 助手
+
+**作者**：[@yinshubinysb-dotcom](https://github.com/yinshubinysb-dotcom) · 2026-08-07
+
+一款把行程安排「妥当化」的出行 AI 助手：围绕行前规划、行程编排与出行细节，用百炼通义千问 qwen3.7 / qwen3.8 做 LLM 层的理解与生成，界面覆盖行程生成与管理的完整链路。因演示入口涉及集团登录，Showcase 卡片按作者提供的公开界面截图收录，不放需登录的内网链接。
+
+**工具**：百炼 CLI + 通义千问 qwen3.7 / qwen3.8（行程理解与生成）
+
+![飞猪 Travel-Itinerary · 把出行安排妥当的 AI 助手](https://github.com/user-attachments/assets/0e48ba9e-4192-4852-903f-78f84e4b69d8)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/90)
+
+---
+
+## 飞猪浪 TI · 旅行人格塔罗
+
+**作者**：[@GavinZhao19](https://github.com/GavinZhao19) · 2026-08-07
+
+一个用塔罗玩法测「旅行人格」并揭晓命中目的地的互动应用：选区域 → 五轮抽牌 → 揭晓人格与目的地 → 生成分享卡。视觉是亮点——塔罗牌面、16 种人格结果卡与目的地大卡由通义万相 wan2.7-image-pro 以统一的「明媚水墨 × 烫金」视觉语言风格化生成，Agent 实时交互层负责逐轮出题、四维画像累积与个性化解读文案。作者补齐了完整流程的公网截图；卡片按公开截图收录，不放裸 IP 入口。
+
+**工具**：通义万相 wan2.7-image-pro（塔罗牌面/人格卡/目的地卡风格化生成）+ Agent 实时交互层（逐轮出题与画像计算）
+
+![飞猪浪 TI · 旅行人格塔罗](https://github.com/user-attachments/assets/e11f2bfd-cc1b-4e5e-8479-b31bde2bda1e)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/89)
+
+---
+
+## 讲香 Savorise · 「嘴替式信任转移」文案方法论 Skill
+
+**作者**：[@rojalus](https://github.com/rojalus) · 2026-08-02
+
+把「讲香」这套文案方法论做成了可在百炼 CLI（`bl`）/ Agent Skills 里安装运行的 Skill。核心是「做读者的嘴替」——写出用户内心 OS，通过共情完成信任转移；配 APP 三角色、5 步骨架与血肉清单的可操作拆解。生成文案时调用百炼 qwen3.6-plus 与 qwen-max。
+
+**工具**：百炼 CLI（`bl`）+ Agent Skill `SavoriseSkill` + 百炼 qwen3.6-plus / qwen-max
+
+**仓库**：https://github.com/rojalus/SavoriseSkill
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/66)
+
+---
+
+
 ## 食材，也有乡音 · 从大连到广州，虾爬子该怎么开口
 
 **作者**：[@CNWU16](https://github.com/CNWU16) + [@myfx1199](https://github.com/myfx1199) · 2026-08-09
