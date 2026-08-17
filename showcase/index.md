@@ -14,6 +14,22 @@ keywords: "阿里云百炼案例,AI Agent 案例,百炼CLI,OpenWork,Showcase,社
 
 ---
 
+## 声纹生物园 VOICE CREATURES · 用 5 秒声音孵一只专属生物
+
+**作者**：[@maxi-max-dev](https://github.com/maxi-max-dev) · 2026-08-17
+
+把声音当成「遗传物质」的网页生物园：录下 5 秒声音，浏览器在本机分析节奏、音高、频谱与噪声度，编成 12 维确定性声纹 DNA，据此长出一只专属生物——同一段声音稳定孵出同一只（编号、外形、谱系都可复现），换一段声音就得到不同外形与运动方式。生物可继续用声音喂养，也能生成二维码邀请他人接力繁育，两段声音会稳定重组出带双亲谱系的第二代，家族树持续生长并可导出动态 WebM 生物卡。分工边界很清醒：生物编号、DNA、外形和谱系全部由本地 DSP 决定，百炼只负责文字语义——用户逐次授权后，那一次 5 秒音频规范为 16kHz WAV，由服务端经百炼 OpenAI 兼容接口以 `input_audio` + SSE 流式调用 Qwen-Omni，生成生物命名、性格、野外观察与喂养建议。密钥只留服务端，原始音频默认只在本机分析、不保存。
+
+**工具**：百炼 Qwen-Omni `qwen3.5-omni-flash`（OpenAI 兼容 `input_audio` + SSE 流式，运行时语义生成）+ WebAudio / 自研浏览器端 DSP + Canvas 程序化生物渲染 + Next.js + 魔搭创空间
+
+**在线体验**：https://maximax-shengwenzoo.ms.show/ ｜ **源码**：https://www.modelscope.cn/studios/maximax/shengwenzoo
+
+![声纹生物园 VOICE CREATURES · 用 5 秒声音孵一只专属生物](https://github.com/user-attachments/assets/ecc016ca-7ac7-41c3-aaa5-254d32a93b51)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/128)
+
+---
+
 ## 抖战台 · 抖音电商 AI 多智能体作战台
 
 **作者**：[@ShaoJun-wang](https://github.com/ShaoJun-wang) · 2026-08-16
