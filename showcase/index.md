@@ -14,6 +14,38 @@ keywords: "阿里云百炼案例,AI Agent 案例,百炼CLI,OpenWork,Showcase,社
 
 ---
 
+## 抖战台 · 抖音电商 AI 多智能体作战台
+
+**作者**：[@ShaoJun-wang](https://github.com/ShaoJun-wang) · 2026-08-16
+
+把抖音电商里选品拆解、直播场景、千川素材、财务核算四个高频环节各封装成一个专职 AI Agent，再由一个「总指挥」Orchestrator 统一编排：用户只说一个作战目标（如「推一款便携迷你榨汁杯，客单价 39-99，目标一二线年轻女性」），总指挥自动把它拆解并长时委派给四个 Agent 串联协同，后一个 Agent 继承前一个的输出，最终汇总成一份连贯的完整作战方案。模型实时调用走阿里云百炼 DashScope（兼容 OpenAI 协议，qwen-plus / qwen-turbo / qwen-max），浏览器直连受 CORS 限制便加了服务端 proxy 转发、Key 只走环境变量不进代码。内核还带五个工具调用（计算器、飞书读取、表格抽取、真实 HTTP 拉公开热榜、飞书写回）、跨会话「全局知识库」自动沉淀洞察，以及零 Key 即跑的演示模式，评委打开即跑完整流程、永不空白页。
+
+**工具**：百炼 DashScope（qwen-plus / qwen-turbo / qwen-max，运行时实时调用）+ 自研多智能体内核（4 Agent + 5 工具调用 + 跨会话知识引擎）+ 服务端 proxy 转发 + CloudStudio 公网部署
+
+**仓库**：https://github.com/ShaoJun-wang/douzhantai ｜ **在线体验**：https://26040e8952db42ae9ef6d7ca086789ed.bj4.agentos-app.net
+
+![抖战台 · 抖音电商 AI 多智能体作战台](https://raw.githubusercontent.com/ShaoJun-wang/douzhantai/main/docs/screenshots/showcase_01_orchestrator.png)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/84)
+
+---
+
+## 小学生讲题助手 · 像有耐心的老师一样把题一步步讲明白
+
+**作者**：[@yinshubinysb-dotcom](https://github.com/yinshubinysb-dotcom) · 2026-08-17
+
+一个面向小学生的 AI 学习助手，目标不是把答案摆出来，而是像一位有耐心的老师那样把题目一步步讲清楚——既讲「怎么算」，也讲「为什么这样算」。整条讲题流程设计成四段：识别题目（支持文字 / 语音 / 拍照输入 + OCR 提取）、判断难度（一步计算还是多步推理）、分层讲解（简单题突出关键信息与算式、难题逐步推导并解释每一步的原因）、规则兜底（识别或回答异常时用关键词与备用规则保证讲解不中断）。作者用结构化提示词把模型限定成教师角色、按固定格式输出步骤与原因，并参考三四年级学生的认知特点尽量少用术语。项目在开发阶段基于百炼 qwen3.7-plus 构建，是一次把「不替同学做作业、而是帮他看懂思路」写进设计目标的踏实实践。
+
+**工具**：开发阶段基于百炼 qwen3.7-plus 构建（结构化提示词设计教师角色与分层讲解）+ 多模态输入 / OCR 题目识别 + 难度分支与规则兜底
+
+**在线体验**：https://code.coze.cn/web-sdk/7651237187912122377
+
+![小学生讲题助手核心界面](https://github.com/user-attachments/assets/4d7b8bf3-97c0-4764-9a68-db4cefa08cab)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/154)
+
+---
+
 ## 数学公式无障碍学习助手 · 让视障学生把公式读得出来、学得明白
 
 **作者**：[@MrsFlower](https://github.com/MrsFlower) · 2026-08-13
