@@ -14,6 +14,39 @@ keywords: "阿里云百炼案例,AI Agent 案例,百炼CLI,OpenWork,Showcase,社
 
 ---
 
+## Code Designer AI — AI 驱动的网页逆向工程平台：一条 URL 到可运行的 React 工程
+
+**作者**：[@wx73306-create](https://github.com/wx73306-create) · 2026-08-20
+
+输入任意网站 URL，六个 Agent 流水线协作，自动完成「网页抓取 → 视觉分析 → Design Token 提取 → 组件架构规划 → React 代码生成 → 质量检测 → 项目导出」：Playwright 负责渲染、DOM、截图与字体资源，VL 模型识别布局、字体、配色与组件，LLM 输出结构化设计令牌与组件树，Coder 模型生成 React + TypeScript + TailwindCSS，最后经视觉对比与还原度评分质检，导出可直接 `npm install && npm run dev` 的 Next.js 工程。核心亮点是模型可插拔——六个阶段每个阶段的模型都可在管理后台独立指定，支持阿里云百炼、MiMo、OpenAI、Anthropic、Gemini、DeepSeek 等多家混合编排，默认接入百炼（DashScope 兼容 API / `bl` 命令，默认 `qwen-3.7plus`）。多智能体长链路用 Redis + BullMQ 异步执行，单次完整复刻 30 秒～3 分钟，工作台轮询实时展示每个 Agent 的进度；官网内置 apple-edu、bilibili、douyin 等 5 个复刻样例可在线预览。
+
+**工具**：阿里云百炼（DashScope 兼容 API / 百炼 CLI `bl`，默认 `qwen-3.7plus`，可插拔 `qwen-3.7max` / `qwen-3.8max` / `qwen-3.6flash` 等）+ Skill `QoderWorkCN`（多智能体调度与百炼调用链封装）+ Next.js 15 + Playwright + Supabase/Prisma + Redis/BullMQ
+
+**仓库**：https://github.com/wx73306-create/code-designer-AI ｜ **体验**：http://codedesignerai.online/ ｜ **复刻样例**：https://wx73306-create.github.io/code-designer-AI/showcase/apple-edu.html
+
+![Code Designer AI — AI 驱动的网页逆向工程平台](https://github.com/user-attachments/assets/bb284259-e6e6-4e64-88f5-7c06861b9cf7)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/158)
+
+---
+
+## Attention — 面向个人 Agent 的收藏与发现基础设施
+
+**作者**：[@EthanSMC](https://github.com/EthanSMC)（Attention Team，与 prycyang 合作） · 2026-08-20
+
+在 AI Slop 时代，让真实的人类收藏成为过滤信息的质量信号：普通用户在公开瀑布流里发现经 Filter 背书「值得保留」的内容，始终回到原作者与原文阅读；收藏者把散落在浏览器书签、微信文件传输助手和各平台分享文案里的跨平台收藏，统一整理为可检索、可管理、能被个人 Agent 直接调用的知识资产，也通过公开收藏完成一次轻量背书。v0.1.0 链路：提交链接或平台分享文案 → 识别候选链接 → 链接标准化、来源识别与重复合并 → 公开/私密设置 → 公开收藏进入发现瀑布流；收藏始终保留作者、来源与「查看原文」入口。Agent 通过自研 Attention Skill 与 Hosted MCP 操作与网页同一份数据，OAuth（Authorization Code + PKCE）与 API Key 都绑定真实账号，Agent 能力不会超过用户本人权限。取舍说得明白：第一期不做 Hosted Agent、百炼不是线上运行依赖，开发阶段全程用 OpenWork / 百炼 CLI 做代码阅读、架构梳理、接口检查、测试设计与文档整理，开发模型为 Qwen3.8-max。
+
+**工具**：OpenWork / 百炼 CLI（开发阶段：代码阅读 / 架构梳理 / 接口检查 / 测试设计 / 文档整理，Qwen3.8-max）+ 自研 Attention Skill + Hosted MCP（OAuth 2.0 PKCE / API Key）+ Next.js + PostgreSQL + Docker Compose
+
+**体验**：https://attention-staging.noveltystudio.cn/ ｜ **仓库**：https://github.com/EthanSMC/Attention
+
+![Attention — 面向个人 Agent 的收藏与发现基础设施](https://github.com/user-attachments/assets/6864d5e9-54a3-4939-8601-8f105d595d70)
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/99)
+
+---
+
+
 ## 声纹生物园 VOICE CREATURES · 用 5 秒声音孵一只专属生物
 
 **作者**：[@maxi-max-dev](https://github.com/maxi-max-dev) · 2026-08-17
