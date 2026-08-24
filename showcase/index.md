@@ -626,6 +626,8 @@ MBTI 告诉你「适合」什么职业，然后就断了。这个项目接着往
 
 ![Body-OS 个人健康仪表盘](https://github.com/user-attachments/assets/da02281d-bcbd-4c61-b616-cd792edffcb9)
 
+![Body-OS 移动端效果展示](https://modelstudioai.github.io/assets/img/bodyos-mobile.png)
+
 > [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/103)
 
 ---
