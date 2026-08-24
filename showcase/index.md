@@ -622,7 +622,7 @@ MBTI 告诉你「适合」什么职业，然后就断了。这个项目接着往
 
 **工具**：百炼 DashScope SDK + `qwen-plus`（多轮对话与文本生成）+ React 18 + Tailwind CSS + Wouter + Render
 
-**仓库**：https://github.com/chenchunyun1995-art/Body-OS
+**仓库**：https://github.com/chenchunyun1995-art/Body-OS ｜ **在线体验**：https://rdgzh34g35.app.weavefox.cn/
 
 ![Body-OS 个人健康仪表盘](https://github.com/user-attachments/assets/da02281d-bcbd-4c61-b616-cd792edffcb9)
 
