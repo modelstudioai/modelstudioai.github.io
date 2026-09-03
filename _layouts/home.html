@@ -163,15 +163,17 @@ h1, h2, h3 { text-wrap: balance; }
 /* Ecosystem */
 .ecosystem { padding: 64px 24px; background: var(--canvas); }
 .ecosystem-inner { max-width: 1100px; margin: 0 auto; }
-.ecosystem h2 { text-align: center; font-size: 28px; font-weight: 600; letter-spacing: -1px; margin-bottom: 32px; }
-.eco-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-.eco-card { background: var(--bg-card); border: 1px solid var(--border-soft); border-radius: var(--rounded-lg); padding: 32px 24px; transition: background 0.2s, box-shadow 0.2s, transform 0.2s; }
+.ecosystem h2 { text-align: center; font-size: 28px; font-weight: 600; letter-spacing: -1px; margin-bottom: 10px; }
+.ecosystem .section-sub { text-align: center; font-size: 14px; color: var(--body); margin: 0 0 32px; line-height: 1.6; }
+.eco-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.eco-card { background: var(--bg-card); border: 1px solid var(--border-soft); border-radius: var(--rounded-lg); padding: 28px 22px; transition: background 0.2s, box-shadow 0.2s, transform 0.2s; }
 .eco-card:hover { background: var(--bg-card-hover); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
 .eco-icon { font-size: 22px; margin-bottom: 14px; display: block; opacity: 0.8; }
 .eco-card h3 { font-size: 14px; font-weight: 500; margin-bottom: 6px; letter-spacing: -0.2px; }
 .eco-card p { font-size: 13px; color: var(--body); line-height: 1.6; margin-bottom: 12px; }
 .eco-card a { color: var(--link); text-decoration: none; font-size: 12px; font-weight: 500; }
 .eco-card a:hover { text-decoration: underline; }
+.eco-tag { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: var(--mute); background: var(--canvas-soft-2); padding: 2px 8px; border-radius: var(--rounded-pill); margin-bottom: 10px; }
 
 /* Docs links */
 .docs-section { padding: 56px 24px 72px; max-width: 1100px; margin: 0 auto; }
@@ -192,6 +194,7 @@ h1, h2, h3 { text-wrap: balance; }
 /* Tablet */
 @media (max-width: 1024px) {
   .playbook-grid { grid-template-columns: repeat(3, 1fr); }
+  .eco-grid { grid-template-columns: repeat(2, 1fr); }
   .steps h2, .playbook-entry h2, .ecosystem h2, .docs-section h2 { font-size: 24px; }
 }
 
@@ -251,7 +254,7 @@ h1, h2, h3 { text-wrap: balance; }
 <section class="hero">
   <div class="hero-content">
     <h1>Born open, <span class="gradient-text">ship AI together</span>.</h1>
-    <p>Explore tools &middot; Build skills &middot; Grow together.</p>
+    <p>CLI · 桌面 Agent · 云上编排 —— 一行命令接入多模态大模型，把 AI 能力变成可复用工具。</p>
     <div class="hero-buttons">
       <a href="/guide/" class="btn btn-primary">开始使用</a>
       <a href="https://github.com/modelstudioai" class="btn btn-secondary" target="_blank">GitHub</a>
@@ -265,7 +268,7 @@ h1, h2, h3 { text-wrap: balance; }
     <div class="step-card">
       <div class="step-num">Step 1</div>
       <h3>获取 API Key</h3>
-      <p>注册阿里云百炼平台，一个 Key 调用 Qwen、DeepSeek、Kimi 等多家模型。</p>
+      <p>注册阿里云百炼平台，一个 Key 调用文本、图像、视频、语音、RAG 等全模态模型。</p>
       <a href="{{ site.bailian_apikey_url }}" target="_blank">获取 API Key &rarr;</a>
     </div>
     <div class="step-card">
@@ -306,36 +309,48 @@ h1, h2, h3 { text-wrap: balance; }
 <section class="ecosystem">
   <div class="ecosystem-inner">
     <h2>生态全景</h2>
+    <p class="section-sub">从一行命令到桌面 Agent，再到云上编排 —— 三层工具链，把多模态 AI 能力组装成可交付的工作流。</p>
     <div class="eco-grid">
       <div class="eco-card">
+        <span class="eco-tag">命令行</span>
         <span class="eco-icon">&#9654;</span>
         <h3>阿里云百炼 CLI</h3>
-        <p>命令行 AI 工具，一行指令调用文生图、视频、语音、RAG、搜索等全模态能力。为 AI Agent 设计，每条命令即结构化工具调用。</p>
+        <p>Every AI capability, one command away. 一行命令调用文本、图像、视频、语音、RAG、搜索等全模态能力，为 AI Agent 设计的结构化工具。</p>
         <a href="https://github.com/modelstudioai/cli" target="_blank">GitHub &rarr;</a>
         &nbsp;&nbsp;
         <a href="{{ site.bailian_cli_url }}" target="_blank">控制台 &rarr;</a>
       </div>
       <div class="eco-card">
-        <span class="eco-icon">&#9881;</span>
-        <h3>场景方案</h3>
-        <p>从真实需求出发的 AI 应用实践——Prompt 模板、效果复现、最佳实践，逐步覆盖更多行业场景。</p>
-        <a href="https://github.com/modelstudioai/livetranslatedemo" target="_blank">Live Translate Demo &rarr;</a>
-        &nbsp;&nbsp;
-        <a href="https://github.com/modelstudioai/awesome-happyhorse-prompts" target="_blank">HappyHorse Prompts &rarr;</a>
-      </div>
-      <div class="eco-card">
+        <span class="eco-tag">桌面 Agent</span>
         <span class="eco-icon">&#128421;</span>
-        <h3>OpenWork（开源桌面 Agent）</h3>
-        <p>开源桌面 AI Agent 工作空间，内置阿里云百炼 CLI，安装即用，无需额外配置。</p>
+        <h3>OpenWork</h3>
+        <p>开源桌面 AI Agent 工作空间，内置阿里云百炼 CLI，安装即用、无需额外配置。把 CLI 能力包装成可视化工作流。</p>
         <a href="https://github.com/modelstudioai/openwork" target="_blank">GitHub &rarr;</a>
       </div>
       <div class="eco-card">
+        <span class="eco-tag">云上编排</span>
+        <span class="eco-icon">&#9729;</span>
+        <h3>OpenAgentPack</h3>
+        <p>用 Git + YAML 声明式管理云上 AI Agent 的 IaC 控制面，支持阿里云百炼、Qoder、Claude、火山引擎方舟等多平台。</p>
+        <a href="https://github.com/modelstudioai/OpenAgentPack" target="_blank">GitHub &rarr;</a>
+      </div>
+      <div class="eco-card">
+        <span class="eco-tag">能力模块</span>
         <span class="eco-icon">&#10022;</span>
         <h3>Agent Skills</h3>
-        <p>可复用的 AI 能力模块，覆盖图文、视频、代码、文档等场景。任何兼容环境均可加载运行。</p>
+        <p>可复用的 AI 能力模块，覆盖图文、视频、代码、文档等场景。任何兼容 CLI/OpenWork 的环境均可加载运行。</p>
         <a href="https://github.com/modelstudioai/skills" target="_blank">GitHub &rarr;</a>
         &nbsp;&nbsp;
         <a href="/skills/">精选列表 &rarr;</a>
+      </div>
+      <div class="eco-card">
+        <span class="eco-tag">场景实践</span>
+        <span class="eco-icon">&#9881;</span>
+        <h3>场景方案</h3>
+        <p>从真实需求出发的 AI 应用实践——Prompt 模板、效果复现、最佳实践，逐步覆盖更多行业场景。</p>
+        <a href="https://github.com/modelstudioai/livetranslatedemo" target="_blank">Live Translate &rarr;</a>
+        &nbsp;&nbsp;
+        <a href="https://github.com/modelstudioai/awesome-happyhorse-prompts" target="_blank">HappyHorse Prompts &rarr;</a>
       </div>
     </div>
   </div>

@@ -1,6 +1,6 @@
 title: Model Studio AI
-description: 阿里云百炼 CLI、OpenWork、Agent Skills 一站式开发者生态——一行命令调用 Qwen、DeepSeek、Kimi 等多家大模型，让你的 AI Agent 立即拥有完整能力。
-keywords: 阿里云百炼,Model Studio,百炼 CLI,bailian-cli,AI Agent,OpenWork,Agent Skills,Qwen,通义千问,DashScope,大模型 API,LLM 工具
+description: 阿里云百炼开源开发者生态——CLI、OpenWork、OpenAgentPack、Agent Skills 一站式工具链，多模态大模型（文本/图像/视频/语音/RAG）一行命令接入，让你的 AI Agent 立即拥有完整能力。
+keywords: 阿里云百炼,Model Studio,百炼 CLI,bailian-cli,AI Agent,OpenWork,OpenAgentPack,Agent Skills,Qwen,通义千问,DashScope,大模型 API,LLM 工具,多模态,MCP
 og_image: https://modelstudioai.github.io/assets/og-image.jpg
 url: https://modelstudioai.github.io
 baseurl: ""
