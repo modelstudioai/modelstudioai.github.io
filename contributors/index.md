@@ -119,8 +119,6 @@ Showcase 里的每一个案例，背后都是一位具体的开发者。下面�
 2. **等待收录** —— 我们会在 2–3 天内审核，收录进 [Showcase](/showcase/) 页面，你的 GitHub ID 会同步出现在这面墙上。
 3. **加入社区** —— 收录后我们会在 issue 下引导你参与「阿里云百炼认证开发者」，开通案例曝光、Workshop 演讲席位、开源合作对接等权益。
 
-不限行业方向，不看学历履历。只看一件事：你有没有把一个具体问题，用阿里云百炼真正做成一个能跑起来的东西。
-
 ---
 
 > 名单以 [Showcase](/showcase/) 页面收录顺序为准，包含案例合作者。如有遗漏或需更正，欢迎[提交 Issue](https://github.com/modelstudioai/modelstudioai.github.io/issues/new) 告诉我们。
