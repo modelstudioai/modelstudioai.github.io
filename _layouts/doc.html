@@ -108,6 +108,13 @@ h1, h2, h3 { text-wrap: balance; }
 .doc-content video, .doc-content iframe { max-width: 100%; height: auto; border-radius: var(--rounded-md); margin: 16px 0; display: block; }
 .doc-content hr { border: none; border-top: 1px solid var(--hairline); margin: 32px 0; }
 
+/* Contributor grid */
+.ctb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(94px, 1fr)); gap: 20px 10px; margin: 28px 0 40px; }
+.ctb { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 4px 2px; text-decoration: none; color: var(--body); border-radius: var(--rounded-md); transition: transform 0.15s, color 0.15s; }
+.ctb:hover { transform: translateY(-2px); color: var(--ink); text-decoration: none; }
+.ctb img { width: 56px; height: 56px; border-radius: 50%; margin: 0; background: var(--canvas-soft-2); border: 1px solid var(--hairline); }
+.ctb span { font-size: 11px; line-height: 1.35; text-align: center; overflow-wrap: anywhere; }
+
 /* Code copy button */
 .code-block-wrapper { position: relative; margin-bottom: 20px; }
 .code-block-wrapper pre { margin-bottom: 0; }
@@ -192,6 +199,7 @@ h1, h2, h3 { text-wrap: balance; }
     <div class="sidebar-section">
       <div class="sidebar-title">案例</div>
       <a href="/showcase/" {% if page.url == '/showcase/' %}class="active"{% endif %}>用户案例</a>
+      <a href="/contributors/" {% if page.url == '/contributors/' %}class="active"{% endif %}>开发者墙</a>
       <a href="/workshop/" {% if page.url == '/workshop/' %}class="active"{% endif %}>Workshop</a>
     </div>
     <div class="sidebar-section">

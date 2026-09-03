@@ -10,7 +10,7 @@ keywords: "阿里云百炼案例,AI Agent 案例,百炼CLI,OpenWork,Showcase,社
 
 来自社区成员的真实使用案例，以及可复用的 Prompt / Skill 模板。
 
-[提交你的案例 →](https://github.com/modelstudioai/modelstudioai.github.io/issues/new)
+[看全部 96 位贡献者 &rarr;](/contributors/) &nbsp;&middot;&nbsp; [提交你的案例 &rarr;](https://github.com/modelstudioai/modelstudioai.github.io/issues/new)
 
 ---
 
