@@ -7,7 +7,7 @@ body:
     attributes:
       label: 错误位置
       description: 哪个页面、哪段文字、哪个链接有问题？贴上 URL 或截图。
-      placeholder: "例如：https://modelstudioai.github.io/blog/ 页面第 X 行"
+      placeholder: "例如：https://modelstudioai.github.io/guide/ 页面第 X 行"
     validations:
       required: true
   - type: textarea
