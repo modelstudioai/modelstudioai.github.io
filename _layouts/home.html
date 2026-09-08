@@ -140,6 +140,70 @@ h1, h2, h3 { text-wrap: balance; }
 .step-card a { color: var(--link); text-decoration: none; font-size: 13px; font-weight: 500; }
 .step-card a:hover { text-decoration: underline; }
 
+/* Qwen Code compatibility */
+.qwen-integration { padding: 72px 24px 80px; background: #f7f7f5; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); position: relative; overflow: hidden; }
+.qwen-integration::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(23,23,23,.035) 1px,transparent 1px), linear-gradient(90deg,rgba(23,23,23,.035) 1px,transparent 1px); background-size: 48px 48px; -webkit-mask-image: linear-gradient(to bottom,transparent,black 18%,black 82%,transparent); mask-image: linear-gradient(to bottom,transparent,black 18%,black 82%,transparent); pointer-events: none; }
+.qwen-integration-inner { max-width: 1100px; margin: 0 auto; position: relative; }
+.qwen-head { display: grid; grid-template-columns: 1.12fr .88fr; gap: 64px; align-items: start; margin-bottom: 36px; }
+.qwen-eyebrow { display: flex; align-items: center; gap: 9px; font-size: 12px; font-weight: 700; color: #4e4e4e; letter-spacing: .9px; text-transform: uppercase; margin-bottom: 16px; }
+.qwen-eyebrow::before { content: ""; width: 24px; height: 2px; background: #615ced; }
+.qwen-integration h2 { font-size: 38px; line-height: 1.2; letter-spacing: -1.6px; margin-bottom: 16px; }
+.qwen-lead { font-size: 16px; line-height: 1.75; color: var(--body); max-width: 620px; }
+.qwen-project-pair { display: flex; align-items: center; gap: 13px; margin-bottom: 18px; }
+.qwen-project-pair a { display: block; flex: 0 0 auto; }
+.qwen-project-logo { width: 52px; height: 52px; border-radius: 12px; border: 1px solid #dfdfdf; background: #fff; object-fit: cover; display: block; }
+.qwen-project-plus { font-family: var(--font-mono); font-size: 18px; color: #999; }
+.qwen-project-caption { font-size: 12px; color: var(--mute); line-height: 1.5; }
+.qwen-project-caption strong { display: block; color: var(--ink); font-size: 14px; margin-bottom: 2px; }
+.qwen-note { border-left: 2px solid #d0d0d0; padding-left: 20px; color: #666; font-size: 13px; line-height: 1.7; }
+.qwen-note strong { color: var(--ink); font-weight: 600; }
+.qwen-architecture { display: grid; grid-template-columns: 1fr 58px 1fr 58px 1.12fr; border: 1px solid #dedede; background: #fff; margin-bottom: 24px; }
+.qwen-layer { padding: 26px 22px; min-height: 184px; }
+.qwen-layer-number { font-family: var(--font-mono); font-size: 11px; color: #999; letter-spacing: .7px; margin-bottom: 22px; }
+.qwen-layer-mark { width: 34px; height: 34px; border: 1px solid #cfcfcf; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 13px; margin-bottom: 14px; background: #fff; }
+.qwen-layer h3 { font-size: 16px; letter-spacing: -.3px; margin-bottom: 7px; }
+.qwen-layer p { font-size: 13px; color: var(--body); line-height: 1.65; }
+.qwen-layer small { display: block; color: var(--mute); font-size: 11px; margin-top: 11px; }
+.qwen-layer-agent { background: #fbfbff; }
+.qwen-layer-agent .qwen-layer-mark { border-color: #bdb9ff; color: #615ced; background: #f2f1ff; }
+.qwen-layer-capability { background: #fbfdff; }
+.qwen-layer-capability .qwen-layer-mark { border-color: #acd2ff; color: #0070f3; background: #f1f7ff; }
+.qwen-arrow { display: flex; align-items: center; justify-content: center; border-left: 1px solid #ededed; border-right: 1px solid #ededed; color: #aaa; background: #fbfbfb; }
+.qwen-arrow svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+.qwen-proof { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; border: 1px solid #dfdfdf; background: #fff; padding: 17px 20px; margin-bottom: 24px; }
+.qwen-proof-copy { font-size: 13px; color: var(--body); line-height: 1.65; min-width: 0; }
+.qwen-proof-copy strong { display: block; color: var(--ink); font-size: 14px; margin-bottom: 3px; }
+.qwen-proof-copy code { font-family: var(--font-mono); font-size: 12px; color: #555; overflow-wrap: anywhere; }
+.qwen-proof-link { font-size: 13px; text-decoration: none; color: var(--link-deep); font-weight: 600; white-space: nowrap; }
+.qwen-proof-link:hover { text-decoration: underline; }
+.qwen-demo-grid { display: grid; grid-template-columns: 1.03fr .97fr; gap: 22px; }
+.qwen-prompt-card, .qwen-scope-card { background: #fff; border: 1px solid #dedede; padding: 24px; }
+.qwen-card-label { font-family: var(--font-mono); font-size: 11px; color: var(--mute); letter-spacing: .6px; margin-bottom: 16px; text-transform: uppercase; }
+.qwen-prompt-shell { background: #15151d; padding: 20px; color: #d8d8e5; font-family: var(--font-mono); font-size: 13px; line-height: 1.7; min-height: 132px; overflow-wrap: anywhere; }
+.qwen-prompt-shell .comment { color: #828294; }
+.qwen-prompt-shell .prompt { color: #9be6c8; }
+.qwen-copy-row { display: flex; align-items: center; justify-content: space-between; margin-top: 16px; gap: 12px; }
+.qwen-copy-hint { font-size: 12px; color: var(--mute); }
+.qwen-copy-btn { height: 34px; padding: 0 13px; border: 1px solid #d7d7d7; background: #fff; color: var(--ink); font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+.qwen-copy-btn:hover { border-color: #999; }
+.qwen-copy-btn.copied { background: #edf9f4; border-color: #b5dfcd; color: #176b4f; }
+.qwen-scope-title { font-size: 16px; margin-bottom: 14px; }
+.qwen-scope-tabs { display: flex; gap: 0; border-bottom: 1px solid #e3e3e3; margin-bottom: 18px; }
+.qwen-scope-tab { border: 0; background: transparent; padding: 9px 12px 10px 0; margin-right: 18px; font-size: 12px; color: var(--mute); cursor: pointer; border-bottom: 2px solid transparent; }
+.qwen-scope-tab.active { color: var(--ink); border-bottom-color: var(--ink); font-weight: 600; }
+.qwen-scope-list { display: grid; gap: 10px; }
+.qwen-scope-item { display: grid; grid-template-columns: 22px 1fr; gap: 10px; align-items: start; }
+.qwen-scope-item .mark { width: 18px; height: 18px; border: 1px solid #cfcfcf; font-family: var(--font-mono); font-size: 10px; display: flex; align-items: center; justify-content: center; color: #615ced; }
+.qwen-scope-item h4 { font-size: 13px; margin-bottom: 2px; }
+.qwen-scope-item p { font-size: 12px; color: var(--mute); line-height: 1.5; }
+.qwen-cta-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; }
+.qwen-cta-row .btn { border-radius: 6px; }
+.qwen-btn-primary { background: #615ced; color: #fff; }
+.qwen-btn-secondary { border-color: #cfcfcf; background: #fff; }
+.qwen-compatible { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 34px; padding-top: 22px; border-top: 1px solid #ddd; }
+.qwen-compatible-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--mute); text-transform: uppercase; margin-right: 6px; }
+.qwen-compatible span { font-family: var(--font-mono); font-size: 12px; color: #555; }
+
 /* Playbook entry */
 .playbook-entry { padding: 56px 24px 24px; background: var(--canvas-soft, #fafafa); }
 .playbook-entry-inner { max-width: 1100px; margin: 0 auto; }
@@ -210,6 +274,7 @@ h1, h2, h3 { text-wrap: balance; }
   .playbook-grid { grid-template-columns: repeat(3, 1fr); }
   .eco-grid { grid-template-columns: repeat(2, 1fr); }
   .steps h2, .playbook-entry h2, .ecosystem h2, .devwall h2, .docs-section h2 { font-size: 24px; }
+  .qwen-integration h2 { font-size: 32px; }
 }
 
 /* Mobile */
@@ -231,6 +296,20 @@ h1, h2, h3 { text-wrap: balance; }
   .steps-grid, .eco-grid { grid-template-columns: 1fr; }
   .docs-grid { grid-template-columns: 1fr; }
   .playbook-grid { grid-template-columns: repeat(2, 1fr); }
+  .qwen-integration { padding: 56px 18px 64px; }
+  .qwen-head { grid-template-columns: 1fr; gap: 28px; }
+  .qwen-integration h2 { font-size: 28px; letter-spacing: -1px; }
+  .qwen-lead { font-size: 14px; }
+  .qwen-architecture { grid-template-columns: 1fr; }
+  .qwen-layer { min-height: auto; }
+  .qwen-arrow { height: 44px; border-left: 0; border-right: 0; border-top: 1px solid #ededed; border-bottom: 1px solid #ededed; }
+  .qwen-arrow svg { transform: rotate(90deg); }
+  .qwen-proof { grid-template-columns: 1fr; }
+  .qwen-proof-link { white-space: normal; }
+  .qwen-demo-grid { grid-template-columns: 1fr; }
+  .qwen-prompt-card, .qwen-scope-card { padding: 18px; }
+  .qwen-prompt-shell { font-size: 11px; }
+  .qwen-copy-row { align-items: flex-start; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -294,6 +373,100 @@ h1, h2, h3 { text-wrap: balance; }
       <h3>运行一个 Skill</h3>
       <p>从 GitHub 加载精选 Skill，一句话驱动 AI 完成完整工作流。</p>
       <a href="/skills/">查看精选 Skills &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<section class="qwen-integration" id="qwen-code">
+  <div class="qwen-integration-inner">
+    <div class="qwen-head">
+      <div>
+        <div class="qwen-eyebrow">Compatible ecosystem</div>
+        <h2>在 Qwen Code 中，直接使用百炼的多模态与云上能力</h2>
+        <p class="qwen-lead">Qwen Code 是独立的开源 AI Coding Agent。安装 ModelStudio CLI 后，它可以调用图像与视频生成、知识检索、应用编排和模型部署等阿里云百炼能力；再配合 ModelStudio Skills，把这些能力组合成可复用工作流。</p>
+      </div>
+      <aside>
+        <div class="qwen-project-pair">
+          <a href="https://github.com/QwenLM" target="_blank" rel="noopener" aria-label="QwenLM GitHub Organization">
+            <img class="qwen-project-logo" src="https://avatars.githubusercontent.com/u/141221163?v=4" alt="QwenLM GitHub 组织头像" width="52" height="52" loading="lazy">
+          </a>
+          <span class="qwen-project-plus">+</span>
+          <a href="https://github.com/modelstudioai" target="_blank" rel="noopener" aria-label="ModelStudioAI GitHub Organization">
+            <img class="qwen-project-logo" src="https://avatars.githubusercontent.com/u/283556804?v=4" alt="ModelStudioAI GitHub 组织头像" width="52" height="52" loading="lazy">
+          </a>
+          <div class="qwen-project-caption"><strong>独立项目，能力互补</strong>不暗示隶属或联合共建</div>
+        </div>
+        <p class="qwen-note"><strong>公开依据：</strong>Qwen Code 官方 README 的 Ecosystem 已收录 Aliyun Model Studio CLI，并明确说明它可扩展图像/视频生成、知识检索、应用编排与模型部署能力。</p>
+      </aside>
+    </div>
+
+    <div class="qwen-architecture" aria-label="Qwen Code 与 ModelStudio CLI 的分层关系">
+      <article class="qwen-layer qwen-layer-agent">
+        <div class="qwen-layer-number">LAYER 01 · AGENT</div>
+        <div class="qwen-layer-mark">Q</div>
+        <h3>Qwen Code</h3>
+        <p>理解需求、读取代码与文件、制定计划，并调用工具完成任务。</p>
+        <small>Independent open-source coding agent</small>
+      </article>
+      <div class="qwen-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M14 7l5 5-5 5"/></svg>
+      </div>
+      <article class="qwen-layer qwen-layer-capability">
+        <div class="qwen-layer-number">LAYER 02 · CAPABILITY</div>
+        <div class="qwen-layer-mark">M</div>
+        <h3>ModelStudio CLI</h3>
+        <p>把百炼的模型、搜索、多模态、应用编排与部署能力暴露为结构化工具。</p>
+        <small>Official CLI for Aliyun Model Studio</small>
+      </article>
+      <div class="qwen-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M14 7l5 5-5 5"/></svg>
+      </div>
+      <article class="qwen-layer">
+        <div class="qwen-layer-number">LAYER 03 · WORKFLOW</div>
+        <div class="qwen-layer-mark">S</div>
+        <h3>ModelStudio Skills</h3>
+        <p>把底层能力组织成短片制作、媒体处理、模型选型、金融分析等任务流程。</p>
+        <small>Reusable workflows for real tasks</small>
+      </article>
+    </div>
+
+    <div class="qwen-proof">
+      <div class="qwen-proof-copy">
+        <strong>Qwen Code 官方 Ecosystem 已收录 ModelStudio CLI</strong>
+        <code>“Extends Qwen Code with image/video generation, knowledge retrieval, app orchestration, and model deployment.”</code>
+      </div>
+      <a class="qwen-proof-link" href="https://github.com/QwenLM/qwen-code#ecosystem" target="_blank" rel="noopener">查看官方 Ecosystem &rarr;</a>
+    </div>
+
+    <div class="qwen-demo-grid">
+      <article class="qwen-prompt-card">
+        <div class="qwen-card-label">Install with your agent</div>
+        <div class="qwen-prompt-shell" id="qwen-install-prompt"><span class="comment"># Paste this into Qwen Code</span><br><span class="prompt">Please read https://bailian.aliyun.com/cli/install.md<br>and install the Aliyun Model Studio CLI for me.<br>After installation, verify it and show me the<br>capabilities available in this environment.</span></div>
+        <div class="qwen-copy-row">
+          <span class="qwen-copy-hint">把安装说明交给 Agent，它会检测环境并完成验证。</span>
+          <button class="qwen-copy-btn" id="qwen-copy-btn" type="button">复制 Prompt</button>
+        </div>
+      </article>
+
+      <article class="qwen-scope-card">
+        <div class="qwen-card-label">What the combination adds</div>
+        <h3 class="qwen-scope-title">从 Coding Agent 到完整 AI 工作流</h3>
+        <div class="qwen-scope-tabs" role="tablist" aria-label="组合能力分类">
+          <button class="qwen-scope-tab active" data-qwen-tab="build" type="button" role="tab" aria-selected="true">开发</button>
+          <button class="qwen-scope-tab" data-qwen-tab="create" type="button" role="tab" aria-selected="false">创作</button>
+          <button class="qwen-scope-tab" data-qwen-tab="operate" type="button" role="tab" aria-selected="false">编排与运维</button>
+        </div>
+        <div class="qwen-scope-list" id="qwen-scope-list" aria-live="polite"></div>
+        <div class="qwen-cta-row">
+          <a class="btn qwen-btn-primary" href="https://bailian.aliyun.com/cli/install.md" target="_blank" rel="noopener">安装 ModelStudio CLI</a>
+          <a class="btn qwen-btn-secondary" href="https://github.com/QwenLM/qwen-code" target="_blank" rel="noopener">查看 Qwen Code</a>
+        </div>
+      </article>
+    </div>
+
+    <div class="qwen-compatible">
+      <span class="qwen-compatible-label">Works with</span>
+      <span>Qwen Code</span><span>Cursor</span><span>Cline</span><span>Windsurf</span><span>Claude Code</span><span>MCP clients</span>
     </div>
   </div>
 </section>
@@ -454,6 +627,89 @@ document.addEventListener('DOMContentLoaded', function() {
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') setMenu(false); });
   window.addEventListener('resize', function() { if (window.innerWidth > 768) setMenu(false); });
 });
+
+(function() {
+  var scopes = {
+    build: [
+      ['R', '知识与检索', '在代码工作流中查询百炼文档、知识库与联网结果。'],
+      ['M', '模型选型', '根据场景比较模型能力、价格与接口，并生成可运行示例。'],
+      ['T', '工具调用', '把百炼 CLI 命令作为结构化工具交给 Qwen Code。']
+    ],
+    create: [
+      ['I', '图像与视频', '通过百炼模型完成文生图、图像编辑与视频生成。'],
+      ['A', '音频与语音', '完成语音识别、说话人分离、TTS 与媒体处理。'],
+      ['S', '场景化 Skills', '一句话运行短片制作、会议清洗等多步骤流程。']
+    ],
+    operate: [
+      ['A', '应用编排', '调用百炼上的 Agent、工作流、知识库与 MCP 工具。'],
+      ['D', '模型部署', '管理训练数据、微调任务与专属模型部署。'],
+      ['O', '账号运维', '查询用量、配额、限流与团队席位等控制台能力。']
+    ]
+  };
+
+  function renderQwenScope(key) {
+    var root = document.getElementById('qwen-scope-list');
+    if (!root || !scopes[key]) return;
+    root.innerHTML = scopes[key].map(function(item) {
+      return '<div class="qwen-scope-item"><div class="mark">' + item[0] + '</div><div><h4>' + item[1] + '</h4><p>' + item[2] + '</p></div></div>';
+    }).join('');
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var tabs = document.querySelectorAll('.qwen-scope-tab');
+    if (!tabs.length) return;
+    renderQwenScope('build');
+    tabs.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        tabs.forEach(function(tab) {
+          var active = tab === btn;
+          tab.classList.toggle('active', active);
+          tab.setAttribute('aria-selected', String(active));
+        });
+        renderQwenScope(btn.getAttribute('data-qwen-tab'));
+      });
+    });
+
+    var copyBtn = document.getElementById('qwen-copy-btn');
+    var prompt = document.getElementById('qwen-install-prompt');
+    if (!copyBtn || !prompt) return;
+    copyBtn.addEventListener('click', async function() {
+      var text = 'Please read https://bailian.aliyun.com/cli/install.md and install the Aliyun Model Studio CLI for me. After installation, verify it and show me the capabilities available in this environment.';
+      var copied = false;
+      if (navigator.clipboard && window.isSecureContext) {
+        try { await navigator.clipboard.writeText(text); copied = true; } catch (e) {}
+      }
+      if (!copied) {
+        try {
+          var area = document.createElement('textarea');
+          area.value = text;
+          area.setAttribute('readonly', '');
+          area.style.position = 'fixed';
+          area.style.left = '-9999px';
+          document.body.appendChild(area);
+          area.select();
+          copied = document.execCommand('copy');
+          area.remove();
+        } catch (e) {}
+      }
+      if (copied) {
+        copyBtn.textContent = '已复制';
+        copyBtn.classList.add('copied');
+      } else {
+        var range = document.createRange();
+        range.selectNodeContents(prompt);
+        var selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        copyBtn.textContent = '已选中，请复制';
+      }
+      window.setTimeout(function() {
+        copyBtn.textContent = '复制 Prompt';
+        copyBtn.classList.remove('copied');
+      }, 1800);
+    });
+  });
+})();
 </script>
 
 </body>
