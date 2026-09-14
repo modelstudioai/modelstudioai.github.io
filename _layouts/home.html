@@ -67,8 +67,8 @@ h1, h2, h3 { text-wrap: balance; font-weight: 500; }
 /* Nav — current Bailian homepage geometry */
 .nav { height: calc(72px + env(safe-area-inset-top, 0px)); padding-top: env(safe-area-inset-top, 0px); display: flex; align-items: center; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); background: rgba(250,250,252,.9); border-bottom: 1px solid rgba(221,222,227,.78); }
 .nav-inner { width: 100%; max-width: 1440px; height: 72px; margin: 0 auto; padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-.nav-logo { display: flex; align-items: center; flex: 0 0 auto; text-decoration: none; }
-.nav-logo img { display: block; width: auto; height: 24px; }
+.nav-logo { display: flex; align-items: center; flex: 0 0 auto; text-decoration: none; color: #111; font-family: Inter,var(--font-sans); font-size: 18px; line-height: 24px; font-weight: 600; letter-spacing: -.45px; white-space: nowrap; }
+.nav-logo:hover { color: #0054ff; }
 .nav-links { display: flex; gap: 12px; align-items: center; margin-left: auto; }
 .nav-links a { display: flex; align-items: center; justify-content: center; height: 32px; color: rgba(20,21,28,.6); text-decoration: none; font-size: 14px; font-weight: 500; padding: 0 12px; border-radius: var(--rounded-pill); transition: background .15s,color .15s; }
 .nav-links a:hover { background: rgba(0,0,0,.04); color: #14151c; }
@@ -244,7 +244,7 @@ h1, h2, h3 { text-wrap: balance; font-weight: 500; }
 @media (max-width: 768px) {
   .nav { height: calc(60px + env(safe-area-inset-top,0px)); }
   .nav-inner { height: 60px; padding: 8px 20px; }
-  .nav-logo img { width: 90px; height: auto; }
+  .nav-logo { font-size: 16px; letter-spacing: -.35px; }
   .nav-links a { display: none; }
   .nav-toggle { display: flex; margin-right: -12px; }
   .mobile-menu { position: fixed; top: calc(60px + env(safe-area-inset-top,0px)); left: 0; right: 0; z-index: 99; display: none; flex-direction: column; padding: 8px 16px calc(12px + env(safe-area-inset-bottom,0px)); background: var(--canvas); border-bottom: 1px solid var(--hairline); box-shadow: 0 16px 40px rgba(23,23,23,.10); }
@@ -300,7 +300,7 @@ h1, h2, h3 { text-wrap: balance; font-weight: 500; }
 
 <nav class="nav">
   <div class="nav-inner">
-    <a href="/" class="nav-logo" aria-label="阿里云百炼首页"><img src="/assets/img/bailian-logo.svg" alt="阿里云百炼" width="142" height="30"></a>
+    <a href="/" class="nav-logo" aria-label="ModelStudio AI 首页">ModelStudio AI</a>
     <div class="nav-links">
       <a href="/playbook/">岗位能力样板</a>
       <a href="/showcase/">案例</a>
