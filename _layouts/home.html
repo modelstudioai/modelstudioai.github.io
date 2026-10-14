@@ -226,6 +226,26 @@ h1, h2, h3 { text-wrap: balance; font-weight: 500; }
 .doc-link h3 { font-size: 16px; font-weight: 500; margin-bottom: 4px; letter-spacing: -.2px; }
 .doc-link p { font-size: 12px; color: var(--body); }
 
+/* Hackathon banner */
+.hackathon-banner { padding: 72px 24px; background: linear-gradient(180deg, #f8fafb 0%, #ffffff 100%); border-bottom: 1px solid var(--hairline); }
+.hackathon-banner-inner { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr .9fr; gap: 56px; align-items: center; }
+.hackathon-banner-kicker { display: flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 10px; font-weight: 500; color: #696969; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 14px; }
+.hackathon-banner-kicker::before { content: ""; width: 28px; height: 2px; background: var(--violet); }
+.hackathon-banner h2 { font-size: 34px; font-weight: 500; line-height: 1.18; letter-spacing: -1.1px; margin-bottom: 16px; }
+.hackathon-banner p { font-size: 14px; color: var(--body); line-height: 1.8; margin-bottom: 18px; }
+.hackathon-banner ul { list-style: none; margin: 0 0 24px 0; padding: 0; }
+.hackathon-banner li { position: relative; padding-left: 18px; font-size: 13.5px; color: var(--body); line-height: 1.7; margin-bottom: 8px; }
+.hackathon-banner li::before { content: ""; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; border-radius: 50%; background: var(--violet); }
+.hackathon-banner-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.hackathon-banner .btn { border-radius: 12px; }
+.hackathon-banner-card { background: #fff; border: 1px solid #ededf1; border-radius: 20px; padding: 28px; box-shadow: var(--shadow-card); }
+.hackathon-banner-card h3 { font-size: 15px; font-weight: 500; margin-bottom: 18px; color: #16171d; letter-spacing: -.2px; }
+.hackathon-banner-meta { display: grid; gap: 12px; }
+.hackathon-banner-meta-item { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 12px; border-bottom: 1px solid #f2f2f2; }
+.hackathon-banner-meta-item:last-child { border-bottom: 0; padding-bottom: 0; }
+.hackathon-banner-meta-label { font-size: 12px; color: var(--mute); }
+.hackathon-banner-meta-value { font-size: 13px; color: #16171d; font-weight: 500; }
+
 /* Footer */
 .footer { padding: 56px 24px max(56px,env(safe-area-inset-bottom,0px)); border-top: 1px solid var(--hairline); text-align: center; background: #fff; }
 .footer p { font-size: 12px; color: var(--mute); }
@@ -289,6 +309,10 @@ h1, h2, h3 { text-wrap: balance; font-weight: 500; }
   .qwen-flow-step:not(:last-child)::after { content: "↓"; right: 50%; top: auto; bottom: -11px; transform: translateX(50%); }
   .qwen-install { grid-template-columns: 1fr; }
   .qwen-copy-btn { width: 100%; }
+  .hackathon-banner { padding: 52px 18px; }
+  .hackathon-banner-inner { grid-template-columns: 1fr; gap: 28px; }
+  .hackathon-banner h2 { font-size: 26px; letter-spacing: -.8px; }
+  .hackathon-banner-actions .btn { width: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -350,6 +374,33 @@ h1, h2, h3 { text-wrap: balance; font-weight: 500; }
           <div class="hero-stage-node"><b>阿里云百炼</b><span>模型服务 · 云上能力</span></div>
         </div>
         <div class="hero-stage-foot"><span>Open source · composable · reproducible</span><strong>READY</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hackathon-banner" aria-label="2026 飞猪 AI 旅行创新大赛">
+  <div class="hackathon-banner-inner">
+    <div>
+      <div class="hackathon-banner-kicker">Hackathon</div>
+      <h2>2026 飞猪 AI 旅行创新大赛</h2>
+      <p>阿里云百炼 × 飞猪联合发起旅游行业首个 AI 黑客松，面向个人开发者开放报名。基于飞猪 AI 开放平台与 flyai skill，可调用机票、酒店、门票等全品类实时数据；结合阿里云百炼模型与工作流，从创意到落地跑通全链路。</p>
+      <ul>
+        <li>赛道可选自由方向，或酒店 Staycation、目的地探索、AI 私人讲解、入境游助手四大预设命题</li>
+        <li>作品提交时间：09.22 - 10.25</li>
+      </ul>
+      <div class="hackathon-banner-actions">
+        <a class="btn btn-primary" href="https://opc.aliyun.com/feizhu" target="_blank" rel="noopener">立即报名参赛</a>
+        <a class="btn btn-secondary" href="https://opc.aliyun.com/feizhu" target="_blank" rel="noopener">了解详情</a>
+      </div>
+    </div>
+    <div class="hackathon-banner-card">
+      <h3>赛事要点</h3>
+      <div class="hackathon-banner-meta">
+        <div class="hackathon-banner-meta-item"><span class="hackathon-banner-meta-label">主办方</span><span class="hackathon-banner-meta-value">阿里云百炼 × 飞猪</span></div>
+        <div class="hackathon-banner-meta-item"><span class="hackathon-banner-meta-label">面向对象</span><span class="hackathon-banner-meta-value">个人开发者</span></div>
+        <div class="hackathon-banner-meta-item"><span class="hackathon-banner-meta-label">作品提交</span><span class="hackathon-banner-meta-value">09.22 - 10.25</span></div>
+        <div class="hackathon-banner-meta-item"><span class="hackathon-banner-meta-label">报名官网</span><span class="hackathon-banner-meta-value">opc.aliyun.com/feizhu</span></div>
       </div>
     </div>
   </div>
@@ -449,9 +500,25 @@ h1, h2, h3 { text-wrap: balance; font-weight: 500; }
 
 <section class="devwall">
   <div class="devwall-inner">
-    <h2>96 位开发者，98 个真实案例</h2>
+    <h2>112 位开发者，121 个真实案例</h2>
     <p class="section-sub">从小学生到博士生，从独立开发者到企业工程师 &mdash;&mdash; 他们用阿里云百炼把一个具体问题，做成了能跑起来的东西。</p>
     <div class="devwall-avatars">
+      <a href="https://github.com/Licecert" target="_blank" rel="noopener" title="@Licecert"><img src="https://github.com/Licecert.png?size=96" alt="@Licecert" loading="lazy" width="48" height="48"></a>
+      <a href="https://github.com/yonggodlikean" target="_blank" rel="noopener" title="@yonggodlikean"><img src="https://github.com/yonggodlikean.png?size=96" alt="@yonggodlikean" loading="lazy" width="48" height="48"></a>
+      <a href="https://github.com/zhuan447133268-lab" target="_blank" rel="noopener" title="@zhuan447133268-lab"><img src="https://github.com/zhuan447133268-lab.png?size=96" alt="@zhuan447133268-lab" loading="lazy" width="48" height="48"></a>
+      <a href="https://github.com/fengfengfeng23" target="_blank" rel="noopener" title="@fengfengfeng23"><img src="https://github.com/fengfengfeng23.png?size=96" alt="@fengfengfeng23" loading="lazy" width="48" height="48"></a>
+      <a href="https://github.com/sin0317" target="_blank" rel="noopener" title="@sin0317"><img src="https://github.com/sin0317.png?size=96" alt="@sin0317" loading="lazy" width="48" height="48"></a>
+      <a href="https://github.com/a1178013314" target="_blank" rel="noopener" title="@a1178013314"><img src="https://github.com/a1178013314.png?size=96" alt="@a1178013314" loading="lazy" width="48" height="48"></a>
+      <a href="https://github.com/oraguinal9" target="_blank" rel="noopener" title="@oraguinal9"><img src="https://github.com/oraguinal9.png?size=96" alt="@oraguinal9" loading="lazy" width="48" height="48"></a>
+      <a href="https://github.com/PingGuoMiaoMiao" target="_blank" rel="noopener" title="@PingGuoMiaoMiao"><img src="https://github.com/PingGuoMiaoMiao.png?size=96" alt="@PingGuoMiaoMiao" loading="lazy" width="48" height="48"></a>
+      <a href="https://github.com/DingYida111" target="_blank" rel="noopener" title="@DingYida111"><img src="https://github.com/DingYida111.png?size=96" alt="@DingYida111" loading="lazy" width="48" height="48"></a>
+      <a href="https://github.com/18978080047" target="_blank" rel="noopener" title="@18978080047"><img src="https://github.com/18978080047.png?size=96" alt="@18978080047" loading="lazy" width="48" height="48"></a>
+      <a href="https://github.com/taoran7977" target="_blank" rel="noopener" title="@taoran7977"><img src="https://github.com/taoran7977.png?size=96" alt="@taoran7977" loading="lazy" width="48" height="48"></a>
+      <a href="https://github.com/huangjeanne" target="_blank" rel="noopener" title="@huangjeanne"><img src="https://github.com/huangjeanne.png?size=96" alt="@huangjeanne" loading="lazy" width="48" height="48"></a>
+      <a href="https://github.com/Laohesix" target="_blank" rel="noopener" title="@Laohesix"><img src="https://github.com/Laohesix.png?size=96" alt="@Laohesix" loading="lazy" width="48" height="48"></a>
+      <a href="https://github.com/eeeKinn" target="_blank" rel="noopener" title="@eeeKinn"><img src="https://github.com/eeeKinn.png?size=96" alt="@eeeKinn" loading="lazy" width="48" height="48"></a>
+      <a href="https://github.com/wxmpro" target="_blank" rel="noopener" title="@wxmpro"><img src="https://github.com/wxmpro.png?size=96" alt="@wxmpro" loading="lazy" width="48" height="48"></a>
+      <a href="https://github.com/maqing0303" target="_blank" rel="noopener" title="@maqing0303"><img src="https://github.com/maqing0303.png?size=96" alt="@maqing0303" loading="lazy" width="48" height="48"></a>
       <a href="https://github.com/wx73306-create" target="_blank" rel="noopener" title="@wx73306-create"><img src="https://github.com/wx73306-create.png?size=96" alt="@wx73306-create" loading="lazy" width="48" height="48"></a>
       <a href="https://github.com/EthanSMC" target="_blank" rel="noopener" title="@EthanSMC"><img src="https://github.com/EthanSMC.png?size=96" alt="@EthanSMC" loading="lazy" width="48" height="48"></a>
       <a href="https://github.com/maxi-max-dev" target="_blank" rel="noopener" title="@maxi-max-dev"><img src="https://github.com/maxi-max-dev.png?size=96" alt="@maxi-max-dev" loading="lazy" width="48" height="48"></a>
@@ -460,25 +527,9 @@ h1, h2, h3 { text-wrap: balance; font-weight: 500; }
       <a href="https://github.com/MrsFlower" target="_blank" rel="noopener" title="@MrsFlower"><img src="https://github.com/MrsFlower.png?size=96" alt="@MrsFlower" loading="lazy" width="48" height="48"></a>
       <a href="https://github.com/msensi" target="_blank" rel="noopener" title="@msensi"><img src="https://github.com/msensi.png?size=96" alt="@msensi" loading="lazy" width="48" height="48"></a>
       <a href="https://github.com/hotcoffeeshake" target="_blank" rel="noopener" title="@hotcoffeeshake"><img src="https://github.com/hotcoffeeshake.png?size=96" alt="@hotcoffeeshake" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/Thea729-fable" target="_blank" rel="noopener" title="@Thea729-fable"><img src="https://github.com/Thea729-fable.png?size=96" alt="@Thea729-fable" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/kkz-admin" target="_blank" rel="noopener" title="@kkz-admin"><img src="https://github.com/kkz-admin.png?size=96" alt="@kkz-admin" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/wanhe-hash" target="_blank" rel="noopener" title="@wanhe-hash"><img src="https://github.com/wanhe-hash.png?size=96" alt="@wanhe-hash" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/farlyfeifei" target="_blank" rel="noopener" title="@farlyfeifei"><img src="https://github.com/farlyfeifei.png?size=96" alt="@farlyfeifei" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/tbszz" target="_blank" rel="noopener" title="@tbszz"><img src="https://github.com/tbszz.png?size=96" alt="@tbszz" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/gengcheng" target="_blank" rel="noopener" title="@gengcheng"><img src="https://github.com/gengcheng.png?size=96" alt="@gengcheng" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/GavinZhao19" target="_blank" rel="noopener" title="@GavinZhao19"><img src="https://github.com/GavinZhao19.png?size=96" alt="@GavinZhao19" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/rojalus" target="_blank" rel="noopener" title="@rojalus"><img src="https://github.com/rojalus.png?size=96" alt="@rojalus" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/CNWU16" target="_blank" rel="noopener" title="@CNWU16"><img src="https://github.com/CNWU16.png?size=96" alt="@CNWU16" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/myfx1199" target="_blank" rel="noopener" title="@myfx1199"><img src="https://github.com/myfx1199.png?size=96" alt="@myfx1199" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/bianzigege" target="_blank" rel="noopener" title="@bianzigege"><img src="https://github.com/bianzigege.png?size=96" alt="@bianzigege" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/youngys012345-ai" target="_blank" rel="noopener" title="@youngys012345-ai"><img src="https://github.com/youngys012345-ai.png?size=96" alt="@youngys012345-ai" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/Pinkie-Pie-Lucky" target="_blank" rel="noopener" title="@Pinkie-Pie-Lucky"><img src="https://github.com/Pinkie-Pie-Lucky.png?size=96" alt="@Pinkie-Pie-Lucky" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/coocoo-pineapple" target="_blank" rel="noopener" title="@coocoo-pineapple"><img src="https://github.com/coocoo-pineapple.png?size=96" alt="@coocoo-pineapple" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/Zijia369" target="_blank" rel="noopener" title="@Zijia369"><img src="https://github.com/Zijia369.png?size=96" alt="@Zijia369" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/emajjsky" target="_blank" rel="noopener" title="@emajjsky"><img src="https://github.com/emajjsky.png?size=96" alt="@emajjsky" loading="lazy" width="48" height="48"></a>
-      <a class="devwall-more" href="/contributors/" title="查看全部 96 位开发者">+72</a>
+      <a class="devwall-more" href="/contributors/" title="查看全部 112 位开发者">+88</a>
     </div>
-    <div class="devwall-cta-wrap"><a class="devwall-cta" href="/contributors/">看全部 96 位开发者 &rarr;</a></div>
+    <div class="devwall-cta-wrap"><a class="devwall-cta" href="/contributors/">看全部 112 位开发者 &rarr;</a></div>
   </div>
 </section>
 

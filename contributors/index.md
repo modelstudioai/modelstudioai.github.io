@@ -2,17 +2,33 @@
 layout: doc
 title: 开发者墙
 permalink: /contributors/
-description: "阿里云百炼开源开发者计划的 96 位贡献者——Showcase 里每一个案例背后的具体开发者。"
+description: "阿里云百炼开源开发者计划的 112 位贡献者——Showcase 里每一个案例背后的具体开发者。"
 keywords: "阿里云百炼开发者,百炼贡献者,开发者墙,ModelStudio 社区,Showcase 作者,阿里云百炼认证开发者"
 ---
 
 # 开发者墙
 
-Showcase 里的每一个案例，背后都是一位具体的开发者。下面是全部 **96 位贡献者**，按案例收录时间倒序排列。
+Showcase 里的每一个案例，背后都是一位具体的开发者。下面是全部 **112 位贡献者**，按案例收录时间倒序排列。
 
 [浏览全部案例 &rarr;](/showcase/) &nbsp;&middot;&nbsp; [提交你的案例 &rarr;](https://github.com/modelstudioai/modelstudioai.github.io/issues/new)
 
 <div class="ctb-grid">
+  <a class="ctb" href="https://github.com/Licecert" target="_blank" rel="noopener" title="@Licecert"><img src="https://github.com/Licecert.png?size=112" alt="@Licecert" loading="lazy" width="56" height="56"><span>Licecert</span></a>
+  <a class="ctb" href="https://github.com/yonggodlikean" target="_blank" rel="noopener" title="@yonggodlikean"><img src="https://github.com/yonggodlikean.png?size=112" alt="@yonggodlikean" loading="lazy" width="56" height="56"><span>yonggodlikean</span></a>
+  <a class="ctb" href="https://github.com/zhuan447133268-lab" target="_blank" rel="noopener" title="@zhuan447133268-lab"><img src="https://github.com/zhuan447133268-lab.png?size=112" alt="@zhuan447133268-lab" loading="lazy" width="56" height="56"><span>zhuan447133268-lab</span></a>
+  <a class="ctb" href="https://github.com/fengfengfeng23" target="_blank" rel="noopener" title="@fengfengfeng23"><img src="https://github.com/fengfengfeng23.png?size=112" alt="@fengfengfeng23" loading="lazy" width="56" height="56"><span>fengfengfeng23</span></a>
+  <a class="ctb" href="https://github.com/sin0317" target="_blank" rel="noopener" title="@sin0317"><img src="https://github.com/sin0317.png?size=112" alt="@sin0317" loading="lazy" width="56" height="56"><span>sin0317</span></a>
+  <a class="ctb" href="https://github.com/a1178013314" target="_blank" rel="noopener" title="@a1178013314"><img src="https://github.com/a1178013314.png?size=112" alt="@a1178013314" loading="lazy" width="56" height="56"><span>a1178013314</span></a>
+  <a class="ctb" href="https://github.com/oraguinal9" target="_blank" rel="noopener" title="@oraguinal9"><img src="https://github.com/oraguinal9.png?size=112" alt="@oraguinal9" loading="lazy" width="56" height="56"><span>oraguinal9</span></a>
+  <a class="ctb" href="https://github.com/PingGuoMiaoMiao" target="_blank" rel="noopener" title="@PingGuoMiaoMiao"><img src="https://github.com/PingGuoMiaoMiao.png?size=112" alt="@PingGuoMiaoMiao" loading="lazy" width="56" height="56"><span>PingGuoMiaoMiao</span></a>
+  <a class="ctb" href="https://github.com/DingYida111" target="_blank" rel="noopener" title="@DingYida111"><img src="https://github.com/DingYida111.png?size=112" alt="@DingYida111" loading="lazy" width="56" height="56"><span>DingYida111</span></a>
+  <a class="ctb" href="https://github.com/18978080047" target="_blank" rel="noopener" title="@18978080047"><img src="https://github.com/18978080047.png?size=112" alt="@18978080047" loading="lazy" width="56" height="56"><span>18978080047</span></a>
+  <a class="ctb" href="https://github.com/taoran7977" target="_blank" rel="noopener" title="@taoran7977"><img src="https://github.com/taoran7977.png?size=112" alt="@taoran7977" loading="lazy" width="56" height="56"><span>taoran7977</span></a>
+  <a class="ctb" href="https://github.com/huangjeanne" target="_blank" rel="noopener" title="@huangjeanne"><img src="https://github.com/huangjeanne.png?size=112" alt="@huangjeanne" loading="lazy" width="56" height="56"><span>huangjeanne</span></a>
+  <a class="ctb" href="https://github.com/Laohesix" target="_blank" rel="noopener" title="@Laohesix"><img src="https://github.com/Laohesix.png?size=112" alt="@Laohesix" loading="lazy" width="56" height="56"><span>Laohesix</span></a>
+  <a class="ctb" href="https://github.com/eeeKinn" target="_blank" rel="noopener" title="@eeeKinn"><img src="https://github.com/eeeKinn.png?size=112" alt="@eeeKinn" loading="lazy" width="56" height="56"><span>eeeKinn</span></a>
+  <a class="ctb" href="https://github.com/wxmpro" target="_blank" rel="noopener" title="@wxmpro"><img src="https://github.com/wxmpro.png?size=112" alt="@wxmpro" loading="lazy" width="56" height="56"><span>wxmpro</span></a>
+  <a class="ctb" href="https://github.com/maqing0303" target="_blank" rel="noopener" title="@maqing0303"><img src="https://github.com/maqing0303.png?size=112" alt="@maqing0303" loading="lazy" width="56" height="56"><span>maqing0303</span></a>
   <a class="ctb" href="https://github.com/wx73306-create" target="_blank" rel="noopener" title="@wx73306-create"><img src="https://github.com/wx73306-create.png?size=112" alt="@wx73306-create" loading="lazy" width="56" height="56"><span>wx73306-create</span></a>
   <a class="ctb" href="https://github.com/EthanSMC" target="_blank" rel="noopener" title="@EthanSMC"><img src="https://github.com/EthanSMC.png?size=112" alt="@EthanSMC" loading="lazy" width="56" height="56"><span>EthanSMC</span></a>
   <a class="ctb" href="https://github.com/maxi-max-dev" target="_blank" rel="noopener" title="@maxi-max-dev"><img src="https://github.com/maxi-max-dev.png?size=112" alt="@maxi-max-dev" loading="lazy" width="56" height="56"><span>maxi-max-dev</span></a>
