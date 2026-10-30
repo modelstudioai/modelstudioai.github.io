@@ -226,25 +226,88 @@ h1, h2, h3 { text-wrap: balance; font-weight: 500; }
 .doc-link h3 { font-size: 16px; font-weight: 500; margin-bottom: 4px; letter-spacing: -.2px; }
 .doc-link p { font-size: 12px; color: var(--body); }
 
-/* Hackathon banner */
-.hackathon-banner { padding: 72px 24px; background: linear-gradient(180deg, #f8fafb 0%, #ffffff 100%); border-bottom: 1px solid var(--hairline); }
-.hackathon-banner-inner { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr .9fr; gap: 56px; align-items: center; }
-.hackathon-banner-kicker { display: flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 10px; font-weight: 500; color: #696969; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 14px; }
-.hackathon-banner-kicker::before { content: ""; width: 28px; height: 2px; background: var(--violet); }
-.hackathon-banner h2 { font-size: 34px; font-weight: 500; line-height: 1.18; letter-spacing: -1.1px; margin-bottom: 16px; }
-.hackathon-banner p { font-size: 14px; color: var(--body); line-height: 1.8; margin-bottom: 18px; }
-.hackathon-banner ul { list-style: none; margin: 0 0 24px 0; padding: 0; }
-.hackathon-banner li { position: relative; padding-left: 18px; font-size: 13.5px; color: var(--body); line-height: 1.7; margin-bottom: 8px; }
-.hackathon-banner li::before { content: ""; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; border-radius: 50%; background: var(--violet); }
-.hackathon-banner-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-.hackathon-banner .btn { border-radius: 12px; }
-.hackathon-banner-card { background: #fff; border: 1px solid #ededf1; border-radius: 20px; padding: 28px; box-shadow: var(--shadow-card); }
-.hackathon-banner-card h3 { font-size: 15px; font-weight: 500; margin-bottom: 18px; color: #16171d; letter-spacing: -.2px; }
-.hackathon-banner-meta { display: grid; gap: 12px; }
-.hackathon-banner-meta-item { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 12px; border-bottom: 1px solid #f2f2f2; }
-.hackathon-banner-meta-item:last-child { border-bottom: 0; padding-bottom: 0; }
-.hackathon-banner-meta-label { font-size: 12px; color: var(--mute); }
-.hackathon-banner-meta-value { font-size: 13px; color: #16171d; font-weight: 500; }
+/* Hackathon creative starter and event entries */
+.creation-promo { padding: 48px 24px 32px; background: var(--canvas-soft); border-bottom: 1px solid var(--hairline); scroll-margin-top: 84px; }
+.creation-inner { max-width: 1180px; margin: 0 auto; }
+.creation-heading { margin-bottom: 24px; }
+.creation-kicker { display: flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 10px; font-weight: 500; color: var(--muted); letter-spacing: 1px; margin-bottom: 12px; }
+.creation-kicker::before { content: ''; width: 28px; height: 2px; background: var(--blue); }
+.creation-heading h2 { font-size: 34px; font-weight: 500; line-height: 1.2; letter-spacing: -1.1px; }
+.creation-grid { display: grid; grid-template-columns: 1.28fr 1fr; gap: 20px; align-items: stretch; }
+.creation-package { padding: 24px 28px; background: var(--bg-card); border: 1px solid var(--border-soft); border-radius: var(--rounded-lg); box-shadow: var(--shadow-card); min-width: 0; }
+.creation-package-top { display: flex; justify-content: space-between; gap: 16px; align-items: center; margin-bottom: 16px; }
+.creation-eyebrow { color: var(--body); font-size: 12px; line-height: 1.6; margin-bottom: 12px; }
+.creation-package h3 { font-size: 21px; font-weight: 500; line-height: 1.4; letter-spacing: -.4px; }
+.creation-package h3 span { display: block; font-size: 32px; color: var(--blue); margin-top: 2px; letter-spacing: -1px; }
+.creation-art { width: 140px; height: 134px; object-fit: cover; border-radius: var(--rounded-md); flex: 0 0 auto; }
+.creation-description { font-size: 14px; line-height: 1.8; color: var(--body); margin-bottom: 16px; }
+.creation-benefits { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+.creation-benefits span { padding: 5px 9px; border: 1px solid var(--border-soft); background: var(--canvas); border-radius: 6px; font-size: 11px; color: var(--ink-2); line-height: 1.5; }
+.creation-taskline { font-size: 12px; color: var(--body); line-height: 1.8; margin-bottom: 18px; }
+.creation-buy { gap: 20px; }
+.creation-buy span { font-size: 17px; }
+.creation-boundary { font-size: 11px; color: var(--body); line-height: 1.7; margin-top: 12px; }
+.creation-events { display: grid; grid-template-rows: 1fr 1fr; gap: 16px; min-width: 0; }
+.creation-event { display: flex; flex-direction: column; padding: 22px 24px 18px; background: var(--bg-card); border: 1px solid var(--border-soft); border-radius: var(--rounded-lg); min-width: 0; }
+.creation-event-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.creation-track { font-size: 11px; color: var(--blue); font-weight: 500; }
+.creation-year { font-family: var(--font-mono); font-size: 10px; color: var(--mute); }
+.creation-event h3 { font-size: 20px; font-weight: 500; line-height: 1.5; letter-spacing: -.4px; text-wrap: auto; }
+.creation-event h3 span { font-size: 16px; white-space: nowrap; }
+.creation-event > p { font-size: 12px; line-height: 1.8; color: var(--body); margin-top: 6px; margin-bottom: 14px; }
+.creation-event-bottom { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--border-soft); display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.creation-dates { font-size: 11px; line-height: 1.8; color: var(--body); }
+.creation-dates span { display: block; }
+.creation-event-bottom a { display: inline-flex; align-items: center; justify-content: center; gap: 8px; color: var(--link-deep); font-size: 12px; text-decoration: none; min-height: 44px; white-space: nowrap; padding: 0 4px; }
+.creation-event-bottom a:hover { text-decoration: underline; }
+.creation-notes { position: relative; display: flex; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; align-items: baseline; padding-top: 14px; }
+.creation-notes > p { font-size: 11px; line-height: 1.8; color: var(--body); }
+.creation-details { font-size: 11px; line-height: 1.8; color: var(--body); }
+.creation-details summary { cursor: pointer; color: var(--ink-2); min-height: 30px; padding: 4px 0; }
+.creation-details[open] { width: 100%; }
+.creation-details p { max-width: 1000px; margin: 8px 0; font-size: 12px; }
+.creation-promo a:focus-visible, .creation-details summary:focus-visible { outline: 2px solid var(--link); outline-offset: 4px; }
+@media (max-width: 1000px) {
+  .creation-grid { grid-template-columns: 1.15fr 1fr; gap: 16px; }
+  .creation-package { padding: 22px; }
+  .creation-art { width: 108px; height: 108px; }
+  .creation-event { padding: 20px; }
+  .creation-event h3 { font-size: 18px; }
+  .creation-event h3 span { display: block; font-size: 15px; }
+}
+@media (max-width: 760px) {
+  .creation-promo { padding: 36px 18px 28px; }
+  .creation-heading { margin-bottom: 20px; }
+  .creation-heading h2 { font-size: 27px; letter-spacing: -.8px; }
+  .creation-grid { grid-template-columns: 1fr; }
+  .creation-package { padding: 22px; }
+  .creation-package h3 { font-size: 18px; }
+  .creation-package h3 span { font-size: 29px; }
+  .creation-eyebrow { max-width: 180px; font-size: 11px; margin-bottom: 10px; }
+  .creation-art { width: 96px; height: 100px; }
+  .creation-description { font-size: 13px; }
+  .creation-buy { width: 100%; }
+  .creation-events { grid-template-rows: auto auto; }
+  .creation-event { padding: 22px; }
+  .creation-event h3 { font-size: 19px; }
+  .creation-event h3 span { display: inline; font-size: 15px; }
+  .creation-event-top { margin-bottom: 10px; }
+  .creation-event > p { font-size: 13px; }
+  .creation-dates { font-size: 12px; }
+  .creation-event-bottom a { font-size: 13px; }
+  .creation-notes { display: block; }
+  .creation-notes > p { margin-top: 6px; }
+}
+@media (max-width: 360px) {
+  .creation-package, .creation-event { padding: 18px; }
+  .creation-package-top { gap: 8px; }
+  .creation-art { width: 78px; height: 92px; }
+  .creation-package h3 { font-size: 17px; }
+  .creation-package h3 span { font-size: 27px; }
+  .creation-event h3 span { display: block; }
+  .creation-benefits span { font-size: 10px; }
+}
+@media (prefers-reduced-motion: reduce) { .creation-promo * { transition: none; } }
 
 /* Footer */
 .footer { padding: 56px 24px max(56px,env(safe-area-inset-bottom,0px)); border-top: 1px solid var(--hairline); text-align: center; background: #fff; }
@@ -309,10 +372,6 @@ h1, h2, h3 { text-wrap: balance; font-weight: 500; }
   .qwen-flow-step:not(:last-child)::after { content: "↓"; right: 50%; top: auto; bottom: -11px; transform: translateX(50%); }
   .qwen-install { grid-template-columns: 1fr; }
   .qwen-copy-btn { width: 100%; }
-  .hackathon-banner { padding: 52px 18px; }
-  .hackathon-banner-inner { grid-template-columns: 1fr; gap: 28px; }
-  .hackathon-banner h2 { font-size: 26px; letter-spacing: -.8px; }
-  .hackathon-banner-actions .btn { width: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -379,29 +438,57 @@ h1, h2, h3 { text-wrap: balance; font-weight: 500; }
   </div>
 </section>
 
-<section class="hackathon-banner" aria-label="2026 飞猪 AI 旅行创新大赛">
-  <div class="hackathon-banner-inner">
-    <div>
-      <div class="hackathon-banner-kicker">Hackathon</div>
-      <h2>2026 飞猪 AI 旅行创新大赛</h2>
-      <p>阿里云百炼 × 飞猪联合发起旅游行业首个 AI 黑客松，面向个人开发者开放报名。基于飞猪 AI 开放平台与 flyai skill，可调用机票、酒店、门票等全品类实时数据；结合阿里云百炼模型与工作流，从创意到落地跑通全链路。</p>
-      <ul>
-        <li>赛道可选自由方向，或酒店 Staycation、目的地探索、AI 私人讲解、入境游助手四大预设命题</li>
-        <li>作品提交时间：09.22 - 10.25</li>
-      </ul>
-      <div class="hackathon-banner-actions">
-        <a class="btn btn-primary" href="https://opc.aliyun.com/feizhu" target="_blank" rel="noopener">立即报名参赛</a>
-        <a class="btn btn-secondary" href="https://alidocs.dingtalk.com/i/nodes/QG53mjyd800agdlKHebwk4Zj86zbX04v?spm=5176.46770457.J_EH4jTga-7kdox_HRccqIL.1.60017f64w8fosJ&iframeQuery=utm_source%3Dportal%26utm_medium%3Dportal_main_colum_create&rnd=0.503112500180594" target="_blank" rel="noopener">了解详情</a>
+<section class="creation-promo" id="hackathon-creation" aria-labelledby="creation-heading">
+  <div class="creation-inner">
+    <div class="creation-heading">
+      <div class="creation-kicker">HACKATHON · CREATIVE STARTER</div>
+      <h2 id="creation-heading">准备参加 Hackathon？</h2>
+    </div>
+    <div class="creation-grid">
+      <article class="creation-package">
+        <div class="creation-package-top">
+          <div>
+            <p class="creation-eyebrow">给你的 Agent 配一份轻量创作包</p>
+            <h3>百炼模型工具<span>轻体验包</span></h3>
+          </div>
+          <img class="creation-art" src="/assets/img/hackathon-creative-toolkit.jpg" width="140" height="134" alt="蓝色创作工具箱插画" loading="lazy" decoding="async" />
+        </div>
+        <p class="creation-description">轻量创作性价比之选，适合参与 Hackathon、创作比赛时，在兼容的 Agent 中开展页面设计和简单功能验证等独立小任务。</p>
+        <div class="creation-benefits" aria-label="组合内容">
+          <span>Token Plan Lite</span><span>百炼自研工具节省计划</span><span>免费 Skills</span>
+        </div>
+        <p class="creation-taskline">从一个小任务开始：作品介绍页 / 示例结果卡片 / 简单交互验证</p>
+        <a class="btn btn-primary creation-buy" href="https://common-buy.aliyun.com/package?planCode=package_ModelToolLiteBu_cn" target="_blank" rel="noopener noreferrer">查看并购买轻体验包 <span aria-hidden="true">↗</span></a>
+        <p class="creation-boundary">用于兼容 Agent 内的交互式任务，作品后端 API、托管另计。</p>
+      </article>
+      <div class="creation-events" aria-label="了解两场比赛">
+        <article class="creation-event">
+          <div class="creation-event-top"><span class="creation-track">AI × 商业</span><span class="creation-year">2026</span></div>
+          <h3>PAYATHON 2026 <span>· AI付黑客松</span></h3>
+          <p>为 AI 产品接入支付，用真实付费验证商业价值。</p>
+          <div class="creation-event-bottom">
+            <p class="creation-dates"><span>12 月 1 日报名截止</span><span>12 月 9 日作品提交截止</span></p>
+            <a href="https://aipay.alipay.com/community/events/payathon-2026" target="_blank" rel="noopener noreferrer" aria-label="查看 PAYATHON 2026 赛事官网">赛事官网 <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+        <article class="creation-event">
+          <div class="creation-event-top"><span class="creation-track">AI × 旅行</span><span class="creation-year">2026</span></div>
+          <h3>飞猪 AI 旅行创新大赛</h3>
+          <p>开发 AI 旅行应用或智能体，可选自由或预设方向。</p>
+          <div class="creation-event-bottom">
+            <p class="creation-dates"><span>11 月 29 日</span><span>线上比赛及作品提交截止</span></p>
+            <a href="https://opc.aliyun.com/feizhu" target="_blank" rel="noopener noreferrer" aria-label="查看飞猪 AI 旅行创新大赛官网">赛事官网 <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
       </div>
     </div>
-    <div class="hackathon-banner-card">
-      <h3>赛事要点</h3>
-      <div class="hackathon-banner-meta">
-        <div class="hackathon-banner-meta-item"><span class="hackathon-banner-meta-label">主办方</span><span class="hackathon-banner-meta-value">阿里云百炼 × 飞猪</span></div>
-        <div class="hackathon-banner-meta-item"><span class="hackathon-banner-meta-label">面向对象</span><span class="hackathon-banner-meta-value">个人开发者</span></div>
-        <div class="hackathon-banner-meta-item"><span class="hackathon-banner-meta-label">作品提交</span><span class="hackathon-banner-meta-value">09.22 - 10.25</span></div>
-        <div class="hackathon-banner-meta-item"><span class="hackathon-banner-meta-label">报名官网</span><span class="hackathon-banner-meta-value">opc.aliyun.com/feizhu</span></div>
-      </div>
+    <div class="creation-notes">
+      <details class="creation-details">
+        <summary>购买与使用说明</summary>
+        <p>模型及支持的内置工具消耗套餐 Credits；外部 MCP 费用按工具节省计划的适用范围抵扣。Skills 免费，不是额外收费商品。请在商品页确认 Agent 兼容性、当前价格、额度、有效期和账号购买资格。</p>
+        <p>上述任务为建议场景，不是完整参赛作品的实测案例；轻体验包不承诺覆盖整场比赛，也不代表本站全部 CLI、生图、视频或部署能力均包含在套餐内。</p>
+      </details>
+      <p>赛事信息核对于 2026.10.30，日程以官网为准。购买不是参赛或评奖条件。</p>
     </div>
   </div>
 </section>
