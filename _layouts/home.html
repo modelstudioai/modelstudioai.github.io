@@ -82,6 +82,36 @@ h1, h2, h3 { text-wrap: balance; font-weight: 500; }
 .nav-toggle[aria-expanded="true"] .icon-close { display: block; }
 .mobile-menu, .menu-backdrop { display: none; }
 
+/* Double 11 promo — scaled up to balance the hero display title */
+.promo-banner { padding: 0 18px 92px; margin-top: 56px; }
+.promo-banner-inner { max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 36px; padding: 36px 44px; background: linear-gradient(116deg,#f2f7ff 0%,#f3efff 100%); border: 1px solid #dbe2f2; border-radius: var(--rounded-lg); box-shadow: var(--shadow-lift); position: relative; overflow: hidden; }
+.promo-banner-inner::before { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 130% at 100% 0%,rgba(101,58,255,.09),transparent 60%),radial-gradient(50% 130% at 0% 100%,rgba(0,84,255,.08),transparent 60%); pointer-events: none; }
+.promo-banner-left { min-width: 0; position: relative; }
+.promo-banner-kicker { display: flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 11px; font-weight: 500; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 14px; }
+.promo-banner-kicker::before { content: ""; width: 28px; height: 2px; background: var(--blue); }
+.promo-banner h3 { font-size: 28px; font-weight: 500; letter-spacing: -1.2px; line-height: 1.25; color: #16171d; overflow-wrap: anywhere; margin: 0; text-wrap: balance; }
+.promo-banner h3 span { display: inline-block; color: var(--blue); margin: 0 0 0 4px; letter-spacing: -2px; vertical-align: baseline; }
+.promo-banner h3 span b { display: inline-block; font-size: 46px; font-weight: 500; line-height: .95; vertical-align: -6px; }
+.promo-banner h3 span i { display: inline-block; font-style: normal; font-size: 24px; font-weight: 500; margin-left: 2px; vertical-align: -1px; }
+.promo-banner-sub { margin-top: 10px; font-size: 14px; line-height: 1.7; color: var(--body); }
+.promo-banner-benefits { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+.promo-banner-benefits span { padding: 6px 11px; border: 1px solid #dfe3f0; background: #fff; border-radius: 7px; font-size: 12px; color: var(--ink-2); line-height: 1.5; }
+.promo-banner-benefits span em { font-style: normal; color: var(--violet); font-weight: 500; }
+.promo-banner-cta { display: inline-flex; align-items: center; justify-content: center; height: 54px; padding: 0 34px; border-radius: 14px; background: #171717; color: #fff; font-size: 15px; text-decoration: none; flex: 0 0 auto; position: relative; box-shadow: 0 12px 28px -12px rgba(23,23,23,.4); transition: background .2s ease,transform .2s ease; }
+.promo-banner-cta:hover { background: #0054ff; color: #fff; transform: translateY(-1px); }
+@media (max-width: 768px) {
+  .promo-banner { padding: 0 18px 64px; margin-top: 44px; }
+  .promo-banner-inner { flex-direction: column; align-items: flex-start; gap: 20px; padding: 26px 24px; }
+  .promo-banner h3 { font-size: 21px; letter-spacing: -.8px; }
+  .promo-banner h3 span b { font-size: 33px; vertical-align: -4px; }
+  .promo-banner h3 span i { font-size: 18px; vertical-align: -1px; }
+  .promo-banner h3 br { display: none; }
+  .promo-banner-sub { font-size: 13px; }
+  .promo-banner-benefits { margin-top: 12px; }
+  .promo-banner-cta { width: 100%; height: 50px; }
+}
+@media (prefers-reduced-motion: reduce) { .promo-banner * { transition: none; } }
+
 /* Hero — quiet canvas, display title, separate liquid panel */
 .hero { padding: 92px 18px 0; text-align: center; background: var(--canvas); overflow: hidden; }
 .hero-content { max-width: 940px; width: 100%; margin: 0 auto; }
@@ -418,22 +448,17 @@ h1, h2, h3 { text-wrap: balance; font-weight: 500; }
       <a href="https://github.com/modelstudioai" class="button outline" target="_blank" rel="noopener">查看 GitHub</a>
     </div>
   </div>
-  <div class="hero-stage" aria-label="从 Qwen Code 到阿里云百炼的工作流">
-    <div class="hero-stage-glass">
-      <div class="hero-stage-ui">
-        <div class="hero-stage-top">
-          <span class="hero-stage-title">Open agent workflow</span>
-          <span class="hero-stage-status">tools connected</span>
+  <div class="promo-banner">
+    <div class="promo-banner-inner">
+      <div class="promo-banner-left">
+        <div class="promo-banner-kicker">Double 11 · Token Plan</div>
+        <h3>Token Plan 双 11 钜惠，低至<span><b>5</b><i>折</i></span></h3>
+        <p class="promo-banner-sub">「模型 + Agent 工具」一次配齐。</p>
+        <div class="promo-banner-benefits" aria-label="优惠内容">
+          <span>低至 <em>5 折</em></span><span>年度钜惠</span>
         </div>
-        <p class="hero-stage-prompt">“帮我分析这个需求，选择合适的模型并完成交付。”</p>
-        <div class="hero-stage-flow">
-          <div class="hero-stage-node"><b>Qwen Code</b><span>理解任务 · 调度工具</span></div>
-          <div class="hero-stage-node"><b>Skills</b><span>组织步骤 · 约束流程</span></div>
-          <div class="hero-stage-node"><b>ModelStudio CLI</b><span>调用模型 · 执行操作</span></div>
-          <div class="hero-stage-node"><b>阿里云百炼</b><span>模型服务 · 云上能力</span></div>
-        </div>
-        <div class="hero-stage-foot"><span>Open source · composable · reproducible</span><strong>READY</strong></div>
       </div>
+      <a class="promo-banner-cta" href="https://bailian.console.aliyun.com/cn-beijing/subscription/overview" target="_blank" rel="noopener">立即抢购 <span aria-hidden="true">↗</span></a>
     </div>
   </div>
 </section>
