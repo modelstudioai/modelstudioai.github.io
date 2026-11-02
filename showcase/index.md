@@ -348,7 +348,15 @@ keywords: "阿里云百炼案例,AI Agent 案例,百炼CLI,OpenWork,Showcase,社
 
 **工具**：百炼 CLI / DashScope OpenAI 兼容接口 + 百炼 `qwen-plus`（职责概括、能力准备计划、核心结论、在线风向分析）+ 自研编排 Skill `wind_agent.orchestrator.run_pipeline` + FastAPI / Jinja2
 
-**仓库**：https://github.com/youngys012345-ai/Career-planning-agent ｜ **样例报告长图**：https://github.com/user-attachments/assets/ee37f025-104e-4133-b844-480a7f790ec9
+**仓库**：https://github.com/youngys012345-ai/Career-planning-agent ｜ **在线 Demo**：https://www.jobwindmark.bond
+
+![求职风向 Agent 报告概览](https://github.com/user-attachments/assets/5ed48209-0594-45f3-b374-261e27f2a1b2)
+
+![求职风向 Agent 数据分析](https://github.com/user-attachments/assets/3ffced87-28d6-4863-a963-a50c9181871d)
+
+![求职风向 Agent 准备建议](https://github.com/user-attachments/assets/a15680ad-a6ee-48f8-b1e1-85058e5a236c)
+
+![求职风向 Agent 完整结论](https://github.com/user-attachments/assets/52463a63-75ae-4bb5-a007-eacc22ccf2c0)
 
 > [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/145)
 
@@ -380,7 +388,6 @@ keywords: "阿里云百炼案例,AI Agent 案例,百炼CLI,OpenWork,Showcase,社
 
 **工具**：百炼 CLI（模型连通性验证、内容测试与赛前自检）+ 百炼 `qwen3-max`（梦蝶局 AI 玩家、机器人工坊 AI 分身）+ 服务端 API Key 保护与调用限额 + Node.js / Express / WebSocket
 
-**仓库**：https://github.com/coocoo-pineapple/bianda-paopao-bund-2026
 
 ![变大泡泡 泡泡水面](https://github.com/user-attachments/assets/292f9664-9b11-4e43-920e-21297c5e72d3)
 
@@ -590,9 +597,11 @@ MBTI 告诉你「适合」什么职业，然后就断了。这个项目接着往
 
 **工具**：百炼 `qwen-vl-plus`（temperature 0、`response_format: json_object`）+ 微信小程序 + 自建 AI Pipeline / Prompt Engineering
 
-**视频演示**：https://www.bilibili.com/video/BV1zeuV6fExr/
+**体验方式**：微信搜索「拉香了打卡」或「拉香了」 ｜ **视频演示**：https://www.bilibili.com/video/BV1zeuV6fExr/
 
 ![拉香了 DBTI 人格卡](https://github.com/user-attachments/assets/20a7ffea-27b7-4b8d-8fc8-80f96191c98e)
+
+![拉香了 微信小程序二维码](https://github.com/user-attachments/assets/79c804e1-988e-41d2-ba59-7b29e738495b)
 
 > [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/109)
 
@@ -796,9 +805,6 @@ MBTI 告诉你「适合」什么职业，然后就断了。这个项目接着往
 
 **工具**：百炼 DashScope OpenAI 兼容接口，默认模型 `qwen-plus` + 自研 ScholarForge Safety Gate 确定性规则引擎 + Next.js 16 + React 19 + TypeScript strict + Mammoth/docx + Vitest/Playwright + Vercel
 
-![ScholarForge OS 任务配置工作台全览](https://raw.githubusercontent.com/liqinglq666/scholarforge-os/main/docs/assets/submission/01-workspace-overview.png)
-
-**在线 Demo**：https://scholarforge-os.vercel.app ｜ **仓库**：https://github.com/liqinglq666/scholarforge-os
 
 > [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/52)
 
@@ -814,7 +820,7 @@ MBTI 告诉你「适合」什么职业，然后就断了。这个项目接着往
 
 ![护院鹅 Guard Goose](https://github.com/user-attachments/assets/13aed416-074a-4f73-8a2b-c2d80e6150f2)
 
-**仓库**：https://github.com/firecangshu/waveguard
+**仓库**：https://github.com/firecangshu/guardgoose
 
 > [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/83)
 
@@ -1074,7 +1080,7 @@ MBTI 告诉你「适合」什么职业，然后就断了。这个项目接着往
 
 **工具**：百炼 CLI（真实调用 `qwen3-vl-plus`，另有 `qwen3.5-ocr` / `qwen3.6-flash` 同图对照记录）+ 可安装 Skill `evidencegate-ocr` + Node.js + SHA-256
 
-**仓库**：[github.com/2487238628/evidencegate-ocr](https://github.com/2487238628/evidencegate-ocr)（含 14 条契约回归、30 条确定性对抗路由、5 张合成图片与 15 次百炼调用证据）
+**仓库**：[github.com/endtree-FDE/evidencegate-ocr](https://github.com/endtree-FDE/evidencegate-ocr)（含 14 条契约回归、30 条确定性对抗路由、5 张合成图片与 15 次百炼调用证据）
 
 **外滩大会 2026 官方参赛版本**：[#65](https://github.com/modelstudioai/modelstudioai.github.io/issues/65)（v0.4.1 把 5 张合成票据扩展为原图 / 下采样 / 旋转 / 裁切 / 遮挡 / JPEG 往返共 30 个受损输入，完成 30 次真实 `qwen3.5-ocr` 调用，路由 30/30、危险误接收 0）
 
@@ -1198,7 +1204,6 @@ MBTI 告诉你「适合」什么职业，然后就断了。这个项目接着往
 
 **工具**：百炼 API（OpenAI 兼容接口）+ Qwen-Plus + Next.js 16 API Route
 
-**仓库**：[github.com/captainold/digital_cabinet](https://github.com/captainold/digital_cabinet)
 
 > [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/39)
 
@@ -1296,7 +1301,7 @@ MBTI 告诉你「适合」什么职业，然后就断了。这个项目接着往
 
 ## PetMarketer AI：宠物品牌 AI 营销素材工厂
 
-**作者**：[@jingwenliu123456-coder](https://github.com/jingwenliu123456-coder) · 2026-06-28
+**作者**：[@SasaFreya](https://github.com/SasaFreya) · 2026-06-28
 
 基于百炼 CLI 搭建 AI Native 自动化工作流，专为宠物电商品牌设计。输入一个产品名（如"狗包"），3 分钟内串联 5 个 AI 任务，输出全套社交媒体营销素材：KOC 合作策略 → 拍摄 Brief → 15 秒爆款脚本 → AI 产品场景图 → 投放素材包。将传统 3 天 / 1000 元+ 的流程压缩到 3 分钟、几乎零成本。
 
