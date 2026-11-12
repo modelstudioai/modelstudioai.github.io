@@ -4,414 +4,260 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 {%- assign page_title = page.title | default: site.title -%}
-{%- assign page_desc  = page.description | default: site.description -%}
-{%- assign page_kw    = page.keywords | default: site.keywords -%}
-{%- assign page_url   = site.url | append: page.url -%}
-
+{%- assign page_desc = page.description | default: site.description -%}
+{%- assign page_kw = page.keywords | default: site.keywords -%}
+{%- assign page_url = site.url | append: page.url -%}
 <title>{{ page_title }}</title>
 <meta name="description" content="{{ page_desc }}">
 <meta name="keywords" content="{{ page_kw }}">
 <link rel="canonical" href="{{ page_url }}">
-
-<!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="{{ page_url }}">
 <meta property="og:title" content="{{ page_title }}">
 <meta property="og:description" content="{{ page_desc }}">
 <meta property="og:image" content="{{ site.og_image }}">
 <meta property="og:site_name" content="{{ site.title }}">
-
-<!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ page_title }}">
 <meta name="twitter:description" content="{{ page_desc }}">
 <meta name="twitter:image" content="{{ site.og_image }}">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+/* Baseline: current ModelStudio AI homepage and public Org, 2026-11-12.
+   Revised direction: an open-source Org home, not an application tutorial.
+   Repositories lead; submitted projects and contributors follow. The original
+   creative offer remains intact as a small secondary block. Only home changes.
+   Global navigation, service attribution parameters and purchase plan preserved.
+   Repository summaries describe existing public projects, not universal support. */
 :root {
-  --primary: #171717;
-  --on-primary: #ffffff;
-  --ink: #111111;
-  --ink-2: #262626;
-  --body: #696969;
-  --muted: #696969;
-  --mute: #888888;
-  --hairline: #dddee3;
-  --canvas: #fafafc;
-  --canvas-soft: #f8fafb;
-  --canvas-soft-2: #f2f2f2;
-  --bg-card: #ffffff;
-  --bg-card-hover: #ffffff;
-  --border-soft: #ededf1;
-  --link: #0054ff;
-  --link-deep: #0036ff;
-  --blue: #4b73ff;
-  --violet: #653aff;
-  --cyan: #49dad1;
-  --rounded-sm: 12px;
-  --rounded-md: 16px;
-  --rounded-lg: 20px;
-  --rounded-pill: 999px;
-  --font-sans: "PingFang SC","PingFang TC",-apple-system,BlinkMacSystemFont,Inter,"Microsoft YaHei",sans-serif;
-  --font-mono: "JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
-  --shadow-card: 0 8px 30px rgba(17,17,17,.06);
-  --shadow-lift: 0 16px 48px rgba(40,52,90,.12);
+  --primary:#171717; --on-primary:#fff; --ink:#111; --ink-2:#262626;
+  --body:#696969; --muted:#888; --canvas:#fafafc; --canvas-soft:#f8fafb;
+  --paper:#fff; --line:#dddee3; --border-soft:#ededf1;
+  --link:#0054ff; --link-deep:#0036ff; --blue:#4b73ff; --violet:#653aff;
+  --blue-soft:#f0f5ff; --violet-soft:#f3efff;
+  --radius:20px; --radius-small:12px;
+  --font-sans:"PingFang SC","PingFang TC",-apple-system,BlinkMacSystemFont,"Microsoft YaHei",sans-serif;
+  --font-mono:ui-monospace,SFMono-Regular,Menlo,monospace;
 }
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; color-scheme: light; }
-body { font-family: var(--font-sans); color: var(--ink); line-height: 1.5; background: var(--canvas); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; overflow-x: hidden; }
-h1, h2, h3 { text-wrap: balance; font-weight: 500; }
-
-/* Nav — current Bailian homepage geometry */
-.nav { height: calc(72px + env(safe-area-inset-top, 0px)); padding-top: env(safe-area-inset-top, 0px); display: flex; align-items: center; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); background: rgba(250,250,252,.9); border-bottom: 1px solid rgba(221,222,227,.78); }
-.nav-inner { width: 100%; max-width: 1440px; height: 72px; margin: 0 auto; padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-.nav-logo { display: flex; align-items: center; flex: 0 0 auto; text-decoration: none; color: #111; font-family: Inter,var(--font-sans); font-size: 18px; line-height: 24px; font-weight: 600; letter-spacing: -.45px; white-space: nowrap; }
-.nav-logo:hover { color: #0054ff; }
-.nav-links { display: flex; gap: 12px; align-items: center; margin-left: auto; }
-.nav-links a { display: flex; align-items: center; justify-content: center; height: 32px; color: rgba(20,21,28,.6); text-decoration: none; font-size: 14px; font-weight: 500; padding: 0 12px; border-radius: var(--rounded-pill); transition: background .15s,color .15s; }
-.nav-links a:hover { background: rgba(0,0,0,.04); color: #14151c; }
-.nav-cta { height: 36px !important; background: #171717 !important; color: #fff !important; font-size: 14px !important; font-weight: 400 !important; padding: 0 18px !important; border-radius: 12px !important; transition: background .2s ease !important; }
-.nav-cta:hover { background: #0054ff !important; opacity: 1; }
-.nav-toggle { display: none; align-items: center; justify-content: center; width: 44px; height: 44px; border: none; background: none; cursor: pointer; border-radius: var(--rounded-md); color: var(--ink); }
-.nav-toggle:hover { background: var(--canvas-soft-2); }
-.nav-toggle svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-.nav-toggle .icon-close { display: none; }
-.nav-toggle[aria-expanded="true"] .icon-menu { display: none; }
-.nav-toggle[aria-expanded="true"] .icon-close { display: block; }
-.mobile-menu, .menu-backdrop { display: none; }
-
-/* Double 11 promo — scaled up to balance the hero display title */
-.promo-banner { padding: 0 18px 92px; margin-top: 56px; }
-.promo-banner-inner { max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 36px; padding: 36px 44px; background: linear-gradient(116deg,#f2f7ff 0%,#f3efff 100%); border: 1px solid #dbe2f2; border-radius: var(--rounded-lg); box-shadow: var(--shadow-lift); position: relative; overflow: hidden; }
-.promo-banner-inner::before { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 130% at 100% 0%,rgba(101,58,255,.09),transparent 60%),radial-gradient(50% 130% at 0% 100%,rgba(0,84,255,.08),transparent 60%); pointer-events: none; }
-.promo-banner-left { min-width: 0; position: relative; }
-.promo-banner-kicker { display: flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 11px; font-weight: 500; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 14px; }
-.promo-banner-kicker::before { content: ""; width: 28px; height: 2px; background: var(--blue); }
-.promo-banner h3 { font-size: 28px; font-weight: 500; letter-spacing: -1.2px; line-height: 1.25; color: #16171d; overflow-wrap: anywhere; margin: 0; text-wrap: balance; }
-.promo-banner h3 span { display: inline-block; color: var(--blue); margin: 0 0 0 4px; letter-spacing: -2px; vertical-align: baseline; }
-.promo-banner h3 span b { display: inline-block; font-size: 46px; font-weight: 500; line-height: .95; vertical-align: -6px; }
-.promo-banner h3 span i { display: inline-block; font-style: normal; font-size: 24px; font-weight: 500; margin-left: 2px; vertical-align: -1px; }
-.promo-banner-sub { margin-top: 10px; font-size: 14px; line-height: 1.7; color: var(--body); }
-.promo-banner-benefits { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
-.promo-banner-benefits span { padding: 6px 11px; border: 1px solid #dfe3f0; background: #fff; border-radius: 7px; font-size: 12px; color: var(--ink-2); line-height: 1.5; }
-.promo-banner-benefits span em { font-style: normal; color: var(--violet); font-weight: 500; }
-.promo-banner-cta { display: inline-flex; align-items: center; justify-content: center; height: 54px; padding: 0 34px; border-radius: 14px; background: #171717; color: #fff; font-size: 15px; text-decoration: none; flex: 0 0 auto; position: relative; box-shadow: 0 12px 28px -12px rgba(23,23,23,.4); transition: background .2s ease,transform .2s ease; }
-.promo-banner-cta:hover { background: #0054ff; color: #fff; transform: translateY(-1px); }
-@media (max-width: 768px) {
-  .promo-banner { padding: 0 18px 64px; margin-top: 44px; }
-  .promo-banner-inner { flex-direction: column; align-items: flex-start; gap: 20px; padding: 26px 24px; }
-  .promo-banner h3 { font-size: 21px; letter-spacing: -.8px; }
-  .promo-banner h3 span b { font-size: 33px; vertical-align: -4px; }
-  .promo-banner h3 span i { font-size: 18px; vertical-align: -1px; }
-  .promo-banner h3 br { display: none; }
-  .promo-banner-sub { font-size: 13px; }
-  .promo-banner-benefits { margin-top: 12px; }
-  .promo-banner-cta { width: 100%; height: 50px; }
+* { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; color-scheme:light; }
+body { font-family:var(--font-sans); background:var(--canvas); color:var(--ink); line-height:1.5; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+h1,h2,h3 { font-weight:500; text-wrap:balance; }
+a { color:var(--link-deep); text-decoration:none; }
+a:hover { color:var(--link); }
+button { font:inherit; }
+img { display:block; max-width:100%; }
+a:focus-visible,button:focus-visible,summary:focus-visible { outline:2px solid var(--link); outline-offset:5px; }
+section[id] { scroll-margin-top:96px; }
+.container { width:calc(100% - 48px); max-width:1180px; margin:0 auto; }
+.nav { height:calc(72px + env(safe-area-inset-top,0px)); padding-top:env(safe-area-inset-top,0px); display:flex; align-items:center; position:sticky; top:0; z-index:100; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); background:rgba(250,250,252,.9); border-bottom:1px solid rgba(221,222,227,.78); }
+.nav-inner { width:100%; max-width:1440px; height:72px; margin:0 auto; padding:18px 24px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+.nav-logo { color:var(--ink); font-family:Inter,var(--font-sans); font-size:18px; line-height:24px; font-weight:600; letter-spacing:-.45px; white-space:nowrap; }
+.nav-links { display:flex; gap:12px; align-items:center; margin-left:auto; }
+.nav-links a { display:flex; align-items:center; justify-content:center; height:32px; color:rgba(20,21,28,.6); font-size:14px; font-weight:500; padding:0 12px; border-radius:999px; }
+.nav-links a:hover { background:rgba(0,0,0,.04); color:var(--ink); }
+.nav-links .nav-cta { height:36px; background:var(--primary); color:var(--on-primary); font-weight:400; padding:0 18px; border-radius:var(--radius-small); }
+.nav-links .nav-cta:hover { background:var(--link); color:var(--on-primary); }
+.nav-toggle { display:none; align-items:center; justify-content:center; width:44px; height:44px; border:0; background:none; cursor:pointer; border-radius:var(--radius-small); color:var(--ink); }
+.nav-toggle:hover { background:var(--border-soft); }
+.nav-toggle svg { width:22px; height:22px; stroke:currentColor; fill:none; stroke-width:1.8; stroke-linecap:round; }
+.nav-toggle .icon-close { display:none; }
+.nav-toggle[aria-expanded="true"] .icon-menu { display:none; }
+.nav-toggle[aria-expanded="true"] .icon-close { display:block; }
+.mobile-menu,.menu-backdrop { display:none; }
+.hero { text-align:center; padding:22px 24px 20px; }
+.hero-content { max-width:980px; margin:0 auto; }
+.hero-kicker { color:var(--body); font-family:var(--font-mono); font-size:11px; letter-spacing:1px; margin-bottom:8px; }
+.hero h1 { font-size:clamp(40px,4.2vw,58px); letter-spacing:-1.7px; line-height:1.1; }
+.hero-break { display:none; }
+.hero-sub { max-width:720px; margin:10px auto 0; font-size:14px; line-height:1.6; color:var(--body); text-wrap:pretty; }
+.hero-buttons { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:12px; }
+.hero-buttons .btn { min-height:44px; padding:9px 24px; }
+.btn { display:inline-flex; align-items:center; justify-content:center; gap:12px; min-height:48px; padding:11px 24px; font-size:14px; border:1px solid transparent; border-radius:var(--radius-small); white-space:nowrap; cursor:pointer; transition:background .18s,color .18s,border-color .18s; }
+.btn-primary { background:var(--primary); color:var(--on-primary); }
+.btn-primary:hover { background:var(--link); color:var(--on-primary); }
+.btn-secondary { color:var(--ink); border-color:var(--line); background:var(--paper); }
+.btn-secondary:hover { border-color:var(--ink); color:var(--ink); }
+.text-link { display:inline-flex; align-items:center; gap:9px; min-height:44px; font-size:13px; white-space:nowrap; }
+.text-link:hover { text-decoration:underline; text-underline-offset:4px; }
+.section { padding:72px 0; }
+.section-heading { margin-bottom:30px; }
+.section-heading h2 { font-size:34px; line-height:1.3; letter-spacing:-1px; }
+.section-heading p { font-size:14px; line-height:1.8; color:var(--body); margin-top:12px; }
+.heading-with-link { display:flex; justify-content:space-between; align-items:flex-end; gap:24px; }
+.repositories { padding-top:0; padding-bottom:64px; }
+.repositories .section-heading p { margin-top:0; }
+.repo-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
+.repo-card { display:flex; flex-direction:column; position:relative; padding:30px 32px; background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); color:var(--ink); transition:border-color .18s; }
+.repo-card:hover { border-color:var(--link); color:var(--ink); }
+.repo-top { display:flex; justify-content:space-between; gap:16px; align-items:center; margin-bottom:16px; }
+.repo-kind { color:var(--body); font-size:11px; }
+.repo-mark { color:var(--link); font-family:var(--font-mono); font-size:11px; }
+.repo-card h3 { font-size:27px; letter-spacing:-.6px; line-height:1.3; }
+.repo-card.skills { background:linear-gradient(120deg,var(--blue-soft),var(--violet-soft)); }
+.repo-card.skills h3 { color:var(--link); }
+.repo-subtitle { font-size:15px; margin-top:10px; color:var(--ink-2); }
+.repo-description { font-size:13px; line-height:1.85; color:var(--body); margin-top:10px; max-width:470px; }
+.repo-bottom { margin-top:auto; padding-top:20px; display:flex; align-items:center; justify-content:space-between; gap:14px; }
+.repo-chips { display:flex; gap:8px; flex-wrap:wrap; }
+.repo-chips span { font-size:11px; color:var(--body); border:1px solid var(--line); background:var(--paper); padding:4px 8px; border-radius:6px; }
+.repo-arrow { color:var(--link); font-size:18px; }
+.more-repos { margin-top:30px; display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.more-repo { color:var(--ink); display:block; border-top:1px solid var(--line); padding-top:20px; min-width:0; }
+.more-repo:hover { color:var(--link); }
+.more-repo h3 { font-size:17px; line-height:1.5; overflow-wrap:anywhere; }
+.more-repo h3 span { color:var(--link); font-size:14px; margin-left:6px; }
+.more-repo p { color:var(--body); font-size:12px; line-height:1.8; margin-top:8px; }
+.repo-note { font-size:11px; color:var(--body); line-height:1.8; margin-top:23px; }
+.showcase { background:var(--paper); border-top:1px solid var(--border-soft); border-bottom:1px solid var(--border-soft); }
+.case-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+.case-card { display:flex; flex-direction:column; background:var(--paper); border:1px solid var(--border-soft); border-radius:var(--radius); overflow:hidden; color:var(--ink); transition:border-color .18s; }
+.case-card:hover { border-color:var(--link); color:var(--ink); }
+.case-image { height:190px; width:100%; object-fit:cover; object-position:top; background:var(--canvas-soft); border-bottom:1px solid var(--border-soft); }
+.case-body { padding:24px; flex:1; display:flex; flex-direction:column; }
+.case-type { font-size:11px; color:var(--link); margin-bottom:12px; }
+.case-body h3 { font-size:20px; line-height:1.5; letter-spacing:-.4px; }
+.case-description { font-size:13px; color:var(--body); line-height:1.8; margin-top:10px; margin-bottom:24px; }
+.case-author { color:var(--body); font-family:var(--font-mono); font-size:11px; margin-top:auto; display:flex; justify-content:space-between; gap:12px; }
+.case-author span { color:var(--link); }
+.showcase-note { color:var(--body); font-size:11px; line-height:1.8; margin-top:18px; }
+.community { padding:68px 0 64px; border-bottom:1px solid var(--line); }
+.community .section-heading { text-align:center; margin-bottom:32px; }
+.devwall-avatars { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; max-width:756px; margin:0 auto; }
+.devwall-avatars a { display:block; border-radius:14px; transition:transform .18s; }
+.devwall-avatars a:hover { transform:translateY(-4px); }
+.devwall-avatars img { width:52px; height:52px; border-radius:14px; border:1px solid var(--border-soft); background:var(--paper); }
+.community-actions { display:flex; gap:24px; flex-wrap:wrap; align-items:center; justify-content:center; margin-top:30px; }
+.creation-group { margin-top:28px; padding-top:24px; border-top:1px solid var(--line); scroll-margin-top:96px; }
+.creation-package { display:grid; grid-template-columns:104px minmax(0,1fr) 248px; gap:24px; padding:25px 28px; align-items:center; background:var(--canvas); border:1px solid var(--line); border-radius:var(--radius); }
+.creation-art { width:104px; height:104px; object-fit:cover; border-radius:var(--radius-small); }
+.creation-copy h2 { font-size:21px; line-height:1.4; letter-spacing:-.5px; margin-bottom:5px; }
+.creation-label { font-size:12px; color:var(--link); margin-bottom:9px; }
+.creation-description { font-size:12px; line-height:1.85; color:var(--body); }
+.creation-benefits { display:flex; flex-wrap:wrap; gap:6px; margin-top:11px; }
+.creation-benefits span { font-size:10px; line-height:1.5; border:1px solid var(--line); border-radius:6px; background:var(--paper); padding:4px 7px; color:var(--ink-2); }
+.creation-taskline { font-size:11px; color:var(--body); line-height:1.8; margin-top:8px; }
+.creation-buy { width:100%; font-size:13px; padding:10px 16px; gap:12px; }
+.creation-buy span { font-size:16px; }
+.creation-boundary { font-size:12px; line-height:1.8; color:var(--body); margin-top:12px; }
+.creation-details { padding:9px 4px 0; font-size:11px; color:var(--body); }
+.creation-details summary { display:list-item; cursor:pointer; width:fit-content; min-height:36px; padding:7px 0; color:var(--ink-2); }
+.creation-details p { line-height:1.9; max-width:1040px; margin-top:9px; font-size:12px; }
+.help-section { padding:46px 0; }
+.help-section h2 { font-size:26px; letter-spacing:-.6px; }
+.help-grid { margin-top:24px; display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
+.help-link { color:var(--ink); border-top:1px solid var(--line); padding-top:16px; }
+.help-link h3 { display:flex; align-items:center; justify-content:space-between; gap:10px; font-size:15px; line-height:1.6; }
+.help-link h3 span { color:var(--link); }
+.help-link p { color:var(--body); font-size:12px; line-height:1.8; margin-top:8px; }
+.events { border-top:1px solid var(--line); padding:42px 0; }
+.events-grid { display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:0; }
+.event-card { display:flex; flex-direction:column; border-top:2px solid var(--line); padding:22px 0 0; }
+.event-track { font-size:11px; color:var(--link); margin-bottom:12px; }
+.event-card h3 { font-size:20px; }
+.event-card p { font-size:13px; line-height:1.8; color:var(--body); margin-top:10px; }
+.event-bottom { display:flex; justify-content:space-between; align-items:center; gap:16px; margin-top:16px; }
+.event-bottom small { font-size:11px; color:var(--body); }
+.events-note { font-size:11px; line-height:1.8; color:var(--body); margin-top:25px; }
+.footer { padding:38px 24px max(38px,env(safe-area-inset-bottom,0px)); border-top:1px solid var(--line); background:var(--paper); }
+.footer-inner { max-width:1180px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap; }
+.footer p { font-size:12px; color:var(--body); }
+.footer-links { display:flex; flex-wrap:wrap; gap:22px; }
+.footer a { color:var(--body); font-size:12px; min-height:36px; display:inline-flex; align-items:center; }
+.footer a:hover { color:var(--link); }
+@media (max-width:1024px) {
+  .repo-card { padding:26px; }
+  .repo-bottom { align-items:flex-end; }
+  .creation-package { grid-template-columns:88px minmax(0,1fr); gap:20px; }
+  .creation-art { width:88px; height:88px; }
+  .creation-action { grid-column:2; display:flex; gap:20px; align-items:center; }
+  .creation-buy { width:auto; flex-shrink:0; }
+  .creation-boundary { margin-top:0; }
+  .help-grid { gap:18px; }
 }
-@media (prefers-reduced-motion: reduce) { .promo-banner * { transition: none; } }
-
-/* Hero — quiet canvas, display title, separate liquid panel */
-.hero { padding: 92px 18px 0; text-align: center; background: var(--canvas); overflow: hidden; }
-.hero-content { max-width: 940px; width: 100%; margin: 0 auto; }
-.hero-kicker { margin-bottom: 18px; font-family: var(--font-mono); font-size: 11px; line-height: 1.4; letter-spacing: 1.2px; color: var(--muted); text-transform: uppercase; }
-.hero h1 { font-size: clamp(46px,5.1vw,64px); font-weight: 500; letter-spacing: -2.8px; line-height: 1.1; margin-bottom: 0; color: var(--ink-strong,#000); }
-.hero .gradient-text { color: var(--ink-strong,#000); background: none; -webkit-background-clip: initial; -webkit-text-fill-color: currentColor; background-clip: initial; padding: 0; margin: 0; }
-.hero-sub { margin: 24px auto 0; font-size: 16px; line-height: 26px; color: #8a8c91; max-width: 760px; text-wrap: balance; }
-.hero-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
-.btn, .button { display: inline-flex; align-items: center; justify-content: center; height: 48px; min-height: 48px; padding: 8px 21px; border-radius: 12px; text-decoration: none; font-weight: 400; font-size: 14px; line-height: 21px; border: 0; cursor: pointer; transition: background .2s ease,border-color .2s ease,color .2s ease; }
-.btn-primary, .button.dark { background: #171717; color: #fff; }
-.btn-primary:hover, .button.dark:not(.hero-primary):hover { background: #0054ff; color: #fff; }
-.btn-secondary, .button.outline { background: transparent; color: var(--ink); border: 1px solid #cfd1d7; }
-.btn-secondary:hover, .button.outline:hover { border-color: #14151c; background: #fff; }
-.button.dark.hero-primary { position: relative; isolation: isolate; overflow: hidden; background: #06111a; color: #fff; }
-.button.dark.hero-primary:hover, .button.dark.hero-primary:focus-visible { background: #06111a; }
-.button.dark.hero-primary .shader-surface { position: absolute; inset: 0; z-index: 0; border-radius: inherit; overflow: hidden; pointer-events: none; background: radial-gradient(at 70% 80%,#4aa6cc,#236da9 35%,#10314e 65%,#06111a); transform: translateZ(0); -webkit-mask-image: linear-gradient(#fff,#fff); mask-image: linear-gradient(#fff,#fff); }
-.shader-surface canvas { display: block; width: 100%; height: 100%; }
-.button.dark.hero-primary::before { content: ""; position: absolute; inset: -2px; z-index: 1; border-radius: inherit; pointer-events: none; mix-blend-mode: hard-light; background: rgba(6,17,26,.02); box-shadow: inset 0 0 16px rgba(157,212,249,.64); }
-.shader-label { position: relative; z-index: 2; color: #fff; white-space: nowrap; pointer-events: none; }
-.shader-arrow { position: relative; z-index: 2; width: 0; height: 14px; margin-left: 0; opacity: 0; transform: translate(-4px,4px); transition: width .3s cubic-bezier(.22,1,.36,1),margin-left .3s cubic-bezier(.22,1,.36,1),opacity .25s,transform .3s cubic-bezier(.22,1,.36,1); }
-.button.dark.hero-primary:is(:hover,:focus-visible) .shader-arrow { width: 14px; margin-left: 8px; opacity: 1; transform: none; }
-.hero-stage { position: relative; max-width: 1404px; height: 370px; margin: 64px auto 0; border-radius: 24px; overflow: hidden; background: radial-gradient(72% 140% at 2% 110%,rgba(0,234,209,.74),transparent 62%),radial-gradient(78% 150% at 98% -10%,rgba(115,71,255,.8),transparent 64%),linear-gradient(116deg,#dceff5 0%,#d9e2ff 48%,#eeeaff 100%); box-shadow: 0 30px 70px -40px rgba(40,52,90,.25); }
-.hero-stage::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(135deg,rgba(255,255,255,.14) 0 1px,transparent 1px 7px); opacity: .45; }
-.hero-stage-glass { position: absolute; left: 50%; top: 50%; width: min(820px,76%); transform: translate(-50%,-50%); padding: 12px; border-radius: 24px; background: rgba(255,255,255,.22); -webkit-backdrop-filter: blur(8px) saturate(170%); backdrop-filter: blur(8px) saturate(170%); box-shadow: inset 0 1px 0 rgba(255,255,255,.76),0 18px 44px -22px rgba(17,46,88,.42); }
-.hero-stage-ui { position: relative; border-radius: 16px; background: rgba(255,255,255,.96); box-shadow: 0 10px 24px rgba(28,39,62,.18); padding: 22px 24px 18px; text-align: left; }
-.hero-stage-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-bottom: 14px; border-bottom: 1px solid #eceef2; }
-.hero-stage-title { font-size: 13px; font-weight: 500; color: #252733; }
-.hero-stage-status { display: inline-flex; align-items: center; gap: 7px; font-family: var(--font-mono); font-size: 10px; color: #767986; }
-.hero-stage-status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #30cf87; }
-.hero-stage-prompt { margin: 20px 0 18px; font-size: 17px; line-height: 1.65; color: #1b1d26; }
-.hero-stage-flow { display: grid; grid-template-columns: repeat(4,1fr); border: 1px solid #eceef2; }
-.hero-stage-node { position: relative; padding: 14px 13px; border-right: 1px solid #eceef2; min-width: 0; }
-.hero-stage-node:last-child { border-right: 0; }
-.hero-stage-node:not(:last-child)::after { content: "→"; position: absolute; right: -9px; top: 50%; transform: translateY(-50%); width: 18px; height: 20px; line-height: 20px; text-align: center; background: #fff; color: #a0a2aa; font-family: var(--font-mono); }
-.hero-stage-node b { display: block; font-size: 12px; font-weight: 500; margin-bottom: 4px; overflow-wrap: anywhere; }
-.hero-stage-node span { display: block; font-size: 10px; line-height: 1.45; color: #8a8c91; }
-.hero-stage-foot { margin-top: 14px; display: flex; align-items: center; justify-content: space-between; gap: 12px; font-family: var(--font-mono); font-size: 10px; color: #8a8c91; }
-.hero-stage-foot strong { color: #0054ff; font-weight: 500; }
-
-/* Steps */
-.steps { padding: 96px 24px; max-width: 1180px; margin: 0 auto; }
-.steps h2 { text-align: center; font-size: 36px; font-weight: 500; letter-spacing: -1.2px; margin-bottom: 40px; }
-.steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-.step-card { position: relative; background: #fff; border: 1px solid #ededf1; border-radius: 20px; padding: 30px; min-height: 224px; transition: transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s cubic-bezier(.2,.7,.2,1),border-color .3s; }
-.step-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lift); border-color: transparent; }
-.step-num { font-family: var(--font-mono); font-size: 11px; font-weight: 500; color: var(--blue); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 36px; display: block; }
-.step-card h3 { font-size: 20px; font-weight: 500; margin-bottom: 12px; letter-spacing: -.4px; color: #16171d; }
-.step-card p { font-size: 13.5px; color: var(--body); line-height: 1.7; margin-bottom: 18px; }
-.step-card a { color: #0036ff; text-decoration: none; font-size: 13px; font-weight: 500; }
-.step-card a:hover { text-decoration: underline; }
-
-/* Compatible ecosystem */
-.compat-strip { padding: 22px 24px; border-bottom: 1px solid var(--hairline); background: #fff; }
-.compat-strip-inner { max-width: 1180px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 22px; flex-wrap: wrap; }
-.compat-label { font-family: var(--font-mono); font-size: 10px; font-weight: 500; color: var(--mute); letter-spacing: 1px; text-transform: uppercase; }
-.compat-item { color: #696969; text-decoration: none; font-family: var(--font-mono); font-size: 12px; transition: color .15s; }
-.compat-item:hover { color: #111; }
-.compat-item.featured { display: inline-flex; align-items: center; gap: 8px; color: #111; font-weight: 500; }
-.compat-item.featured::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--violet); }
-.compat-proof { width: 100%; text-align: center; font-size: 11px; color: var(--mute); margin-top: -5px; }
-.compat-proof a { color: #0036ff; text-decoration: none; font-weight: 500; }
-.compat-proof a:hover { text-decoration: underline; }
-
-/* Recommended combination: Qwen Code + ModelStudio */
-.qwen-combo { padding: 96px 24px; background: var(--canvas-soft); border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
-.qwen-combo-inner { max-width: 1180px; margin: 0 auto; }
-.qwen-combo-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 56px; align-items: center; }
-.qwen-combo-kicker { display: flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 10px; font-weight: 500; color: #696969; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 18px; }
-.qwen-combo-kicker::before { content: ""; width: 28px; height: 2px; background: var(--blue); }
-.qwen-combo h2 { font-size: 40px; font-weight: 500; line-height: 1.16; letter-spacing: -1.6px; margin-bottom: 18px; }
-.qwen-combo-lead { color: var(--body); font-size: 14px; line-height: 1.8; margin-bottom: 24px; }
-.qwen-combo-proof { border-left: 2px solid #cfd2db; padding-left: 18px; font-size: 12px; color: #696969; line-height: 1.7; margin-bottom: 28px; }
-.qwen-combo-proof strong { display: block; color: #16171d; font-size: 13px; font-weight: 500; margin-bottom: 3px; }
-.qwen-combo-proof a { color: #0036ff; text-decoration: none; font-weight: 500; }
-.qwen-combo-proof a:hover { text-decoration: underline; }
-.qwen-combo-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-.qwen-combo-actions .btn { border-radius: 12px; }
-.qwen-combo-primary { background: #171717; color: #fff; }
-.qwen-combo-primary:hover { background: #0054ff; }
-.qwen-combo-secondary { background: transparent; border-color: #cfd1d7; }
-.qwen-combo-secondary:hover { background: #fff; border-color: #14151c; }
-.qwen-flow { display: grid; grid-template-columns: repeat(4,1fr); border: 1px solid #ededf1; border-radius: 20px; overflow: hidden; background: #fff; box-shadow: var(--shadow-card); }
-.qwen-flow-step { min-width: 0; padding: 24px 18px; border-right: 1px solid #ededf1; position: relative; }
-.qwen-flow-step:last-child { border-right: 0; }
-.qwen-flow-step:not(:last-child)::after { content: "→"; position: absolute; right: -9px; top: 50%; transform: translateY(-50%); z-index: 1; width: 18px; height: 22px; background: #fff; color: #a0a2aa; text-align: center; line-height: 22px; font-family: var(--font-mono); }
-.qwen-flow-num { font-family: var(--font-mono); font-size: 9px; color: var(--mute); letter-spacing: .45px; margin-bottom: 22px; }
-.qwen-flow-mark { width: 32px; height: 32px; border: 1px solid #d6d8de; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 12px; margin-bottom: 14px; }
-.qwen-flow-step:first-child { background: #fbfbff; }
-.qwen-flow-step:first-child .qwen-flow-mark { color: var(--violet); border-color: #c9c1ff; background: #f3f1ff; }
-.qwen-flow-step:nth-child(3) { background: #fbfdff; }
-.qwen-flow-step:nth-child(3) .qwen-flow-mark { color: #0054ff; border-color: #b9d2ff; background: #f1f7ff; }
-.qwen-flow h3 { font-size: 13px; font-weight: 500; margin-bottom: 6px; overflow-wrap: anywhere; }
-.qwen-flow p { font-size: 11px; color: var(--mute); line-height: 1.55; }
-.qwen-install { margin-top: 16px; background: #15151d; color: #d8d8e5; padding: 18px 20px; border-radius: 16px; display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center; box-shadow: 0 16px 34px rgba(6,7,16,.16); }
-.qwen-install-text { font-family: var(--font-mono); font-size: 11px; line-height: 1.65; overflow-wrap: anywhere; }
-.qwen-install-text .comment { color: #828294; }
-.qwen-install-text .prompt { color: #9be6c8; }
-.qwen-copy-btn { height: 34px; padding: 0 13px; border: 1px solid #444451; border-radius: 8px; background: transparent; color: #fff; font-size: 11px; font-weight: 500; cursor: pointer; white-space: nowrap; transition: border-color .15s,color .15s; }
-.qwen-copy-btn:hover { border-color: #888899; }
-.qwen-copy-btn.copied { color: #9be6c8; border-color: #5b947e; }
-
-/* Playbook entry */
-.playbook-entry { padding: 96px 24px; background: #fff; }
-.playbook-entry-inner { max-width: 1180px; margin: 0 auto; }
-.playbook-headline { display: block; text-decoration: none; color: inherit; transition: opacity .15s ease; }
-.playbook-headline:hover { opacity: .86; }
-.playbook-headline:hover .playbook-headline-arrow { transform: translateX(4px); }
-.playbook-headline-arrow { display: inline-block; transition: transform .2s ease; color: #0054ff; }
-.playbook-entry h2 { text-align: center; font-size: 36px; font-weight: 500; letter-spacing: -1.2px; margin: 0 0 12px; }
-.playbook-entry .section-sub { text-align: center; font-size: 14px; color: var(--body); margin: 0 0 42px; line-height: 1.7; }
-.playbook-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 34px; }
-.pb-card { display: block; min-height: 160px; padding: 26px 24px; background: #fff; border: 1px solid #ededf1; border-radius: 20px; text-decoration: none; color: inherit; transition: transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s cubic-bezier(.2,.7,.2,1),border-color .3s; }
-.pb-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lift); border-color: transparent; text-decoration: none; }
-.pb-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; margin-bottom: 28px; border: 1px solid #dddee3; border-radius: 8px; color: #0054ff; font-family: var(--font-mono); font-size: 11px; font-weight: 500; }
-.pb-card h3 { font-size: 16px; font-weight: 500; margin: 0 0 7px; letter-spacing: -.25px; color: #16171d; }
-.pb-card p { font-size: 12px; color: var(--mute); margin: 0; line-height: 1.55; }
-.playbook-cta-wrap { text-align: center; }
-.playbook-cta { display: inline-flex; align-items: center; justify-content: center; height: 44px; padding: 0 22px; background: #171717; color: #fff; border-radius: 12px; text-decoration: none; font-size: 13px; font-weight: 400; transition: background .2s ease; }
-.playbook-cta:hover { background: #0054ff; text-decoration: none; }
-
-/* Developer wall */
-.devwall { padding: 96px 24px; background: var(--canvas-soft); border-bottom: 1px solid var(--hairline); }
-.devwall-inner { max-width: 1180px; margin: 0 auto; }
-.devwall h2 { text-align: center; font-size: 40px; font-weight: 500; letter-spacing: -1.4px; margin: 0 0 12px; }
-.devwall .section-sub { text-align: center; font-size: 14px; color: var(--body); margin: 0 0 38px; line-height: 1.7; }
-.devwall-avatars { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 34px; }
-.devwall-avatars a { display: block; border-radius: 14px; transition: transform .2s ease,box-shadow .2s ease; }
-.devwall-avatars a:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(40,52,90,.12); }
-.devwall-avatars img { width: 52px; height: 52px; border-radius: 14px; display: block; background: #fff; border: 1px solid #e3e4e9; }
-.devwall-avatars .devwall-more { display: flex; align-items: center; justify-content: center; width: 52px; height: 52px; border-radius: 14px; background: #fff; border: 1px solid #dddee3; color: #0054ff; font-family: var(--font-mono); font-size: 11px; font-weight: 500; text-decoration: none; }
-.devwall-cta-wrap { text-align: center; }
-.devwall-cta { display: inline-flex; align-items: center; justify-content: center; height: 44px; padding: 0 22px; background: #171717; color: #fff; border-radius: 12px; text-decoration: none; font-size: 13px; font-weight: 400; transition: background .2s ease; }
-.devwall-cta:hover { background: #0054ff; }
-
-/* Docs links */
-.docs-section { padding: 96px 24px 112px; max-width: 1180px; margin: 0 auto; }
-.docs-section h2 { text-align: center; font-size: 36px; font-weight: 500; letter-spacing: -1.2px; margin-bottom: 40px; }
-.docs-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
-.doc-link { display: flex; align-items: center; gap: 18px; min-height: 108px; padding: 24px 28px; background: #fff; border: 1px solid #ededf1; border-radius: 20px; text-decoration: none; color: var(--ink); transition: transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s cubic-bezier(.2,.7,.2,1),border-color .3s; }
-.doc-link:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); border-color: transparent; }
-.doc-link-icon { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; border: 1px solid #dddee3; border-radius: 8px; font-size: 16px; flex-shrink: 0; color: #0054ff; opacity: 1; }
-.doc-link h3 { font-size: 16px; font-weight: 500; margin-bottom: 4px; letter-spacing: -.2px; }
-.doc-link p { font-size: 12px; color: var(--body); }
-
-/* Hackathon creative starter and event entries */
-.creation-promo { padding: 48px 24px 32px; background: var(--canvas-soft); border-bottom: 1px solid var(--hairline); scroll-margin-top: 84px; }
-.creation-inner { max-width: 1180px; margin: 0 auto; }
-.creation-heading { margin-bottom: 24px; }
-.creation-kicker { display: flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 10px; font-weight: 500; color: var(--muted); letter-spacing: 1px; margin-bottom: 12px; }
-.creation-kicker::before { content: ''; width: 28px; height: 2px; background: var(--blue); }
-.creation-heading h2 { font-size: 34px; font-weight: 500; line-height: 1.2; letter-spacing: -1.1px; }
-.creation-grid { display: grid; grid-template-columns: 1.28fr 1fr; gap: 20px; align-items: stretch; }
-.creation-package { padding: 24px 28px; background: var(--bg-card); border: 1px solid var(--border-soft); border-radius: var(--rounded-lg); box-shadow: var(--shadow-card); min-width: 0; }
-.creation-package-top { display: flex; justify-content: space-between; gap: 16px; align-items: center; margin-bottom: 16px; }
-.creation-eyebrow { color: var(--body); font-size: 12px; line-height: 1.6; margin-bottom: 12px; }
-.creation-package h3 { font-size: 21px; font-weight: 500; line-height: 1.4; letter-spacing: -.4px; }
-.creation-package h3 span { display: block; font-size: 32px; color: var(--blue); margin-top: 2px; letter-spacing: -1px; }
-.creation-art { width: 140px; height: 134px; object-fit: cover; border-radius: var(--rounded-md); flex: 0 0 auto; }
-.creation-description { font-size: 14px; line-height: 1.8; color: var(--body); margin-bottom: 16px; }
-.creation-benefits { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
-.creation-benefits span { padding: 5px 9px; border: 1px solid var(--border-soft); background: var(--canvas); border-radius: 6px; font-size: 11px; color: var(--ink-2); line-height: 1.5; }
-.creation-taskline { font-size: 12px; color: var(--body); line-height: 1.8; margin-bottom: 18px; }
-.creation-buy { gap: 20px; }
-.creation-buy span { font-size: 17px; }
-.creation-boundary { font-size: 11px; color: var(--body); line-height: 1.7; margin-top: 12px; }
-.creation-events { display: grid; grid-template-rows: 1fr 1fr; gap: 16px; min-width: 0; }
-.creation-event { display: flex; flex-direction: column; padding: 22px 24px 18px; background: var(--bg-card); border: 1px solid var(--border-soft); border-radius: var(--rounded-lg); min-width: 0; }
-.creation-event-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
-.creation-track { font-size: 11px; color: var(--blue); font-weight: 500; }
-.creation-year { font-family: var(--font-mono); font-size: 10px; color: var(--mute); }
-.creation-event h3 { font-size: 20px; font-weight: 500; line-height: 1.5; letter-spacing: -.4px; text-wrap: auto; }
-.creation-event h3 span { font-size: 16px; white-space: nowrap; }
-.creation-event > p { font-size: 12px; line-height: 1.8; color: var(--body); margin-top: 6px; margin-bottom: 14px; }
-.creation-event-bottom { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--border-soft); display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.creation-dates { font-size: 11px; line-height: 1.8; color: var(--body); }
-.creation-dates span { display: block; }
-.creation-event-bottom a { display: inline-flex; align-items: center; justify-content: center; gap: 8px; color: var(--link-deep); font-size: 12px; text-decoration: none; min-height: 44px; white-space: nowrap; padding: 0 4px; }
-.creation-event-bottom a:hover { text-decoration: underline; }
-.creation-notes { position: relative; display: flex; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; align-items: baseline; padding-top: 14px; }
-.creation-notes > p { font-size: 11px; line-height: 1.8; color: var(--body); }
-.creation-details { font-size: 11px; line-height: 1.8; color: var(--body); }
-.creation-details summary { cursor: pointer; color: var(--ink-2); min-height: 30px; padding: 4px 0; }
-.creation-details[open] { width: 100%; }
-.creation-details p { max-width: 1000px; margin: 8px 0; font-size: 12px; }
-.creation-promo a:focus-visible, .creation-details summary:focus-visible { outline: 2px solid var(--link); outline-offset: 4px; }
-@media (max-width: 1000px) {
-  .creation-grid { grid-template-columns: 1.15fr 1fr; gap: 16px; }
-  .creation-package { padding: 22px; }
-  .creation-art { width: 108px; height: 108px; }
-  .creation-event { padding: 20px; }
-  .creation-event h3 { font-size: 18px; }
-  .creation-event h3 span { display: block; font-size: 15px; }
+@media (max-width:768px) {
+  section[id] { scroll-margin-top:80px; }
+  .container { width:calc(100% - 36px); }
+  .nav { height:calc(60px + env(safe-area-inset-top,0px)); }
+  .nav-inner { height:60px; padding:8px 20px; gap:12px; }
+  .nav-logo { font-size:16px; letter-spacing:-.35px; }
+  .nav-links { gap:0; }
+  .nav-links a { display:none; }
+  .nav-toggle { display:flex; margin-right:-10px; }
+  .mobile-menu { position:fixed; top:calc(60px + env(safe-area-inset-top,0px)); left:0; right:0; z-index:99; flex-direction:column; padding:8px 16px calc(12px + env(safe-area-inset-bottom,0px)); background:var(--canvas); border-bottom:1px solid var(--line); }
+  .mobile-menu.open { display:flex; }
+  .mobile-menu a { display:flex; align-items:center; min-height:46px; padding:10px 14px; font-size:15px; color:var(--body); border-radius:var(--radius-small); }
+  .mobile-menu a:hover { background:var(--border-soft); color:var(--ink); }
+  .mobile-menu .mobile-cta { background:var(--primary); color:var(--on-primary); justify-content:center; margin-top:8px; }
+  .menu-backdrop.open { display:block; position:fixed; inset:0; z-index:98; background:rgba(23,23,23,.24); }
+  .hero { padding:12px 18px; }
+  .hero-kicker { display:none; }
+  .hero h1 { font-size:24px; line-height:1.1; letter-spacing:-.7px; }
+  .hero-break { display:initial; }
+  .hero-sub { font-size:12px; line-height:1.5; margin-top:8px; max-width:340px; }
+  .hero-sub br { display:none; }
+  .hero-buttons { margin-top:8px; gap:10px; }
+  .hero-buttons .btn { min-height:40px; padding:8px 18px; }
+  .btn { min-height:46px; padding:10px 20px; font-size:13px; }
+  .section { padding:44px 0; }
+  .section-heading h2 { font-size:27px; letter-spacing:-.7px; }
+  .section-heading p { font-size:13px; }
+  .heading-with-link { display:block; }
+  .repositories { padding-top:0; padding-bottom:40px; }
+  .repo-grid { grid-template-columns:1fr; gap:14px; }
+  .repo-card { padding:24px; }
+  .repo-top { flex-direction:column-reverse; align-items:flex-start; gap:6px; }
+  .repo-card h3 { font-size:26px; }
+  .repo-subtitle { font-size:14px; }
+  .repo-bottom { padding-top:18px; }
+  .repo-chips { gap:6px; }
+  .more-repos { grid-template-columns:1fr; gap:20px; margin-top:26px; }
+  .more-repo { padding-top:18px; }
+  .case-grid { grid-template-columns:1fr; gap:18px; }
+  .case-image { height:auto; aspect-ratio:1.8; }
+  .case-body { padding:22px; }
+  .case-body h3 { font-size:20px; }
+  .community { padding:44px 0; }
+  .devwall-avatars { gap:8px; max-width:340px; }
+  .devwall-avatars img { width:46px; height:46px; border-radius:var(--radius-small); }
+  .community-actions { gap:10px 20px; margin-top:24px; }
+  .creation-group { margin-top:24px; padding-top:20px; scroll-margin-top:80px; }
+  .creation-package { grid-template-columns:68px minmax(0,1fr); padding:20px; gap:14px; }
+  .creation-art { width:68px; height:72px; align-self:start; }
+  .creation-copy h2 { font-size:18px; letter-spacing:-.3px; }
+  .creation-label { font-size:11px; }
+  .creation-description,.creation-benefits,.creation-taskline { margin-left:-82px; }
+  .creation-description { margin-top:18px; }
+  .creation-action { grid-column:1 / -1; display:block; }
+  .creation-buy { width:100%; }
+  .creation-boundary { margin-top:10px; }
+  .help-section { padding:34px 0; }
+  .help-grid { grid-template-columns:1fr 1fr; gap:20px 16px; }
+  .help-link p { font-size:11px; }
+  .events { padding-top:34px; }
+  .events-grid { grid-template-columns:1fr; gap:22px; }
+  .event-bottom { gap:10px; }
+  .footer-inner { display:block; }
+  .footer-links { margin-top:12px; gap:20px; }
 }
-@media (max-width: 760px) {
-  .creation-promo { padding: 36px 18px 28px; }
-  .creation-heading { margin-bottom: 20px; }
-  .creation-heading h2 { font-size: 27px; letter-spacing: -.8px; }
-  .creation-grid { grid-template-columns: 1fr; }
-  .creation-package { padding: 22px; }
-  .creation-package h3 { font-size: 18px; }
-  .creation-package h3 span { font-size: 29px; }
-  .creation-eyebrow { max-width: 180px; font-size: 11px; margin-bottom: 10px; }
-  .creation-art { width: 96px; height: 100px; }
-  .creation-description { font-size: 13px; }
-  .creation-buy { width: 100%; }
-  .creation-events { grid-template-rows: auto auto; }
-  .creation-event { padding: 22px; }
-  .creation-event h3 { font-size: 19px; }
-  .creation-event h3 span { display: inline; font-size: 15px; }
-  .creation-event-top { margin-bottom: 10px; }
-  .creation-event > p { font-size: 13px; }
-  .creation-dates { font-size: 12px; }
-  .creation-event-bottom a { font-size: 13px; }
-  .creation-notes { display: block; }
-  .creation-notes > p { margin-top: 6px; }
+@media (max-width:360px) {
+  .nav-logo { font-size:14px; }
+  .hero { padding:9px 18px; }
+  .hero h1 { font-size:22px; }
+  .hero-sub { font-size:11.5px; }
+  .repo-card { padding:20px; }
+  .repo-chips span { font-size:10px; }
+  .devwall-avatars { gap:7px; }
+  .devwall-avatars img { width:40px; height:40px; }
+  .creation-copy h2 { font-size:17px; }
 }
-@media (max-width: 360px) {
-  .creation-package, .creation-event { padding: 18px; }
-  .creation-package-top { gap: 8px; }
-  .creation-art { width: 78px; height: 92px; }
-  .creation-package h3 { font-size: 17px; }
-  .creation-package h3 span { font-size: 27px; }
-  .creation-event h3 span { display: block; }
-  .creation-benefits span { font-size: 10px; }
-}
-@media (prefers-reduced-motion: reduce) { .creation-promo * { transition: none; } }
-
-/* Footer */
-.footer { padding: 56px 24px max(56px,env(safe-area-inset-bottom,0px)); border-top: 1px solid var(--hairline); text-align: center; background: #fff; }
-.footer p { font-size: 12px; color: var(--mute); }
-.footer a { color: var(--body); text-decoration: none; }
-.footer a:hover { color: #0054ff; }
-
-/* Tablet */
-@media (max-width: 1024px) {
-  .playbook-grid { grid-template-columns: repeat(3, 1fr); }
-  .steps h2, .playbook-entry h2, .devwall h2, .docs-section h2 { font-size: 24px; }
-  .qwen-combo h2 { font-size: 28px; }
-  .qwen-combo-grid { gap: 30px; }
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  .nav { height: calc(60px + env(safe-area-inset-top,0px)); }
-  .nav-inner { height: 60px; padding: 8px 20px; }
-  .nav-logo { font-size: 16px; letter-spacing: -.35px; }
-  .nav-links a { display: none; }
-  .nav-toggle { display: flex; margin-right: -12px; }
-  .mobile-menu { position: fixed; top: calc(60px + env(safe-area-inset-top,0px)); left: 0; right: 0; z-index: 99; display: none; flex-direction: column; padding: 8px 16px calc(12px + env(safe-area-inset-bottom,0px)); background: var(--canvas); border-bottom: 1px solid var(--hairline); box-shadow: 0 16px 40px rgba(23,23,23,.10); }
-  .mobile-menu.open { display: flex; }
-  .mobile-menu a { display: flex; align-items: center; min-height: 46px; padding: 10px 14px; font-size: 15px; font-weight: 500; color: var(--body); text-decoration: none; border-radius: var(--rounded-md); }
-  .mobile-menu a:hover, .mobile-menu a:active { background: var(--canvas-soft-2); color: var(--ink); }
-  .mobile-menu .mobile-cta { margin-top: 8px; justify-content: center; background: var(--primary); color: var(--on-primary); border-radius: var(--rounded-sm); }
-  .mobile-menu .mobile-cta:hover, .mobile-menu .mobile-cta:active { background: #0054ff; color: #fff; opacity: 1; }
-  .menu-backdrop.open { display: block; position: fixed; inset: 0; z-index: 98; background: rgba(23,23,23,.24); }
-  .hero { padding: 64px 18px 0; }
-  .hero-kicker { margin-bottom: 14px; font-size: 9px; letter-spacing: .85px; }
-  .hero h1 { font-size: 42px; line-height: 1.12; font-weight: 500; letter-spacing: -2px; }
-  .hero-sub { font-size: 13px; line-height: 23px; margin-top: 20px; max-width: 335px; }
-  .hero-buttons { margin-top: 24px; }
-  .button { height: 44px; min-height: 44px; padding: 8px 18px; font-size: 13px; }
-  .hero-stage { height: 378px; margin-top: 42px; border-radius: 16px; }
-  .hero-stage-glass { width: calc(100% - 30px); padding: 7px; border-radius: 18px; }
-  .hero-stage-ui { border-radius: 12px; padding: 14px 14px 12px; }
-  .hero-stage-top { padding-bottom: 10px; }
-  .hero-stage-title { font-size: 11px; }
-  .hero-stage-status { font-size: 8px; }
-  .hero-stage-prompt { margin: 14px 0 12px; font-size: 13px; line-height: 1.55; }
-  .hero-stage-flow { grid-template-columns: 1fr; }
-  .hero-stage-node { padding: 8px 9px; border-right: 0; border-bottom: 1px solid #eceef2; }
-  .hero-stage-node:last-child { border-bottom: 0; }
-  .hero-stage-node:not(:last-child)::after { content: "↓"; right: 50%; top: auto; bottom: -10px; transform: translateX(50%); }
-  .hero-stage-node b { font-size: 10px; }
-  .hero-stage-node span { font-size: 8px; }
-  .hero-stage-foot { margin-top: 10px; font-size: 8px; }
-  .btn { height: 44px; padding: 0 24px; }
-  .steps-grid { grid-template-columns: 1fr; }
-  .docs-grid { grid-template-columns: 1fr; }
-  .playbook-grid { grid-template-columns: repeat(2, 1fr); }
-  .compat-strip { padding: 16px 18px; }
-  .compat-strip-inner { gap: 12px; }
-  .qwen-combo { padding: 52px 18px 60px; }
-  .qwen-combo-grid { grid-template-columns: 1fr; gap: 30px; }
-  .qwen-combo h2 { font-size: 27px; }
-  .qwen-flow { grid-template-columns: 1fr; }
-  .qwen-flow-step { border-right: 0; border-bottom: 1px solid #ededed; }
-  .qwen-flow-step:last-child { border-bottom: 0; }
-  .qwen-flow-step:not(:last-child)::after { content: "↓"; right: 50%; top: auto; bottom: -11px; transform: translateX(50%); }
-  .qwen-install { grid-template-columns: 1fr; }
-  .qwen-copy-btn { width: 100%; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+@media (prefers-reduced-motion:reduce) {
+  html { scroll-behavior:auto; }
+  *,*::before,*::after { transition:none !important; animation:none !important; }
 }
 </style>
 </head>
 <body>
-
-<nav class="nav">
+<nav class="nav" aria-label="主导航">
   <div class="nav-inner">
     <a href="/" class="nav-logo" aria-label="ModelStudio AI Developers 首页">ModelStudio AI Developers</a>
     <div class="nav-links">
@@ -419,9 +265,9 @@ h1, h2, h3 { text-wrap: balance; font-weight: 500; }
       <a href="/showcase/">案例</a>
       <a href="https://github.com/modelstudioai" target="_blank" rel="noopener">GitHub</a>
       <a href="{{ site.bailian_apikey_url }}" class="nav-cta" target="_blank" rel="noopener">获取 API Key</a>
-      <button class="nav-toggle" aria-label="菜单" aria-expanded="false" aria-controls="mobile-menu">
-        <svg class="icon-menu" viewBox="0 0 24 24"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
-        <svg class="icon-close" viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+      <button class="nav-toggle" aria-label="菜单" aria-expanded="false" aria-controls="mobile-menu" type="button">
+        <svg class="icon-menu" viewBox="0 0 24 24" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        <svg class="icon-close" viewBox="0 0 24 24" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
       </button>
     </div>
   </div>
@@ -433,333 +279,165 @@ h1, h2, h3 { text-wrap: balance; font-weight: 500; }
   <a href="{{ site.bailian_apikey_url }}" class="mobile-cta" target="_blank" rel="noopener">获取 API Key</a>
 </div>
 <div class="menu-backdrop"></div>
-
-<section class="hero">
+<main>
+<section class="hero" aria-labelledby="hero-heading">
   <div class="hero-content">
-    <div class="hero-kicker">MODELSTUDIO · OPEN SOURCE DEVELOPER TOOLS</div>
-    <h1>Born open, <span class="gradient-text">ship AI together</span>.</h1>
-    <p class="hero-sub">为 Qwen Code 等开源 Agent 提供百炼 CLI、Skills 与云上编排能力，让模型、搜索、多模态和应用能力成为可调用的工具。</p>
+    <p class="hero-kicker">OPEN SOURCE · TOOLS · COMMUNITY</p>
+    <h1 id="hero-heading">Born open, <br class="hero-break">ship AI together.</h1>
+    <p class="hero-sub">阿里云百炼开发者的开源阵地。<br>汇集实用仓库、Agent Skills 与社区作品，让代码和经验被更多人用起来。</p>
     <div class="hero-buttons">
-      <a href="{{ site.bailian_cli_url }}" class="button dark hero-primary" target="_blank" rel="noopener">
-        <span class="shader-surface" aria-hidden="true"></span>
-        <span class="shader-label">安装 ModelStudio CLI</span>
-        <svg class="shader-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <a href="https://github.com/modelstudioai" class="btn btn-primary" target="_blank" rel="noopener">探索开源 Org <span aria-hidden="true">↗</span></a>
+      <a href="#showcase" class="btn btn-secondary">看看社区作品</a>
+    </div>
+  </div>
+</section>
+<section class="repositories" id="repositories" aria-label="开源项目">
+  <div class="container">
+    <div class="section-heading heading-with-link"><div><p>从模型调用到可复用工作流，找到你用得上的开源项目。</p></div><a class="text-link" href="https://github.com/orgs/modelstudioai/repositories" target="_blank" rel="noopener">全部仓库 <span aria-hidden="true">↗</span></a></div>
+    <div class="repo-grid">
+      <a class="repo-card" href="https://github.com/modelstudioai/cli" target="_blank" rel="noopener">
+        <div class="repo-top"><span class="repo-kind">模型与工具调用</span><span class="repo-mark">modelstudioai / cli</span></div>
+        <h3>ModelStudio CLI</h3><p class="repo-subtitle">把阿里云百炼能力带到命令行。</p><p class="repo-description">统一调用多模态模型，接入阿里云百炼 MCP 服务。既是独立命令行工具，也可为兼容的 Agent 提供工具调用。</p><div class="repo-bottom"><div class="repo-chips"><span>多模态</span><span>CLI</span><span>MCP</span></div><span class="repo-arrow" aria-hidden="true">↗</span></div>
       </a>
-      <a href="https://github.com/modelstudioai" class="button outline" target="_blank" rel="noopener">查看 GitHub</a>
+      <a class="repo-card skills" href="https://github.com/modelstudioai/skills" target="_blank" rel="noopener">
+        <div class="repo-top"><span class="repo-kind">可复用技能与实践</span><span class="repo-mark">modelstudioai / skills</span></div>
+        <h3>Agent Skills</h3><p class="repo-subtitle">实用方法，不必每次从头整理。</p><p class="repo-description">提供可安装的技能扩展与已验证的社区技能索引，汇集内容创作、媒体处理等任务的工具、步骤与实践经验。</p><div class="repo-bottom"><div class="repo-chips"><span>任务工作流</span><span>社区技能</span><span>可复用</span></div><span class="repo-arrow" aria-hidden="true">↗</span></div>
+      </a>
     </div>
-  </div>
-  <div class="promo-banner">
-    <div class="promo-banner-inner">
-      <div class="promo-banner-left">
-        <div class="promo-banner-kicker">Double 11 · Token Plan</div>
-        <h3>Token Plan 双 11 钜惠，低至<span><b>5</b><i>折</i></span></h3>
-        <p class="promo-banner-sub">「模型 + Agent 工具」一次配齐。</p>
-        <div class="promo-banner-benefits" aria-label="优惠内容">
-          <span>低至 <em>5 折</em></span><span>年度钜惠</span>
-        </div>
-      </div>
-      <a class="promo-banner-cta" href="https://bailian.console.aliyun.com/promotion" target="_blank" rel="noopener">立即抢购 <span aria-hidden="true">↗</span></a>
+    <div class="more-repos">
+      <a class="more-repo" href="https://github.com/modelstudioai/livetranslatedemo" target="_blank" rel="noopener"><h3>实时翻译 Demo <span aria-hidden="true">↗</span></h3><p>浏览器采集语音与画面，展示实时翻译结果。<br>livetranslatedemo · 实践示例</p></a>
+      <a class="more-repo" href="https://github.com/modelstudioai/blog" target="_blank" rel="noopener"><h3>社区 Blog <span aria-hidden="true">↗</span></h3><p>技术文章与社区项目实践，包含 ClawMio 案例。<br>blog · 文章与案例集</p></a>
+      <a class="more-repo" href="https://github.com/modelstudioai/awesome-happyhorse-prompts" target="_blank" rel="noopener"><h3>视频创作提示词库 <span aria-hidden="true">↗</span></h3><p>视频生成提示词、故事板与创作工作流。<br>awesome-happyhorse-prompts · 素材集</p></a>
     </div>
+    <p class="repo-note">各项目的安装方式、兼容范围与版本状态，以仓库 README 为准。</p>
   </div>
 </section>
-
-<section class="creation-promo" id="hackathon-creation" aria-labelledby="creation-heading">
-  <div class="creation-inner">
-    <div class="creation-heading">
-      <div class="creation-kicker">HACKATHON · CREATIVE STARTER</div>
-      <h2 id="creation-heading">准备参加 Hackathon？</h2>
+<section class="section events" id="events" aria-label="社区活动与轻量创作包">
+  <div class="container">
+    <div class="events-grid">
+      <article class="event-card"><p class="event-track">AI × 商业</p><h3>PAYATHON 2026 · AI付黑客松</h3><p>为 AI 产品接入支付，用真实付费验证商业价值。</p><div class="event-bottom"><small>报名及作品提交时间，以官网为准</small><a class="text-link" href="https://aipay.alipay.com/community/events/payathon-2026" target="_blank" rel="noopener noreferrer">赛事官网 <span aria-hidden="true">↗</span></a></div></article>
+      <article class="event-card"><p class="event-track">AI × 旅行</p><h3>飞猪 AI 旅行创新大赛</h3><p>开发 AI 旅行应用或智能体，可选自由或预设方向。</p><div class="event-bottom"><small>报名及作品提交时间，以官网为准</small><a class="text-link" href="https://opc.aliyun.com/feizhu" target="_blank" rel="noopener noreferrer">赛事官网 <span aria-hidden="true">↗</span></a></div></article>
     </div>
-    <div class="creation-grid">
+    <div class="creation-group" id="hackathon-creation" role="region" aria-labelledby="creation-heading">
       <article class="creation-package">
-        <div class="creation-package-top">
-          <div>
-            <p class="creation-eyebrow">给你的 Agent 配一份轻量创作包</p>
-            <h3>百炼模型工具<span>轻体验包</span></h3>
-          </div>
-          <img class="creation-art" src="/assets/img/hackathon-creative-toolkit.jpg" width="140" height="134" alt="蓝色创作工具箱插画" loading="lazy" decoding="async" />
+        <img class="creation-art" src="/assets/img/hackathon-creative-toolkit.jpg" width="104" height="104" alt="蓝色创作工具箱插画" loading="lazy" decoding="async">
+        <div class="creation-copy">
+          <h2 id="creation-heading">给你的 Agent 配一份轻量创作包</h2><p class="creation-label">百炼模型工具 · 轻体验包</p>
+          <p class="creation-description">轻量创作性价比之选，适合参与 Hackathon、创作比赛时，在兼容的 Agent 中开展页面设计和简单功能验证等独立小任务。</p>
+          <div class="creation-benefits" aria-label="组合内容"><span>Token Plan Lite</span><span>百炼自研工具节省计划</span><span>免费 Skills</span></div>
+          <p class="creation-taskline">从一个小任务开始：作品介绍页 / 示例结果卡片 / 简单交互验证</p>
         </div>
-        <p class="creation-description">轻量创作性价比之选，适合参与 Hackathon、创作比赛时，在兼容的 Agent 中开展页面设计和简单功能验证等独立小任务。</p>
-        <div class="creation-benefits" aria-label="组合内容">
-          <span>Token Plan Lite</span><span>百炼自研工具节省计划</span><span>免费 Skills</span>
-        </div>
-        <p class="creation-taskline">从一个小任务开始：作品介绍页 / 示例结果卡片 / 简单交互验证</p>
-        <a class="btn btn-primary creation-buy" href="https://common-buy.aliyun.com/package?planCode=package_ModelToolLiteBu_cn" target="_blank" rel="noopener noreferrer">查看并购买轻体验包 <span aria-hidden="true">↗</span></a>
-        <p class="creation-boundary">用于兼容 Agent 内的交互式任务，作品后端 API、托管另计。</p>
+        <div class="creation-action"><a class="btn btn-primary creation-buy" href="https://common-buy.aliyun.com/package?planCode=package_ModelToolLiteBu_cn" target="_blank" rel="noopener noreferrer">查看并购买轻体验包 <span aria-hidden="true">↗</span></a><p class="creation-boundary">用于兼容 Agent 内的交互式任务，作品后端 API、托管另计。</p></div>
       </article>
-      <div class="creation-events" aria-label="了解两场比赛">
-        <article class="creation-event">
-          <div class="creation-event-top"><span class="creation-track">AI × 商业</span><span class="creation-year">2026</span></div>
-          <h3>PAYATHON 2026 <span>· AI付黑客松</span></h3>
-          <p>为 AI 产品接入支付，用真实付费验证商业价值。</p>
-          <div class="creation-event-bottom">
-            <p class="creation-dates"><span>12 月 1 日报名截止</span><span>12 月 9 日作品提交截止</span></p>
-            <a href="https://aipay.alipay.com/community/events/payathon-2026" target="_blank" rel="noopener noreferrer" aria-label="查看 PAYATHON 2026 赛事官网">赛事官网 <span aria-hidden="true">↗</span></a>
-          </div>
-        </article>
-        <article class="creation-event">
-          <div class="creation-event-top"><span class="creation-track">AI × 旅行</span><span class="creation-year">2026</span></div>
-          <h3>飞猪 AI 旅行创新大赛</h3>
-          <p>开发 AI 旅行应用或智能体，可选自由或预设方向。</p>
-          <div class="creation-event-bottom">
-            <p class="creation-dates"><span>11 月 29 日</span><span>线上比赛及作品提交截止</span></p>
-            <a href="https://opc.aliyun.com/feizhu" target="_blank" rel="noopener noreferrer" aria-label="查看飞猪 AI 旅行创新大赛官网">赛事官网 <span aria-hidden="true">↗</span></a>
-          </div>
-        </article>
-      </div>
+      <details class="creation-details"><summary>购买与使用说明</summary><p>模型及支持的内置工具消耗套餐 Credits；外部 MCP 费用按工具节省计划的适用范围抵扣。Skills 免费，不是额外收费商品。请在商品页确认 Agent 兼容性、当前价格、额度、有效期和账号购买资格。</p><p>上述任务为建议场景，不是完整参赛作品的实测案例；轻体验包不承诺覆盖整场比赛，也不代表本站全部 CLI、生图、视频或部署能力均包含在套餐内。</p></details>
     </div>
-    <div class="creation-notes">
-      <details class="creation-details">
-        <summary>购买与使用说明</summary>
-        <p>模型及支持的内置工具消耗套餐 Credits；外部 MCP 费用按工具节省计划的适用范围抵扣。Skills 免费，不是额外收费商品。请在商品页确认 Agent 兼容性、当前价格、额度、有效期和账号购买资格。</p>
-        <p>上述任务为建议场景，不是完整参赛作品的实测案例；轻体验包不承诺覆盖整场比赛，也不代表本站全部 CLI、生图、视频或部署能力均包含在套餐内。</p>
-      </details>
-      <p>赛事信息核对于 2026.10.30，日程以官网为准。购买不是参赛或评奖条件。</p>
-    </div>
+    <p class="events-note">购买轻体验包不是参赛或评奖条件。</p>
   </div>
 </section>
-
-<section class="compat-strip" aria-label="兼容的开源 Agent 生态">
-  <div class="compat-strip-inner">
-    <span class="compat-label">Works with</span>
-    <a class="compat-item featured" href="https://github.com/QwenLM/qwen-code" target="_blank" rel="noopener">Qwen Code</a>
-    <span class="compat-item">Cursor</span>
-    <span class="compat-item">Cline</span>
-    <span class="compat-item">Windsurf</span>
-    <span class="compat-item">Claude Code</span>
-    <span class="compat-item">MCP clients</span>
-    <p class="compat-proof">ModelStudio CLI 已收录于 <a href="https://github.com/QwenLM/qwen-code#ecosystem" target="_blank" rel="noopener">Qwen Code 官方 Ecosystem</a></p>
+<section class="section showcase" id="showcase" aria-labelledby="showcase-heading">
+  <div class="container">
+    <div class="section-heading heading-with-link"><div><h2 id="showcase-heading">看看他们，从想法到作品</h2><p>从创作工具到业务应用，参考社区开发者的真实实践。</p></div><a class="text-link" href="/showcase/">浏览全部案例 <span aria-hidden="true">→</span></a></div>
+    <div class="case-grid">
+      <a class="case-card" href="/showcase/#妙笔--人人可用的-ai-写作工作台">
+        <img class="case-image" src="https://raw.githubusercontent.com/hotcoffeeshake/writer-saas-showcase/main/01-material.png" width="760" height="420" alt="妙笔写作工作台的资料管理界面" loading="lazy" decoding="async">
+        <div class="case-body"><p class="case-type">内容创作</p><h3>妙笔 · AI 写作工作台</h3><p class="case-description">串联资料到导出的七阶段写作流程。</p><div class="case-author">@hotcoffeeshake <span aria-hidden="true">→</span></div></div>
+      </a>
+      <a class="case-card" href="/showcase/#抖战台--抖音电商-ai-多智能体作战台">
+        <img class="case-image" src="https://raw.githubusercontent.com/ShaoJun-wang/douzhantai/main/docs/screenshots/showcase_01_orchestrator.png" width="760" height="420" alt="抖战台多智能体作战方案界面" loading="lazy" decoding="async">
+        <div class="case-body"><p class="case-type">电商运营</p><h3>抖战台 · 电商多智能体</h3><p class="case-description">四智能体协作生成电商作战方案。</p><div class="case-author">@ShaoJun-wang <span aria-hidden="true">→</span></div></div>
+      </a>
+      <a class="case-card" href="/showcase/#小学生讲题助手--像有耐心的老师一样把题一步步讲明白">
+        <img class="case-image" src="https://github.com/user-attachments/assets/4d7b8bf3-97c0-4764-9a68-db4cefa08cab" width="760" height="420" alt="小学生讲题助手的分步讲解示例" loading="lazy" decoding="async">
+        <div class="case-body"><p class="case-type">学习辅助</p><h3>小学生讲题助手</h3><p class="case-description">识题后按难度分层讲解步骤与原因。</p><div class="case-author">@yinshubinysb-dotcom <span aria-hidden="true">→</span></div></div>
+      </a>
+    </div>
+    <p class="showcase-note">案例技术栈、使用方式及阿里云百炼关联，以各项目的提交说明为准；开发辅助不等于后端运行时依赖。</p>
   </div>
 </section>
-
-<section class="steps">
-  <h2>三步开始</h2>
-  <div class="steps-grid">
-    <div class="step-card">
-      <div class="step-num">Step 1</div>
-      <h3>选择你的 Agent</h3>
-      <p>推荐使用开源的 <a href="https://github.com/QwenLM/qwen-code" target="_blank" rel="noopener">Qwen Code</a>；也支持 Cursor、Cline、Windsurf、Claude Code 和其他 MCP 客户端。</p>
-      <a href="https://github.com/QwenLM/qwen-code" target="_blank" rel="noopener">查看 Qwen Code &rarr;</a>
+<section class="community" id="community" aria-labelledby="community-heading">
+  <div class="container">
+    <div class="section-heading"><h2 id="community-heading">和这些开发者，一起共建。</h2><p>代码、Skills 与案例，来自一个个真实的开发者。<br>欢迎分享作品、贡献方法，也欢迎让已有项目变得更好。</p></div>
+    <div class="devwall-avatars" aria-label="部分社区开发者">
+      <a href="https://github.com/Licecert" target="_blank" rel="noopener" title="@Licecert"><img src="https://github.com/Licecert.png?size=96" alt="@Licecert" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/yonggodlikean" target="_blank" rel="noopener" title="@yonggodlikean"><img src="https://github.com/yonggodlikean.png?size=96" alt="@yonggodlikean" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/zhuan447133268-lab" target="_blank" rel="noopener" title="@zhuan447133268-lab"><img src="https://github.com/zhuan447133268-lab.png?size=96" alt="@zhuan447133268-lab" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/fengfengfeng23" target="_blank" rel="noopener" title="@fengfengfeng23"><img src="https://github.com/fengfengfeng23.png?size=96" alt="@fengfengfeng23" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/sin0317" target="_blank" rel="noopener" title="@sin0317"><img src="https://github.com/sin0317.png?size=96" alt="@sin0317" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/a1178013314" target="_blank" rel="noopener" title="@a1178013314"><img src="https://github.com/a1178013314.png?size=96" alt="@a1178013314" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/oraguinal9" target="_blank" rel="noopener" title="@oraguinal9"><img src="https://github.com/oraguinal9.png?size=96" alt="@oraguinal9" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/PingGuoMiaoMiao" target="_blank" rel="noopener" title="@PingGuoMiaoMiao"><img src="https://github.com/PingGuoMiaoMiao.png?size=96" alt="@PingGuoMiaoMiao" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/DingYida111" target="_blank" rel="noopener" title="@DingYida111"><img src="https://github.com/DingYida111.png?size=96" alt="@DingYida111" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/18978080047" target="_blank" rel="noopener" title="@18978080047"><img src="https://github.com/18978080047.png?size=96" alt="@18978080047" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/taoran7977" target="_blank" rel="noopener" title="@taoran7977"><img src="https://github.com/taoran7977.png?size=96" alt="@taoran7977" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/huangjeanne" target="_blank" rel="noopener" title="@huangjeanne"><img src="https://github.com/huangjeanne.png?size=96" alt="@huangjeanne" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/Laohesix" target="_blank" rel="noopener" title="@Laohesix"><img src="https://github.com/Laohesix.png?size=96" alt="@Laohesix" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/eeeKinn" target="_blank" rel="noopener" title="@eeeKinn"><img src="https://github.com/eeeKinn.png?size=96" alt="@eeeKinn" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/wxmpro" target="_blank" rel="noopener" title="@wxmpro"><img src="https://github.com/wxmpro.png?size=96" alt="@wxmpro" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/maqing0303" target="_blank" rel="noopener" title="@maqing0303"><img src="https://github.com/maqing0303.png?size=96" alt="@maqing0303" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/wx73306-create" target="_blank" rel="noopener" title="@wx73306-create"><img src="https://github.com/wx73306-create.png?size=96" alt="@wx73306-create" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/EthanSMC" target="_blank" rel="noopener" title="@EthanSMC"><img src="https://github.com/EthanSMC.png?size=96" alt="@EthanSMC" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/maxi-max-dev" target="_blank" rel="noopener" title="@maxi-max-dev"><img src="https://github.com/maxi-max-dev.png?size=96" alt="@maxi-max-dev" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/ShaoJun-wang" target="_blank" rel="noopener" title="@ShaoJun-wang"><img src="https://github.com/ShaoJun-wang.png?size=96" alt="@ShaoJun-wang" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/yinshubinysb-dotcom" target="_blank" rel="noopener" title="@yinshubinysb-dotcom"><img src="https://github.com/yinshubinysb-dotcom.png?size=96" alt="@yinshubinysb-dotcom" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/MrsFlower" target="_blank" rel="noopener" title="@MrsFlower"><img src="https://github.com/MrsFlower.png?size=96" alt="@MrsFlower" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/msensi" target="_blank" rel="noopener" title="@msensi"><img src="https://github.com/msensi.png?size=96" alt="@msensi" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/hotcoffeeshake" target="_blank" rel="noopener" title="@hotcoffeeshake"><img src="https://github.com/hotcoffeeshake.png?size=96" alt="@hotcoffeeshake" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/Thea729-fable" target="_blank" rel="noopener" title="@Thea729-fable"><img src="https://github.com/Thea729-fable.png?size=96" alt="@Thea729-fable" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/kkz-admin" target="_blank" rel="noopener" title="@kkz-admin"><img src="https://github.com/kkz-admin.png?size=96" alt="@kkz-admin" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/wanhe-hash" target="_blank" rel="noopener" title="@wanhe-hash"><img src="https://github.com/wanhe-hash.png?size=96" alt="@wanhe-hash" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/farlyfeifei" target="_blank" rel="noopener" title="@farlyfeifei"><img src="https://github.com/farlyfeifei.png?size=96" alt="@farlyfeifei" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/tbszz" target="_blank" rel="noopener" title="@tbszz"><img src="https://github.com/tbszz.png?size=96" alt="@tbszz" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/gengcheng" target="_blank" rel="noopener" title="@gengcheng"><img src="https://github.com/gengcheng.png?size=96" alt="@gengcheng" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/GavinZhao19" target="_blank" rel="noopener" title="@GavinZhao19"><img src="https://github.com/GavinZhao19.png?size=96" alt="@GavinZhao19" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/rojalus" target="_blank" rel="noopener" title="@rojalus"><img src="https://github.com/rojalus.png?size=96" alt="@rojalus" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/CNWU16" target="_blank" rel="noopener" title="@CNWU16"><img src="https://github.com/CNWU16.png?size=96" alt="@CNWU16" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/myfx1199" target="_blank" rel="noopener" title="@myfx1199"><img src="https://github.com/myfx1199.png?size=96" alt="@myfx1199" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/bianzigege" target="_blank" rel="noopener" title="@bianzigege"><img src="https://github.com/bianzigege.png?size=96" alt="@bianzigege" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/youngys012345-ai" target="_blank" rel="noopener" title="@youngys012345-ai"><img src="https://github.com/youngys012345-ai.png?size=96" alt="@youngys012345-ai" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/Pinkie-Pie-Lucky" target="_blank" rel="noopener" title="@Pinkie-Pie-Lucky"><img src="https://github.com/Pinkie-Pie-Lucky.png?size=96" alt="@Pinkie-Pie-Lucky" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/coocoo-pineapple" target="_blank" rel="noopener" title="@coocoo-pineapple"><img src="https://github.com/coocoo-pineapple.png?size=96" alt="@coocoo-pineapple" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/Zijia369" target="_blank" rel="noopener" title="@Zijia369"><img src="https://github.com/Zijia369.png?size=96" alt="@Zijia369" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/emajjsky" target="_blank" rel="noopener" title="@emajjsky"><img src="https://github.com/emajjsky.png?size=96" alt="@emajjsky" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/2892480843" target="_blank" rel="noopener" title="@2892480843"><img src="https://github.com/2892480843.png?size=96" alt="@2892480843" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/Tech-ArthurX" target="_blank" rel="noopener" title="@Tech-ArthurX"><img src="https://github.com/Tech-ArthurX.png?size=96" alt="@Tech-ArthurX" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/cpufreestyle" target="_blank" rel="noopener" title="@cpufreestyle"><img src="https://github.com/cpufreestyle.png?size=96" alt="@cpufreestyle" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/inoichi1009207" target="_blank" rel="noopener" title="@inoichi1009207"><img src="https://github.com/inoichi1009207.png?size=96" alt="@inoichi1009207" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/xiaomowow" target="_blank" rel="noopener" title="@xiaomowow"><img src="https://github.com/xiaomowow.png?size=96" alt="@xiaomowow" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/fanbinkong2001" target="_blank" rel="noopener" title="@fanbinkong2001"><img src="https://github.com/fanbinkong2001.png?size=96" alt="@fanbinkong2001" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/CH2655" target="_blank" rel="noopener" title="@CH2655"><img src="https://github.com/CH2655.png?size=96" alt="@CH2655" loading="lazy" width="52" height="52"></a>
+      <a href="https://github.com/fq-small" target="_blank" rel="noopener" title="@fq-small"><img src="https://github.com/fq-small.png?size=96" alt="@fq-small" loading="lazy" width="52" height="52"></a>
     </div>
-    <div class="step-card">
-      <div class="step-num">Step 2</div>
-      <h3>安装 CLI，连接百炼</h3>
-      <p>安装 ModelStudio CLI 并配置百炼 API Key，把模型、搜索、多模态、应用和部署能力交给 Agent 调用。</p>
-      <a href="{{ site.bailian_cli_url }}" target="_blank" rel="noopener">安装 ModelStudio CLI &rarr;</a>
-      &nbsp;&nbsp;
-      <a href="{{ site.bailian_apikey_url }}" target="_blank" rel="noopener">获取 API Key &rarr;</a>
-    </div>
-    <div class="step-card">
-      <div class="step-num">Step 3</div>
-      <h3>运行一个 Skill</h3>
-      <p>加载 ModelStudio Skills，用一句话运行短片制作、媒体清洗、模型选型等完整工作流。</p>
-      <a href="/skills/">查看精选 Skills &rarr;</a>
-    </div>
+    <div class="community-actions"><a class="btn btn-primary" href="https://github.com/modelstudioai/modelstudioai.github.io/issues/new/choose" target="_blank" rel="noopener">分享你的案例 <span aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/modelstudioai/skills" target="_blank" rel="noopener">参与 Skills 共建 <span aria-hidden="true">↗</span></a><a class="text-link" href="/contributors/">认识更多开发者 <span aria-hidden="true">→</span></a></div>
   </div>
 </section>
-
-<section class="qwen-combo" id="qwen-code">
-  <div class="qwen-combo-inner">
-    <div class="qwen-combo-grid">
-      <div>
-        <div class="qwen-combo-kicker">Recommended combination</div>
-        <h2>Qwen Code + ModelStudio CLI</h2>
-        <p class="qwen-combo-lead">Qwen Code 负责理解任务、规划步骤和调用工具；ModelStudio Skills 提供可复用工作流；ModelStudio CLI 执行百炼的模型、搜索、多模态、应用编排与部署能力。</p>
-        <div class="qwen-combo-proof">
-          <strong>ModelStudio CLI 已收录于 Qwen Code 官方 Ecosystem</strong>
-          官方说明：可扩展图像/视频生成、知识检索、应用编排和模型部署能力。<a href="https://github.com/QwenLM/qwen-code#ecosystem" target="_blank" rel="noopener">查看原文 &rarr;</a>
-        </div>
-        <div class="qwen-combo-actions">
-          <a class="btn qwen-combo-primary" href="https://bailian.aliyun.com/cli/install.md" target="_blank" rel="noopener">在 Qwen Code 中安装</a>
-          <a class="btn qwen-combo-secondary" href="https://github.com/QwenLM/qwen-code#ecosystem" target="_blank" rel="noopener">查看官方 Ecosystem</a>
-        </div>
-      </div>
-
-      <div>
-        <div class="qwen-flow" aria-label="Qwen Code 到百炼的执行链路">
-          <article class="qwen-flow-step">
-            <div class="qwen-flow-num">01 · AGENT</div>
-            <div class="qwen-flow-mark">Q</div>
-            <h3>Qwen Code</h3>
-            <p>理解任务<br>调度工具</p>
-          </article>
-          <article class="qwen-flow-step">
-            <div class="qwen-flow-num">02 · WORKFLOW</div>
-            <div class="qwen-flow-mark">S</div>
-            <h3>Skills</h3>
-            <p>组织步骤<br>约束流程</p>
-          </article>
-          <article class="qwen-flow-step">
-            <div class="qwen-flow-num">03 · TOOL</div>
-            <div class="qwen-flow-mark">M</div>
-            <h3>ModelStudio CLI</h3>
-            <p>调用模型<br>执行操作</p>
-          </article>
-          <article class="qwen-flow-step">
-            <div class="qwen-flow-num">04 · CLOUD</div>
-            <div class="qwen-flow-mark">B</div>
-            <h3>阿里云百炼</h3>
-            <p>模型服务<br>云上能力</p>
-          </article>
-        </div>
-        <div class="qwen-install">
-          <div class="qwen-install-text" id="qwen-install-prompt"><span class="comment"># Paste this into Qwen Code</span><br><span class="prompt">Please read https://bailian.aliyun.com/cli/install.md and install the Aliyun Model Studio CLI for me.</span></div>
-          <button class="qwen-copy-btn" id="qwen-copy-btn" type="button">复制 Prompt</button>
-        </div>
-      </div>
-    </div>
-  </div>
+<section class="help-section" id="help" aria-labelledby="help-heading">
+  <div class="container"><h2 id="help-heading">文档与实践</h2><div class="help-grid">
+    <a class="help-link" href="/guide/"><h3>完整教程 <span aria-hidden="true">→</span></h3><p>安装、配置与使用方式。</p></a>
+    <a class="help-link" href="/playbook/"><h3>岗位能力样板 <span aria-hidden="true">→</span></h3><p>按工作场景查看工具与任务示例。</p></a>
+    <a class="help-link" href="/workshop/"><h3>Workshop 实验手册 <span aria-hidden="true">→</span></h3><p>活动实验与动手实践参考。</p></a>
+    <a class="help-link" href="/faq/"><h3>常见问题 <span aria-hidden="true">→</span></h3><p>费用、配置与排错说明。</p></a>
+  </div></div>
 </section>
-
-<section class="devwall">
-  <div class="devwall-inner">
-    <h2>112 位开发者，121 个真实案例</h2>
-    <p class="section-sub">从小学生到博士生，从独立开发者到企业工程师 &mdash;&mdash; 他们用阿里云百炼把一个具体问题，做成了能跑起来的东西。</p>
-    <div class="devwall-avatars">
-      <a href="https://github.com/Licecert" target="_blank" rel="noopener" title="@Licecert"><img src="https://github.com/Licecert.png?size=96" alt="@Licecert" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/yonggodlikean" target="_blank" rel="noopener" title="@yonggodlikean"><img src="https://github.com/yonggodlikean.png?size=96" alt="@yonggodlikean" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/zhuan447133268-lab" target="_blank" rel="noopener" title="@zhuan447133268-lab"><img src="https://github.com/zhuan447133268-lab.png?size=96" alt="@zhuan447133268-lab" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/fengfengfeng23" target="_blank" rel="noopener" title="@fengfengfeng23"><img src="https://github.com/fengfengfeng23.png?size=96" alt="@fengfengfeng23" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/sin0317" target="_blank" rel="noopener" title="@sin0317"><img src="https://github.com/sin0317.png?size=96" alt="@sin0317" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/a1178013314" target="_blank" rel="noopener" title="@a1178013314"><img src="https://github.com/a1178013314.png?size=96" alt="@a1178013314" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/oraguinal9" target="_blank" rel="noopener" title="@oraguinal9"><img src="https://github.com/oraguinal9.png?size=96" alt="@oraguinal9" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/PingGuoMiaoMiao" target="_blank" rel="noopener" title="@PingGuoMiaoMiao"><img src="https://github.com/PingGuoMiaoMiao.png?size=96" alt="@PingGuoMiaoMiao" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/DingYida111" target="_blank" rel="noopener" title="@DingYida111"><img src="https://github.com/DingYida111.png?size=96" alt="@DingYida111" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/18978080047" target="_blank" rel="noopener" title="@18978080047"><img src="https://github.com/18978080047.png?size=96" alt="@18978080047" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/taoran7977" target="_blank" rel="noopener" title="@taoran7977"><img src="https://github.com/taoran7977.png?size=96" alt="@taoran7977" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/huangjeanne" target="_blank" rel="noopener" title="@huangjeanne"><img src="https://github.com/huangjeanne.png?size=96" alt="@huangjeanne" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/Laohesix" target="_blank" rel="noopener" title="@Laohesix"><img src="https://github.com/Laohesix.png?size=96" alt="@Laohesix" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/eeeKinn" target="_blank" rel="noopener" title="@eeeKinn"><img src="https://github.com/eeeKinn.png?size=96" alt="@eeeKinn" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/wxmpro" target="_blank" rel="noopener" title="@wxmpro"><img src="https://github.com/wxmpro.png?size=96" alt="@wxmpro" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/maqing0303" target="_blank" rel="noopener" title="@maqing0303"><img src="https://github.com/maqing0303.png?size=96" alt="@maqing0303" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/wx73306-create" target="_blank" rel="noopener" title="@wx73306-create"><img src="https://github.com/wx73306-create.png?size=96" alt="@wx73306-create" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/EthanSMC" target="_blank" rel="noopener" title="@EthanSMC"><img src="https://github.com/EthanSMC.png?size=96" alt="@EthanSMC" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/maxi-max-dev" target="_blank" rel="noopener" title="@maxi-max-dev"><img src="https://github.com/maxi-max-dev.png?size=96" alt="@maxi-max-dev" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/ShaoJun-wang" target="_blank" rel="noopener" title="@ShaoJun-wang"><img src="https://github.com/ShaoJun-wang.png?size=96" alt="@ShaoJun-wang" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/yinshubinysb-dotcom" target="_blank" rel="noopener" title="@yinshubinysb-dotcom"><img src="https://github.com/yinshubinysb-dotcom.png?size=96" alt="@yinshubinysb-dotcom" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/MrsFlower" target="_blank" rel="noopener" title="@MrsFlower"><img src="https://github.com/MrsFlower.png?size=96" alt="@MrsFlower" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/msensi" target="_blank" rel="noopener" title="@msensi"><img src="https://github.com/msensi.png?size=96" alt="@msensi" loading="lazy" width="48" height="48"></a>
-      <a href="https://github.com/hotcoffeeshake" target="_blank" rel="noopener" title="@hotcoffeeshake"><img src="https://github.com/hotcoffeeshake.png?size=96" alt="@hotcoffeeshake" loading="lazy" width="48" height="48"></a>
-      <a class="devwall-more" href="/contributors/" title="查看全部 112 位开发者">+88</a>
-    </div>
-    <div class="devwall-cta-wrap"><a class="devwall-cta" href="/contributors/">看全部 112 位开发者 &rarr;</a></div>
-  </div>
-</section>
-
-<section class="playbook-entry">
-  <div class="playbook-entry-inner">
-    <a class="playbook-headline" href="/playbook/">
-      <h2>不知道从哪开始？按岗位找你的能力样板 <span class="playbook-headline-arrow">&rarr;</span></h2>
-      <p class="section-sub">8 个岗位，每个都有「想清楚 &rarr; 动手做 &rarr; 检查对不对」的完整回路 + 30 分钟最小流程，复制即用。</p>
-    </a>
-    <div class="playbook-grid">
-      <a class="pb-card" href="/playbook/#kw"><span class="pb-mark">KW</span><h3>知识工作者</h3><p>写报告 &middot; 做调研 &middot; 整理资料</p></a>
-      <a class="pb-card" href="/playbook/#dz"><span class="pb-mark">DS</span><h3>设计师</h3><p>出图 &middot; 出视频 &middot; 做海报</p></a>
-      <a class="pb-card" href="/playbook/#dev"><span class="pb-mark">DEV</span><h3>AI 开发</h3><p>接 API &middot; 搭 Agent &middot; 做产品</p></a>
-      <a class="pb-card" href="/playbook/#fin"><span class="pb-mark">FIN</span><h3>投研咨询</h3><p>拉数据 &middot; 做估值 &middot; 写研报</p></a>
-      <a class="pb-card" href="/playbook/#cs"><span class="pb-mark">CS</span><h3>客服运营</h3><p>回复用户 &middot; 处理工单</p></a>
-      <a class="pb-card" href="/playbook/#mkt"><span class="pb-mark">MKT</span><h3>内容营销</h3><p>写文章 &middot; 出配图 &middot; 做短视频</p></a>
-      <a class="pb-card" href="/playbook/#ops"><span class="pb-mark">OPS</span><h3>AI Ops</h3><p>用量 &middot; 配额 &middot; SLA</p></a>
-      <a class="pb-card" href="/playbook/#legal"><span class="pb-mark">LAW</span><h3>法务合规</h3><p>条款比对 &middot; 出意见</p></a>
-    </div>
-    <div class="playbook-cta-wrap"><a class="playbook-cta" href="/playbook/">看完整 8 岗位样板 &rarr;</a></div>
-  </div>
-</section>
-
-<section class="docs-section">
-  <h2>文档与资源</h2>
-  <div class="docs-grid">
-    <a href="/guide/" class="doc-link">
-      <div class="doc-link-icon">01</div>
-      <div><h3>完整教程</h3><p>从零跑通 OpenWork + CLI + Skills 全流程</p></div>
-    </a>
-    <a href="/workshop/" class="doc-link">
-      <div class="doc-link-icon">02</div>
-      <div><h3>Workshop 实验手册</h3><p>线下活动专属引导页，Step by Step 动手</p></div>
-    </a>
-    <a href="/showcase/" class="doc-link">
-      <div class="doc-link-icon">03</div>
-      <div><h3>用户案例</h3><p>社区成员的真实使用案例与实践分享</p></div>
-    </a>
-    <a href="/faq/" class="doc-link">
-      <div class="doc-link-icon">04</div>
-      <div><h3>FAQ</h3><p>常见问题速查与踩坑记录</p></div>
-    </a>
-  </div>
-</section>
-
-<footer class="footer">
-  <p>Built with &hearts; by <a href="https://github.com/modelstudioai" target="_blank" rel="noopener">ModelStudio for Developers</a></p>
-  <p style="margin-top:8px;">
-    <a href="https://github.com/modelstudioai" target="_blank" rel="noopener">GitHub</a> &nbsp;&middot;&nbsp;
-    <a href="/guide/">文档</a> &nbsp;&middot;&nbsp;
-    <a href="/showcase/">社区</a> &nbsp;&middot;&nbsp;
-    <a href="{{ site.bailian_cli_url }}" target="_blank" rel="noopener">阿里云百炼</a>
-  </p>
-</footer>
-
+</main>
+<footer class="footer"><div class="footer-inner"><p>ModelStudio AI Developers · 开源与开发者实践</p><div class="footer-links"><a href="https://github.com/modelstudioai" target="_blank" rel="noopener">GitHub</a><a href="/guide/">文档</a><a href="/showcase/">案例</a><a href="{{ site.bailian_cli_url }}" target="_blank" rel="noopener">阿里云百炼</a></div></div></footer>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  var toggle = document.querySelector('.nav-toggle');
-  var menu = document.getElementById('mobile-menu');
-  var backdrop = document.querySelector('.menu-backdrop');
-  if (!toggle || !menu || !backdrop) return;
-  function setMenu(open) {
-    menu.classList.toggle('open', open);
-    backdrop.classList.toggle('open', open);
-    toggle.setAttribute('aria-expanded', String(open));
-    toggle.setAttribute('aria-label', open ? '关闭菜单' : '菜单');
-    document.body.style.overflow = open ? 'hidden' : '';
+document.addEventListener('DOMContentLoaded',function(){
+  var toggle=document.querySelector('.nav-toggle');
+  var menu=document.getElementById('mobile-menu');
+  var backdrop=document.querySelector('.menu-backdrop');
+  if(!toggle||!menu||!backdrop) return;
+  function setMenu(open){
+    menu.classList.toggle('open',open); backdrop.classList.toggle('open',open);
+    toggle.setAttribute('aria-expanded',String(open));
+    toggle.setAttribute('aria-label',open?'关闭菜单':'菜单');
+    document.body.style.overflow=open?'hidden':'';
   }
-  toggle.addEventListener('click', function() { setMenu(!menu.classList.contains('open')); });
-  backdrop.addEventListener('click', function() { setMenu(false); });
-  menu.addEventListener('click', function(e) { if (e.target.closest('a')) setMenu(false); });
-  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') setMenu(false); });
-  window.addEventListener('resize', function() { if (window.innerWidth > 768) setMenu(false); });
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-  var copyBtn = document.getElementById('qwen-copy-btn');
-  var prompt = document.getElementById('qwen-install-prompt');
-  if (!copyBtn || !prompt) return;
-  copyBtn.addEventListener('click', async function() {
-    var text = 'Please read https://bailian.aliyun.com/cli/install.md and install the Aliyun Model Studio CLI for me.';
-    var copied = false;
-    if (navigator.clipboard && window.isSecureContext) {
-      try { await navigator.clipboard.writeText(text); copied = true; } catch (e) {}
-    }
-    if (!copied) {
-      try {
-        var area = document.createElement('textarea');
-        area.value = text;
-        area.setAttribute('readonly', '');
-        area.style.position = 'fixed';
-        area.style.left = '-9999px';
-        document.body.appendChild(area);
-        area.select();
-        copied = document.execCommand('copy');
-        area.remove();
-      } catch (e) {}
-    }
-    if (copied) {
-      copyBtn.textContent = '已复制';
-      copyBtn.classList.add('copied');
-    } else {
-      var range = document.createRange();
-      range.selectNodeContents(prompt);
-      var selection = window.getSelection();
-      selection.removeAllRanges();
-      selection.addRange(range);
-      copyBtn.textContent = '已选中，请复制';
-    }
-    window.setTimeout(function() {
-      copyBtn.textContent = '复制 Prompt';
-      copyBtn.classList.remove('copied');
-    }, 1800);
-  });
+  toggle.addEventListener('click',function(){setMenu(!menu.classList.contains('open'));});
+  backdrop.addEventListener('click',function(){setMenu(false);});
+  menu.addEventListener('click',function(e){if(e.target.closest('a')) setMenu(false);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape') setMenu(false);});
+  window.addEventListener('resize',function(){if(window.innerWidth>768) setMenu(false);});
 });
 </script>
-<script src="/assets/js/shader-button.js" defer></script>
-
 </body>
 </html>
-
