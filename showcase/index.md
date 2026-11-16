@@ -14,6 +14,24 @@ keywords: "阿里云百炼案例,AI Agent 案例,百炼CLI,OpenWork,Showcase,社
 
 ---
 
+## 田野罗盘 · 面向社科研究者的 AI 田野调查筹备助手
+
+**作者**：[@altairos](https://github.com/altairos)（Miovelle） · 2026-10-21
+
+面向社科研究者的田野调查筹备助手，把「研究定位 → 田野点画像 → 行程规划 → 方案生成」串成四阶段引导对话。阿里云百炼通义千问承担对话与方案生成，FlyAI CLI 为选点、交通、长住住宿和文化资源提供搜索接口。项目历史版本具备 Web 对话、工具分派、状态保存与八章式研究方案草稿生成链路，内核封装为 32 工具的 MCP 接口，可供不同宿主复用。研究方案、访谈提纲与知情同意书均为辅助草稿，需研究者确认与复核。当前仓库已归档，主分支为专有许可；下方源码链接指向保留 MIT 授权的历史版本。
+
+**工具**：阿里云百炼（DashScope；qwen3.8-flash / qwen-max）+ Skill `flyai-skill` / FlyAI CLI + FastAPI / SSE / React + MCP
+
+**体验**：[在线 Demo](https://miovelle.cn/fieldpass/) ｜ **视频**：[演示视频](https://miovelle.cn/fieldpass/promo.html) ｜ **历史 MIT 版本**：[open-source-final](https://github.com/altairos/fieldwork-agent/tree/open-source-final)
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/878bba3a-3d2f-4caf-9bd8-f5b9488c5d11" />
+
+<img width="3840" height="2160" alt="Image" src="https://github.com/user-attachments/assets/cc19ae83-f9a6-45ee-8075-bf571d0bb546" />
+
+> [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/196)
+
+---
+
 ## Code Designer AI — AI 驱动的网页逆向工程平台：一条 URL 到可运行的 React 工程
 
 **作者**：[@wx73306-create](https://github.com/wx73306-create) · 2026-08-20
