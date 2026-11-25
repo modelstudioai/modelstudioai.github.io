@@ -2,7 +2,7 @@
 layout: doc
 title: 支付宝智能体涌现奖 · 百炼权益专区
 permalink: /emerge-2026/
-description: "支付宝智能体涌现奖参赛专区——1000 万总奖池、两条赛道，阿里云百炼为新用户提供 1 亿 Token、为老用户提供最高 200 元等额补贴，另有 Token Plan 福利券，边做作品边领。"
+description: "支付宝智能体涌现奖参赛专区——1000 万总奖池、两条赛道，阿里云百炼为新用户提供 2500 万 Token、为老用户提供最高 200 元等额补贴，另有 Token Plan 福利券，边做作品边领。"
 keywords: "智能体涌现奖,支付宝大赛,阿里云百炼,Agent 比赛,Token 补贴,OPC,Token Plan 福利券,QMuse"
 ---
 
@@ -33,8 +33,8 @@ keywords: "智能体涌现奖,支付宝大赛,阿里云百炼,Agent 比赛,Token
 <div class="benefit-grid">
   <div class="b-card">
     <span class="b-tag">新用户权益</span>
-    <div class="b-num">1 亿 Token</div>
-    <p class="b-desc">百炼新用户免费领 1 亿 Token，报名参赛即可领取，覆盖赛题开发的全部模型调用。</p>
+    <div class="b-num">2500 万 Token</div>
+    <p class="b-desc">百炼新用户免费领 2500 万 Token，报名参赛即可领取，覆盖赛题开发的全部模型调用。</p>
     <div class="b-url"><a href="https://bailian.console.aliyun.com/cn-beijing/?tab=costing-balance#/costing-balance/free-quota" target="_blank" rel="noopener">https://bailian.console.aliyun.com/cn-beijing/?tab=costing-balance#/costing-balance/free-quota</a><button class="b-copy" type="button" data-url="https://bailian.console.aliyun.com/cn-beijing/?tab=costing-balance#/costing-balance/free-quota">复制</button></div>
     <a class="b-link" href="https://bailian.console.aliyun.com/cn-beijing/?tab=costing-balance#/costing-balance/free-quota" target="_blank" rel="noopener">去领取 →</a>
   </div>
