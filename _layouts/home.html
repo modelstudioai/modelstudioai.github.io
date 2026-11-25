@@ -150,6 +150,17 @@ section[id] { scroll-margin-top:96px; }
 .help-link h3 span { color:var(--link); }
 .help-link p { color:var(--body); font-size:12px; line-height:1.8; margin-top:8px; }
 .events { border-top:1px solid var(--line); padding:42px 0; }
+.event-featured { display:flex; justify-content:space-between; align-items:center; gap:24px; padding:24px 28px; margin-bottom:28px; background:linear-gradient(120deg,var(--blue-soft),var(--violet-soft)); border:1px solid #d9e2ff; border-radius:var(--radius); }
+.event-featured-copy { min-width:0; }
+.event-featured .event-track { display:inline-flex; align-items:center; gap:8px; margin-bottom:10px; }
+.event-featured .event-track::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--link); }
+.event-featured h3 { font-size:22px; letter-spacing:-.5px; }
+.event-featured p { font-size:13px; line-height:1.8; color:var(--body); margin-top:8px; max-width:640px; }
+.event-featured-meta { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-top:12px; }
+.event-deadline { font-family:var(--font-mono); font-size:11px; color:var(--link-deep); background:var(--paper); border:1px solid #d9e2ff; border-radius:6px; padding:4px 8px; }
+.event-featured-actions { display:flex; flex-direction:column; align-items:stretch; gap:10px; flex-shrink:0; }
+.event-featured-actions .btn { min-height:44px; padding:9px 20px; }
+.event-featured-actions .text-link { justify-content:center; min-height:36px; }
 .events-grid { display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:0; }
 .event-card { display:flex; flex-direction:column; border-top:2px solid var(--line); padding:22px 0 0; }
 .event-track { font-size:11px; color:var(--link); margin-bottom:12px; }
@@ -234,6 +245,10 @@ section[id] { scroll-margin-top:96px; }
   .help-grid { grid-template-columns:1fr 1fr; gap:20px 16px; }
   .help-link p { font-size:11px; }
   .events { padding-top:34px; }
+  .event-featured { flex-direction:column; align-items:stretch; padding:20px; gap:16px; }
+  .event-featured h3 { font-size:19px; }
+  .event-featured-actions { flex-direction:row; align-items:center; gap:14px; }
+  .event-featured-actions .btn { flex:1; }
   .events-grid { grid-template-columns:1fr; gap:22px; }
   .event-bottom { gap:10px; }
   .footer-inner { display:block; }
@@ -314,6 +329,18 @@ section[id] { scroll-margin-top:96px; }
 </section>
 <section class="section events" id="events" aria-label="社区活动与轻量创作包">
   <div class="container">
+    <article class="event-featured">
+      <div class="event-featured-copy">
+        <p class="event-track">AI × 智能体 · 生态合作</p>
+        <h3>支付宝智能体涌现奖</h3>
+        <p>1000 万总奖池，生活好帮手 / 消费新体验两条赛道。阿里云百炼为参赛者提供新用户 1 亿 Token、老用户最高 200 元等额补贴与 Token Plan 福利券。</p>
+        <div class="event-featured-meta"><span class="event-deadline">首轮投递截止 12.06 零点</span><span class="event-deadline">年度最佳智能体 100 万</span></div>
+      </div>
+      <div class="event-featured-actions">
+        <a class="btn btn-primary" href="https://emerge.alipay.com/#/?section=hero" target="_blank" rel="noopener noreferrer">大赛入口 <span aria-hidden="true">↗</span></a>
+        <a class="text-link" href="/emerge-2026/">百炼权益专区 <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
     <div class="events-grid">
       <article class="event-card"><p class="event-track">AI × 商业</p><h3>PAYATHON 2026 · AI付黑客松</h3><p>为 AI 产品接入支付，用真实付费验证商业价值。</p><div class="event-bottom"><small>报名及作品提交时间，以官网为准</small><a class="text-link" href="https://aipay.alipay.com/community/events/payathon-2026" target="_blank" rel="noopener noreferrer">赛事官网 <span aria-hidden="true">↗</span></a></div></article>
       <article class="event-card"><p class="event-track">AI × 旅行</p><h3>飞猪 AI 旅行创新大赛</h3><p>开发 AI 旅行应用或智能体，可选自由或预设方向。</p><div class="event-bottom"><small>报名及作品提交时间，以官网为准</small><a class="text-link" href="https://opc.aliyun.com/feizhu" target="_blank" rel="noopener noreferrer">赛事官网 <span aria-hidden="true">↗</span></a></div></article>
