@@ -91,7 +91,7 @@ keywords: "阿里云百炼案例,AI Agent 案例,百炼CLI,OpenWork,Showcase,社
 
 **仓库**：https://github.com/ShaoJun-wang/douzhantai ｜ **在线体验**：https://26040e8952db42ae9ef6d7ca086789ed.bj4.agentos-app.net
 
-![抖战台 · 抖音电商 AI 多智能体作战台](https://raw.githubusercontent.com/ShaoJun-wang/douzhantai/main/docs/screenshots/showcase_01_orchestrator.png)
+![抖战台 · 抖音电商 AI 多智能体作战台](/assets/img/showcase-douzhantai.png)
 
 > [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/84)
 
@@ -107,7 +107,7 @@ keywords: "阿里云百炼案例,AI Agent 案例,百炼CLI,OpenWork,Showcase,社
 
 **在线体验**：https://code.coze.cn/web-sdk/7651237187912122377
 
-![小学生讲题助手核心界面](https://github.com/user-attachments/assets/4d7b8bf3-97c0-4764-9a68-db4cefa08cab)
+![小学生讲题助手核心界面](/assets/img/showcase-jiangti-helper.png)
 
 > [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/154)
 
@@ -247,7 +247,7 @@ keywords: "阿里云百炼案例,AI Agent 案例,百炼CLI,OpenWork,Showcase,社
 
 **仓库**：https://github.com/hotcoffeeshake/writer-assistant-saas
 
-![妙笔 · 人人可用的 AI 写作工作台](https://raw.githubusercontent.com/hotcoffeeshake/writer-saas-showcase/main/01-material.png)
+![妙笔 · 人人可用的 AI 写作工作台](/assets/img/showcase-miaobi-writer.png)
 
 > [查看原始 Issue →](https://github.com/modelstudioai/modelstudioai.github.io/issues/107)
 
