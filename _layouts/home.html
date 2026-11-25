@@ -160,7 +160,8 @@ section[id] { scroll-margin-top:96px; }
 .event-deadline { font-family:var(--font-mono); font-size:11px; color:var(--link-deep); background:var(--paper); border:1px solid #d9e2ff; border-radius:6px; padding:4px 8px; }
 .event-featured-actions { display:flex; flex-direction:column; align-items:stretch; gap:10px; flex-shrink:0; }
 .event-featured-actions .btn { min-height:44px; padding:9px 20px; }
-.event-featured-actions .text-link { justify-content:center; min-height:36px; }
+.event-featured-actions .btn-secondary { color:var(--link-deep); border-color:#bcd0ff; background:rgba(255,255,255,.72); }
+.event-featured-actions .btn-secondary:hover { border-color:var(--link); color:var(--link); background:#fff; }
 .events-grid { display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:0; }
 .event-card { display:flex; flex-direction:column; border-top:2px solid var(--line); padding:22px 0 0; }
 .event-track { font-size:11px; color:var(--link); margin-bottom:12px; }
@@ -247,8 +248,8 @@ section[id] { scroll-margin-top:96px; }
   .events { padding-top:34px; }
   .event-featured { flex-direction:column; align-items:stretch; padding:20px; gap:16px; }
   .event-featured h3 { font-size:19px; }
-  .event-featured-actions { flex-direction:row; align-items:center; gap:14px; }
-  .event-featured-actions .btn { flex:1; }
+  .event-featured-actions { flex-direction:row; align-items:center; gap:14px; flex-wrap:wrap; }
+  .event-featured-actions .btn { flex:1 1 140px; }
   .events-grid { grid-template-columns:1fr; gap:22px; }
   .event-bottom { gap:10px; }
   .footer-inner { display:block; }
@@ -333,12 +334,12 @@ section[id] { scroll-margin-top:96px; }
       <div class="event-featured-copy">
         <p class="event-track">AI × 智能体 · 生态合作</p>
         <h3>支付宝智能体涌现奖</h3>
-        <p>1000 万总奖池，生活好帮手 / 消费新体验两条赛道。阿里云百炼为参赛者提供新用户 1 亿 Token、老用户最高 200 元等额补贴与 Token Plan 福利券。</p>
+        <p>1000 万总奖池，生活好帮手 / 消费新体验两条赛道。阿里云百炼为参赛者提供新用户 2500 万 Token、老用户最高 200 元等额补贴与 Token Plan 福利券。</p>
         <div class="event-featured-meta"><span class="event-deadline">首轮投递截止 12.06 零点</span><span class="event-deadline">年度最佳智能体 100 万</span></div>
       </div>
       <div class="event-featured-actions">
-        <a class="btn btn-primary" href="https://emerge.alipay.com/#/?section=hero" target="_blank" rel="noopener noreferrer">大赛入口 <span aria-hidden="true">↗</span></a>
-        <a class="text-link" href="/emerge-2026/">百炼权益专区 <span aria-hidden="true">→</span></a>
+        <a class="btn btn-primary" href="/emerge-2026/">百炼权益专区 <span aria-hidden="true">→</span></a>
+        <a class="btn btn-secondary" href="https://emerge.alipay.com/#/?section=hero" target="_blank" rel="noopener noreferrer">大赛入口 <span aria-hidden="true">↗</span></a>
       </div>
     </article>
     <div class="events-grid">
